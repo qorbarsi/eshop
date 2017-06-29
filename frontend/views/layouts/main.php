@@ -28,16 +28,16 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'DSS',
+        'brandLabel' => Yii::t('eshop','brandLabel'),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Магазин', 'url' => ['/site/index']],
-        ['label' => 'О нас', 'url' => ['/site/about']],
-        ['label' => 'Контакты', 'url' => ['/site/contact']],
+        ['label' => Yii::t('eshop','Главная'), 'url' => ['/site/index']],
+        ['label' => Yii::t('eshop','О нас'), 'url' => ['/site/about']],
+        ['label' => Yii::t('eshop','Контакты'), 'url' => ['/site/contact']],
     ];
 
     echo Nav::widget([
@@ -58,7 +58,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; <?= Yii::t('eshop','My Company') ?> <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

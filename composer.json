@@ -1,18 +1,18 @@
 {
-    "name": "dvizh/shop-skeleton",
+    "name": "qorbarsi/shop-skeleton",
     "description": "Skeleton for e-comerce MVP develop",
     "keywords": ["yii2", "yii", "skeleton", "framework", "advanced", "project template", "shop", "dvizh"],
-    "homepage": "https://github.com/dvizh",
+    "homepage": "https://github.com/qorbarsi",
     "type": "project",
     "license": "apache",
     "authors": [
       {
-        "name": "Ilya Pistol",
-        "email": "admin@nethammer.ru"
+        "name": "Qorbarsi",
+        "email": "qorbarsi@gmail.com"
       }
     ],
     "support": {
-        "issues": "https://github.com/dvizh/"
+        "issues": "https://github.com/qorbarsi/"
     },
     "minimum-stability": "dev",
     "require": {
