@@ -21,6 +21,7 @@ return [
         ],
         'rbac' => 'dektrium\rbac\RbacWebModule',
     ],
+    'homeUrl' => '/backend/web',
     'components' => [
         'fileStorage' => [
             'class' => '\trntv\filekit\Storage',
@@ -36,6 +37,10 @@ return [
                     '@dektrium/user/views' => '@app/views/user'
                 ],
             ],
+        ],
+        'urlManager' => [
+           'enablePrettyUrl' => true,
+           'showScriptName' => false,
         ],
         'request' => [
             'baseUrl' => '/backend/web',
