@@ -3,7 +3,7 @@
 return [
     'name' => 'Название магазина',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'language' => 'ru-RU',
+    'language' => 'lt',
     'bootstrap' => [
         'dektrium\user\Bootstrap',
         'dektrium\rbac\Bootstrap',
@@ -149,9 +149,9 @@ return [
         'field' => [
             'class' => 'dvizh\field\Module',
             'relationModels' => [
-                'dvizh\shop\models\Product' => 'Продукты',
-                'dvizh\shop\models\Category' => 'Категории',
-                'dvizh\shop\models\Producer' => 'Производители',
+                'dvizh\shop\models\Product' => Yii::t('eshopapp','Продукты'),
+                'dvizh\shop\models\Category' => Yii::t('eshopapp','Категории'),
+                'dvizh\shop\models\Producer' => Yii::t('eshopapp','Производители'),
             ],
             'adminRoles' => ['superadmin'],
         ],

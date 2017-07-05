@@ -15,13 +15,19 @@
         "issues": "https://github.com/qorbarsi/"
     },
     "minimum-stability": "dev",
+    "repositories":[
+        {
+            "type": "vcs",
+            "url": "https://github.com/qorbarsi/yii2-shop"
+        }
+    ],
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "~2.0.6",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "yiisoft/yii2-authclient": "~2.1.0",
-        "dvizh/yii2-shop": "@dev",
+        "dvizh/yii2-shop": "dev-dev-custom",
         "dvizh/yii2-order": "@dev",
         "dvizh/yii2-cart": "@dev",
         "dvizh/yii2-promocode": "@dev",
