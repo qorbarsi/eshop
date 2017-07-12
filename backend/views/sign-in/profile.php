@@ -8,7 +8,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $model app\models\UserProfile */
 /* @var $form yii\bootstrap\ActiveForm */
 
-$this->title = 'Редактирование профиля';
+$this->title = Yii::t('backend','Редактирование профиля');
 ?>
 
 <div class="user-profile-form">
@@ -22,12 +22,12 @@ $this->title = 'Редактирование профиля';
     <?php echo $form->field($model, 'lastname')->textInput(['maxlength' => 255]) ?>
 
     <?php echo $form->field($model, 'gender')->dropDownlist([
-        UserProfile::GENDER_FEMALE => 'Женщина',
-        UserProfile::GENDER_MALE => 'Мужчина',
+        UserProfile::GENDER_FEMALE => Yii::t('backend','Женщина'),
+        UserProfile::GENDER_MALE => Yii::t('backend','Мужчина'),
     ]) ?>
 
     <div class="form-group">
-        <?php echo Html::submitButton('Редактировать', ['class' => 'btn btn-primary']) ?>
+        <?php echo Html::submitButton(Yii::t('backend','Редактировать'), ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

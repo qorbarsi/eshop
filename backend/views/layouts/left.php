@@ -8,7 +8,7 @@
                 'encodeLabels' => false,
                 'items' => [
                     [
-                        'label' => 'Заказы ' . \dvizh\order\widgets\CountByStatusInformer::widget([
+                        'label' => Yii::t('backend','Заказы ') . \dvizh\order\widgets\CountByStatusInformer::widget([
                                 'renderEmpty' => true,
                                 'iTagCssClass' => '',
                                 'aTag' => false
@@ -17,53 +17,53 @@
                         'visible' => Yii::$app->user->can('superadmin'),
                         'url' => ['/order/order/index']
                     ],
-                    ['label' => 'Магазин', 'options' => ['class' => 'header']],
+                    ['label' => Yii::t('backend','Магазин'), 'options' => ['class' => 'header']],
                     [
-                        'label' => 'Магазин',
+                        'label' => Yii::t('backend','Магазин'),
                         'icon' => 'shopping-bag',
                         'url' => '#',
                         'visible' => Yii::$app->user->can('superadmin'),
                         'items' => [
-                            ['label' => 'Товары', 'url' => ['/shop/product']],
-                            ['label' => 'Категории', 'url' => ['/shop/category']],
-                            ['label' => 'Производители', 'url' => ['/shop/producer']],
-                            ['label' => 'Фильтры', 'url' => ['/filter/filter']],
+                            ['label' => Yii::t('backend','Товары'), 'url' => ['/shop/product']],
+                            ['label' => Yii::t('backend','Категории'), 'url' => ['/shop/category']],
+                            ['label' => Yii::t('backend','Производители'), 'url' => ['/shop/producer']],
+                            ['label' => Yii::t('backend','Фильтры'), 'url' => ['/filter/filter']],
                         ],
                     ],
                     [
-                        'label' => 'Маркетинг',
+                        'label' => Yii::t('backend','Маркетинг'),
                         'icon' => 'area-chart',
                         'url' => '#',
                         'visible' => Yii::$app->user->can('superadmin'),
                         'items' => [
-                            ['label' => 'Промокоды', 'url' => ['/promocode/promo-code/index']],
-                            ['label' => 'Сертификаты', 'url' => ['/certificate/certificate/index']],
+                            ['label' => Yii::t('backend','Промокоды'), 'url' => ['/promocode/promo-code/index']],
+                            ['label' => Yii::t('backend','Сертификаты'), 'url' => ['/certificate/certificate/index']],
                         ],
                     ],
                     [
-                        'label' => 'Сайт',
+                        'label' => Yii::t('backend','Сайт'),
                         'icon' => 'sitemap',
                         'url' => '#',
                         'visible' => Yii::$app->user->can('superadmin'),
                         'items' => [
-                            ['label' => 'Пользователи', 'url' => ['/user/admin/index']],
-                            ['label' => 'Слайдер', 'url' => ['/slider/index']],
-                            ['label' => 'Новости', 'url' => ['/news/index']],
-                            ['label' => 'Страницы', 'url' => ['/page/index']],
+                            ['label' => Yii::t('backend','Пользователи'), 'url' => ['/user/admin/index']],
+                            ['label' => Yii::t('backend','Слайдер'), 'url' => ['/slider/index']],
+                            ['label' => Yii::t('backend','Новости'), 'url' => ['/news/index']],
+                            ['label' => Yii::t('backend','Страницы'), 'url' => ['/page/index']],
                         ],
                     ],
                     [
-                        'label' => 'Настройки',
+                        'label' => Yii::t('backend','Настройки'),
                         'icon' => 'cogs',
                         'url' => '#',
                         'visible' => Yii::$app->user->can('superadmin'),
                         'items' => [
-                            ['label' => 'Поля контента', 'url' => ['/field/field/index']],
-                            ['label' => 'Поля заказа', 'url' => ['/order/field/index']],
-                            ['label' => 'Типы цен', 'url' => ['/shop/price-type']],
-                            ['label' => 'Типы доставки', 'url' => ['/order/shipping-type/index']],
-                            ['label' => 'Типы оплаты', 'url' => ['/order/payment-type/index']],
-                            ['label' => 'Настройки сайта', 'url' => ['/settings/default/index']],
+                            ['label' => Yii::t('backend','Поля контента'), 'url' => ['/field/field/index']],
+                            ['label' => Yii::t('backend','Поля заказа'), 'url' => ['/order/field/index']],
+                            ['label' => Yii::t('backend','Типы цен'), 'url' => ['/shop/price-type']],
+                            ['label' => Yii::t('backend','Типы доставки'), 'url' => ['/order/shipping-type/index']],
+                            ['label' => Yii::t('backend','Типы оплаты'), 'url' => ['/order/payment-type/index']],
+                            ['label' => Yii::t('backend','Настройки сайта'), 'url' => ['/settings/default/index']],
                         ]
                     ],
 

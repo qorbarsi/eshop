@@ -1590,12 +1590,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/qorbarsi/yii2-shop.git",
-                "reference": "ad6b929726e513396cff01cac5198908e0866c62"
+                "reference": "e10d6c6de1bde9688acfbc31e08387704eff8180"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/qorbarsi/yii2-shop/zipball/ad6b929726e513396cff01cac5198908e0866c62",
-                "reference": "ad6b929726e513396cff01cac5198908e0866c62",
+                "url": "https://api.github.com/repos/qorbarsi/yii2-shop/zipball/e10d6c6de1bde9688acfbc31e08387704eff8180",
+                "reference": "e10d6c6de1bde9688acfbc31e08387704eff8180",
                 "shasum": ""
             },
             "require": {
@@ -1657,7 +1657,7 @@
             "support": {
                 "source": "https://github.com/dvizh/yii2-shop"
             },
-            "time": "2017-07-05 07:22:31"
+            "time": "2017-07-05 07:49:52"
         },
         {
             "name": "dvizh/yii2-tree",
@@ -4268,7 +4268,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2017-07-03T15:50:13+00:00"
+            "time": "2017-07-03 15:50:13"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -5012,7 +5012,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2017-06-30T09:13:00+00:00"
+            "time": "2017-06-30 09:13:00"
         },
         {
             "name": "psr/http-message",
@@ -5223,7 +5223,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2017-05-22T07:24:03+00:00"
+            "time": "2017-05-22 07:24:03"
         },
         {
             "name": "sebastian/environment",
@@ -5747,7 +5747,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-07-03T13:31:36+00:00"
+            "time": "2017-07-03 13:31:36"
         },
         {
             "name": "symfony/css-selector",
@@ -6138,7 +6138,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-07-03T10:20:17+00:00"
+            "time": "2017-07-03 10:20:17"
         },
         {
             "name": "webmozart/assert",
@@ -6235,7 +6235,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2017-06-30T16:09:14+00:00"
+            "time": "2017-06-30 16:09:14"
         },
         {
             "name": "yiisoft/yii2-faker",

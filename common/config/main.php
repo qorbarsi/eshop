@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => 'Название магазина',
+    'name' => Yii::t('common','Tomeda'),
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'language' => 'lt',
     'bootstrap' => [
@@ -38,8 +38,12 @@ return [
                 '*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@common/messages', //
+                    'forceTranslation' => true,
                     'sourceLanguage' => 'ru',
                     'fileMap' => [
+                        'frontend' => 'frontend.php',
+                        'backend'  => 'backend.php',
+                        'common'  => 'common.php',
                     ],
                 ],
             ],
@@ -107,7 +111,7 @@ return [
             'class' => 'dvizh\promocode\Module',
             'informer' => 'dvizh\cart\widgets\CartInformer', // namespace to custom cartInformer widget
             'informerSettings' => [], //settings for custom cartInformer widget
-            'clientsModel' => 'dvizh\yii2-clients\models\Client',
+            //'clientsModel' => 'dvizh\yii2-clients\models\Client',
             //Указываем модели, к которым будем привязывать промокод
             'targetModelList' => [
                 'Категории' => [
@@ -149,9 +153,9 @@ return [
         'field' => [
             'class' => 'dvizh\field\Module',
             'relationModels' => [
-                'dvizh\shop\models\Product' => Yii::t('eshopapp','Продукты'),
-                'dvizh\shop\models\Category' => Yii::t('eshopapp','Категории'),
-                'dvizh\shop\models\Producer' => Yii::t('eshopapp','Производители'),
+                'dvizh\shop\models\Product' => Yii::t('common','Продукты'),
+                'dvizh\shop\models\Category' => Yii::t('common','Категории'),
+                'dvizh\shop\models\Producer' => Yii::t('common','Производители'),
             ],
             'adminRoles' => ['superadmin'],
         ],
@@ -168,7 +172,7 @@ return [
         ],
         'settings' => [
             'class' => 'pheme\settings\Module',
-            'sourceLanguage' => 'ru'
+            'sourceLanguage' => 'lt'
         ],
     ],
 ];

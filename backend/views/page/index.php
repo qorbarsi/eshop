@@ -7,13 +7,13 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\search\PageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Страницы';
+$this->title = Yii::t('backend','Страницы');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="page-index">
 
     <p>
-        <?= Html::a('Создать страницу', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('backend','Создать страницу'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

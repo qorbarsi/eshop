@@ -17,10 +17,17 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'My Company' => 'Mano kompanija',
-    'brandLabel' => 'MegaEshop',
-    'Главная' => 'Pradžia',
-    'Контакты' => 'Kontaktai',
-    'О нас' => 'Apie mus',
-    'Title' => 'Pavadinimas',
+    'Apie mus' => '',
+    'Atsiliepimai' => '',
+    'Back' => '',
+    'Garantijos' => '',
+    'Katalogas' => '',
+    'Kategorijos' => '',
+    'Kontaktai' => '',
+    'Main page title' => '',
+    'Plačiau' => '',
+    'Pristatymas ir apmokėjimas' => '',
+    'Straipsniai' => '',
+    'The requested category does not exist.' => '',
+    'The requested product does not exist.' => '',
 ];

@@ -13,7 +13,7 @@ use yii\helpers\Html;
     <nav class="navbar navbar-static-top" role="navigation">
 
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only"><?= Yii::t('backend','Toggle navigation') ?></span>
         </a>
 
         <div class="navbar-custom-menu">
@@ -21,7 +21,7 @@ use yii\helpers\Html;
             <ul class="nav navbar-nav">
                 <li>
                     <a href="/" class="dropdown-toggle">
-                        На главную сайта
+                        <?= Yii::t('backend','На главную сайта') ?>
                     </a>
                 </li>
                 <?php if (Yii::$app->user->can('superadmin'))  {?>

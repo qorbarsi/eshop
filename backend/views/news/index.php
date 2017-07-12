@@ -7,16 +7,14 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\search\NewsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Новости';
+$this->title = Yii::t('backend','Новости');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Добавить новость', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('backend','Добавить новость'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -36,12 +34,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => Html::activeDropDownList(
                     $searchModel,
                     'status',
-                    ['draft' => 'Черновик','published' => 'Опубликовано', 'deleted' => 'Удалено'],
-                    ['class' => 'form-control', 'prompt' => 'Статус']
+                    ['draft' => Yii::t('backend','Черновик'),'published' => Yii::t('backend','Опубликовано'), 'deleted' => Yii::t('backend','Удалено')],
+                    ['class' => 'form-control', 'prompt' => Yii::t('backend','Статус')]
                 ),
                 'format' => 'raw',
                 'value' => function($model){
-                    $translate = ['draft' => 'Черновик','published' => 'Опубликовано', 'deleted' => 'Удалено'];
+                    $translate = ['draft' => Yii::t('backend','Черновик'),'published' => Yii::t('backend','Опубликовано'), 'deleted' => Yii::t('backend','Удалено')];
                     return $translate[$model->status];
                 }
             ],

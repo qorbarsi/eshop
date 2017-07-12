@@ -17,13 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Are you sure you want to delete this item?' => '',
-    'Delete' => '',
-    'Profile' => '',
-    'Reset' => '',
-    'Search' => '',
-    'Sign In' => '',
-    'Sign me in' => '',
-    'Update' => '',
-    'Users' => '',
+    'Tomeda' => '',
+    'Категории' => '',
+    'Продукты' => '',
+    'Производители' => '',
 ];

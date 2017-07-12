@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 
 
 
-$this->title = 'История заказов';
+$this->title = Yii::t('backend','История заказов');
 $this->params['breadcrumbs'][] = $this->title;
 
 

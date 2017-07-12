@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-index">
     <div class="body-content">
         <h2><?= $product->name ?></h2>
-        <h2><a href="<?=Yii::$app->request->referrer ?>"><?= Yii::t('eshop','Back') ?></a></h2>
+        <h2><a href="<?=Yii::$app->request->referrer ?>"><?= Yii::t('frontend','Back') ?></a></h2>
         <?= DetailView::widget([ 'model' => $product]) ?>
     </div>
 </div>

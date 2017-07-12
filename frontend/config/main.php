@@ -19,6 +19,13 @@ return [
     ],
     'homeUrl' => '/',
     'components' => [
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => [],
+                ],
+            ],
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -74,19 +81,6 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
-        ],
-        'i18n' => [
-            'translations' => [
-                'eshop' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/messages',
-                    'forceTranslation' => true,
-                    'sourceLanguage' => 'lt',
-                    'fileMap' => [
-                        'eshop' => 'eshop.php',
-                    ],
-                ],
-            ],
         ],
     ],
     'params' => $params,

@@ -14,7 +14,7 @@ return [
     'interactive' => true,
     'help' => null,
     #'sourcePath' => '@yii',
-    'sourcePath' => dirname(__DIR__),
+    'sourcePath' => dirname(dirname(__DIR__)),
     #'messagePath' => '@yii/messages',
     'messagePath' => __DIR__,
     'languages' => ['lt'],
@@ -30,12 +30,14 @@ return [
         '.gitkeep',
         '.hgignore',
         '.hgkeep',
-        '/messages',
+        '/common/messages',
+        '/common/modules',
         '/migrations',
         '/BaseYii.php',
         '/vendor',
         '/runtime',
         '/tests',
+        '/requirements.php'
     ],
     'only' => [
         '*.php'

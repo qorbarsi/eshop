@@ -38,9 +38,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $categories = Category::find()->all();
+        $products   = Product::find()->orderBy('id DESC')->all();
 
         return $this->render('index', [
             'categories' => $categories,
+            'products'   => $products
         ]);
     }
 
@@ -97,7 +99,7 @@ class SiteController extends Controller
         if (($model = $model::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('eshop','The requested category does not exist.'));
+            throw new NotFoundHttpException(Yii::t('frontend','The requested category does not exist.'));
         }
     }
 
@@ -108,7 +110,7 @@ class SiteController extends Controller
         if (($model = $model::findOne(['slug' => $slug])) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('eshop','The requested category does not exist.'));
+            throw new NotFoundHttpException(Yii::t('frontend','The requested category does not exist.'));
         }
     }
 
@@ -145,7 +147,7 @@ class SiteController extends Controller
         if (($model = $model::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('eshop','The requested product does not exist.'));
+            throw new NotFoundHttpException(Yii::t('frontend','The requested product does not exist.'));
         }
     }
 
@@ -156,7 +158,7 @@ class SiteController extends Controller
         if (($model = $model::findOne(['slug' => $slug])) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('eshop','The requested product does not exist.'));
+            throw new NotFoundHttpException(Yii::t('frontend','The requested product does not exist.'));
         }
     }
 
