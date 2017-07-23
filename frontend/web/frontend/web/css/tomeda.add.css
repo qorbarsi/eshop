@@ -1,0 +1,4 @@
+.breadcrumbs a:hover {text-decoration: none;}
+.breadcrumbs li { list-style-type:none; display: inline-block;}
+.breadcrumbs li::after { content: " »"; }
+.breadcrumbs li:last-child::after { content: ""; }

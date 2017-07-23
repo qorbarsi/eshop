@@ -3,7 +3,7 @@ use dvizh\order\widgets\Informer;
 use dvizh\order\widgets\ReportPaymentTypes;
 
 /* @var $this yii\web\View */
-$this->title = Yii::t('backend','Главная')
+$this->title = Yii::t('app/backend','Главная')
 ?>
 <div class="site-index">
     <div class="row">

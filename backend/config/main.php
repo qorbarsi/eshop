@@ -7,10 +7,11 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'Админка',
+    'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
-    'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    'language' => 'lt',
+    'controllerNamespace' => 'backend\controllers',
     'modules' => [
         'user' => [
             'as backend' => 'dektrium\user\filters\BackendFilter',
@@ -46,13 +47,6 @@ return [
             'baseUrl' => '/backend/web',
             'csrfParam' => '_csrf-backend',
         ],
-        'session' => [
-            'name' => 'backend-sess',
-            'cookieParams' => [
-                'httpOnly' => true,
-                'path'     => '/backend/web',
-            ],
-        ],
         'user' => [
             'identityClass' => 'dektrium\user\models\User',
             'identityCookie' => [
@@ -61,6 +55,13 @@ return [
                 'httpOnly' => true,
             ],
             'loginUrl' => ['/user/security/login'],
+        ],
+        'session' => [
+            'name' => 'backend-sess',
+            'cookieParams' => [
+                'httpOnly' => true,
+                'path'     => '/backend/web',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

@@ -7,13 +7,13 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\search\PageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('backend','Страницы');
+$this->title = Yii::t('app/backend','Страницы');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="page-index">
 
     <p>
-        <?= Html::a(Yii::t('backend','Создать страницу'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app/backend','Создать страницу'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'show',
                 'format' => 'raw',
                 'value' => function($model){
-                    $translate =['1' => 'Да','0' => 'Нет'];
+                    $translate =['1' =>  Yii::t('app/backend','Да'),'0' =>  Yii::t('app/backend','Нет')];
                     return $translate[$model ->top_menu];
                 }
             ],

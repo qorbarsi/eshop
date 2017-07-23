@@ -38,7 +38,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $categories = Category::find()->all();
-        $products   = Product::find()->orderBy('id DESC')->all();
+        $products   = Product::find()->andWhere(['is_popular' => 'yes', 'available' => 'yes'] )->orderBy('is_popular ASC, id DESC')->all();
 
         return $this->render('index', [
             'categories' => $categories,
@@ -59,7 +59,7 @@ class SiteController extends Controller
 
         $category = $this->findCategory($id);
 
-        $query = Product::find()->category($category->id)->orderBy('id DESC');
+        $query = Product::find()->andWhere(['available' => 'yes'] )->category($category->id)->orderBy('is_popular ASC, id DESC');
         $queryForFilter = clone $query;
         if($filter = yii::$app->request->get('filter')) {
             $query->filtered($filter);
@@ -79,7 +79,7 @@ class SiteController extends Controller
 
         $category = $this->findCategoryBySlug($slug);
 
-        $query = Product::find()->category($category->id)->orderBy('id DESC');
+        $query = Product::find()->andWhere(['available' => 'yes'] )->category($category->id)->orderBy('is_popular ASC, id DESC');
         $queryForFilter = clone $query;
         if($filter = yii::$app->request->get('filter')) {
             $query->filtered($filter);
@@ -99,7 +99,7 @@ class SiteController extends Controller
         if (($model = $model::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('frontend','The requested category does not exist.'));
+            throw new NotFoundHttpException(Yii::t('app/frontend','The requested category does not exist.'));
         }
     }
 
@@ -110,7 +110,7 @@ class SiteController extends Controller
         if (($model = $model::findOne(['slug' => $slug])) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('frontend','The requested category does not exist.'));
+            throw new NotFoundHttpException(Yii::t('app/frontend','The requested category does not exist.'));
         }
     }
 
@@ -147,7 +147,7 @@ class SiteController extends Controller
         if (($model = $model::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('frontend','The requested product does not exist.'));
+            throw new NotFoundHttpException(Yii::t('app/frontend','The requested product does not exist.'));
         }
     }
 
@@ -158,7 +158,7 @@ class SiteController extends Controller
         if (($model = $model::findOne(['slug' => $slug])) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('frontend','The requested product does not exist.'));
+            throw new NotFoundHttpException(Yii::t('app/frontend','The requested product does not exist.'));
         }
     }
 

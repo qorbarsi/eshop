@@ -1,31 +1,34 @@
 <?php
 use yii\helpers\Url;
-use dvizh\shop\models\Category;
-use dvizh\shop\widgets\ShowPrice;
 use yii\widgets\Breadcrumbs;
-use dvizh\filter\widgets\FilterPanel;
-use dvizh\field\widgets\Show;
-use dvizh\cart\widgets\ElementsList;
-use dvizh\cart\widgets\CartInformer;
-use dvizh\cart\widgets\ChangeOptions;
-use dvizh\cart\widgets\ChangeCount;
-use dvizh\cart\widgets\TruncateButton;
-use dvizh\cart\widgets\BuyButton;
-use dvizh\order\widgets\OrderForm;
-use dvizh\promocode\widgets\Enter;
-use dvizh\certificate\widgets\CertificateWidget;
-
 use yii\widgets\Menu;
 
-/* @var $this yii\web\View */
+use dvizh\shop\models\Category;
+use dvizh\shop\widgets\ShowPrice;
 
-$this->title = !empty($this->title) ? $this->title : Yii::t('frontend','Main page title');
-$this->params['breadcrumbs'] = isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []
+#use dvizh\filter\widgets\FilterPanel;
+#use dvizh\field\widgets\Show;
+#use dvizh\cart\widgets\ElementsList;
+#use dvizh\cart\widgets\CartInformer;
+#use dvizh\cart\widgets\ChangeOptions;
+#use dvizh\cart\widgets\ChangeCount;
+#use dvizh\cart\widgets\TruncateButton;
+#use dvizh\cart\widgets\BuyButton;
+#use dvizh\order\widgets\OrderForm;
+#use dvizh\promocode\widgets\Enter;
+#use dvizh\certificate\widgets\CertificateWidget;
+
+
+/* @var $this yii\web\View */
+$this->title = !empty($this->title) ? $this->title : Yii::t('app/frontend','Recommended products');
+$this->params['breadcrumbs']  = isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [];
+$this->params['withSignup']   = isset($this->params['withSignup']) ? $this->params['withSignup'] : 1;
+$this->params['withBenefits'] = isset($this->params['withBenefits']) ? $this->params['withBenefits'] : 1;
 ?>
     <div id="category">
         <div class="fl-le category-menu">
             <div class="left-categories">
-                <p class="h3"><?= Yii::t('frontend','Kategorijos') ?></p>
+                <p class="h3"><?= Yii::t('app/frontend','Kategorijos') ?></p>
                 <?php
 
                 function processRecordIndex($arr,$index=1) {
@@ -88,7 +91,11 @@ $this->params['breadcrumbs'] = isset($this->params['breadcrumbs']) ? $this->para
                                     'templateOldNew' => '{price} <span>{oldPrice}</span>',
                                     'currency' => '&euro;',
                                 ]);?>
-                                <div class="cat-pr-cta"><?= Yii::t('frontend','Plačiau') ?> &raquo;</div>
+                                <div class="cat-pr-cta"><?= Yii::t('app/frontend','Plačiau') ?> &raquo;</div>
+                                <!-- Show::widget(['model' => $product]);>
+                                <ChangeOptions::widget(['model' => $product]);>
+                                <ChangeCount::widget(['model' => $product]);>
+                                <BuyButton::widget(['model' => $product]);-->
                             </div>
                         </a>
                     <?php } ?>
@@ -97,5 +104,29 @@ $this->params['breadcrumbs'] = isset($this->params['breadcrumbs']) ? $this->para
                 </div>
             </div>
         </div>
+
+
+        <!--h2>4. Проверьте корзину</h2>
+        <fieldset>
+            <legend>dvizh\cart\widgets\ElementsList</legend>
+            <div>
+                <ElementsList::widget();>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>dvizh\cart\widgets\CartInformer</legend>
+            <div>
+                <CartInformer::widget();>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>dvizh\cart\widgets\TruncateButton</legend>
+            <div>
+                <TruncateButton::widget();>
+            </div>
+        </fieldset-->
+
         <div class="clear"></div>
     </div>

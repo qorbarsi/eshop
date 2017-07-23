@@ -25,21 +25,19 @@ use common\models\user\UserProfile;
         <?php echo $form->field($model, 'roles')->checkboxList($roles) ?>
 
         <?php if(!$model->model->isNewRecord && isset($profile)) { ?>
-            <h3><?=Yii::t('backend', 'Profile');?></h3>
+            <h3><?=Yii::t('app/backend', 'Profile');?></h3>
             <?php echo $form->field($profile, 'user_id')->textInput(['type' => 'hidden'])->label(false) ?>
             <?php echo $form->field($profile, 'firstname')->textInput(['maxlength' => 255]) ?>
             <?php echo $form->field($profile, 'middlename')->textInput(['maxlength' => 255]) ?>
             <?php echo $form->field($profile, 'lastname')->textInput(['maxlength' => 255]) ?>
             <?php echo $form->field($profile, 'gender')->dropDownlist([
-                // UserProfile::GENDER_FEMALE => Yii::t('backend', 'Female'),
-                // UserProfile::GENDER_MALE => Yii::t('backend', 'Male')
-                UserProfile::GENDER_FEMALE => 'Женский',
-                UserProfile::GENDER_MALE => 'Мужской'
+                UserProfile::GENDER_FEMALE => Yii::t('app/backend', 'Female'),
+                UserProfile::GENDER_MALE => Yii::t('app/backend', 'Male')
             ]) ?>
         <?php } ?>
 
         <div class="form-group">
-            <?php echo Html::submitButton('Сохранить', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+            <?php echo Html::submitButton(Yii::t('app/backend','Сохранить'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 

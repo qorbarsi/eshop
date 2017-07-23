@@ -12,6 +12,7 @@ use common\widgets\Alert;
 use yii\widgets\Menu;
 
 use dvizh\shop\models\Category;
+use dvizh\cart\widgets\ElementsList;
 
 AppAsset::register($this);
 ?>
@@ -27,7 +28,16 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=764901620321616";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div class="over-header">
         <div id="header">
             <div class="content">
@@ -52,6 +62,7 @@ AppAsset::register($this);
                     <div class="cart-text fl-le">
                         <div class="cart-header">Prekių krepšelis</div>
                         <div class="cart-links"><a href="javascript:;">Peržiūreti</a> – <a href="javascript:;">Užsakyti</a></div>
+                        <?=ElementsList::widget(['type' => ElementsList::TYPE_DROPDOWN]);?>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -82,19 +93,19 @@ AppAsset::register($this);
                 echo Menu::widget([
                     'items' => [
                         [
-                            'label' => Yii::t('frontend','Katalogas'),
+                            'label' => Yii::t('app/frontend','Katalogas'),
                             'url' => ['site/index'],
                             'options' => ['class'=>'catalog'],
                             'items' => $catalog
                         ],
 
-                        ['label' => Yii::t('frontend','Pristatymas ir apmokėjimas'), 'url' => 'javascript:;'],
-                        ['label' => Yii::t('frontend','Garantijos'), 'url' => 'javascript:;'],
-                        ['label' => Yii::t('frontend','Atsiliepimai'), 'url' => 'javascript:;'],
-                        ['label' => Yii::t('frontend','Straipsniai'), 'url' => 'javascript:;'],
+                        ['label' => Yii::t('app/frontend','Pristatymas ir apmokėjimas'), 'url' => 'javascript:;'],
+                        ['label' => Yii::t('app/frontend','Garantijos'), 'url' => 'javascript:;'],
+                        ['label' => Yii::t('app/frontend','Atsiliepimai'), 'url' => 'javascript:;'],
+                        ['label' => Yii::t('app/frontend','Straipsniai'), 'url' => 'javascript:;'],
 
-                        ['label' => Yii::t('frontend','Apie mus'), 'url' => ['site/about']],
-                        ['label' => Yii::t('frontend','Kontaktai'), 'url' => ['site/contact']],
+                        ['label' => Yii::t('app/frontend','Apie mus'), 'url' => ['site/about']],
+                        ['label' => Yii::t('app/frontend','Kontaktai'), 'url' => ['site/contact']],
                     ],
                     'labelTemplate' =>'{label} Label',
                     'linkTemplate' => '<a href="{url}"><span>{label}</span></a>',
@@ -120,6 +131,15 @@ AppAsset::register($this);
         </div>
     </div>
 
+    <?php
+        if (!empty($this->params['withBenefits'])) {
+            echo $this->render('benefits');
+        }
+        if (!empty($this->params['withSignup'])) {
+            echo $this->render('signup');
+        }
+    ?>
+
     <div id="footer" class="pad-top pad-bot">
         <div class="content">
             <div class="points">
@@ -138,8 +158,8 @@ AppAsset::register($this);
                     <p><a href="javascript:;">Garantijos</a></p>
                     <p><a href="javascript:;">Atsiliepimai</a></p>
                     <p><a href="javascript:;">Straipsniai</a></p>
-                    <p><?=Html::a(Yii::t('frontend','Apie mus'), ['site/about']);?></p>
-                    <p><?=Html::a(Yii::t('frontend','Kontaktai'), ['site/contact']);?></p>
+                    <p><?=Html::a(Yii::t('app/frontend','Apie mus'), ['site/about']);?></p>
+                    <p><?=Html::a(Yii::t('app/frontend','Kontaktai'), ['site/contact']);?></p>
                 </div>
                 <div class="point">
                     <p class="point-head">Prisijunkite prie mūsų</p>
@@ -156,6 +176,19 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
         <link href="https://fonts.googleapis.com/css?family=Cairo:400,600,700&amp;subset=latin-ext" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript">
+			$('.tabs ul li a').click(function () {
+				var tab_name = $(this).attr('id');
+				var tab = $(this).add('.'+tab_name);
+				$('.tabs a, .tab-selected').removeClass('selected');
+				tab.addClass('selected');
+			});
+            $('.additional-images a').click(function () {
+                var src = $(this).children("img:first").attr('src');
+                $('.main-image img').attr('src', src);
+            });
+		</script>
     </body>
 </html>
 <?php $this->endPage() ?>

@@ -64,7 +64,7 @@ return [
             ],
         ],
         'session' => [
-            'name' => 'FRONTENDSESSID',
+            'name' => 'frontend-sess',
             'cookieParams' => [
                 'httpOnly' => true,
                 'path'     => '/',

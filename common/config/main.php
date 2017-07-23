@@ -35,15 +35,15 @@ return [
         ],
         'i18n' => [
             'translations' => [
-                '*' => [
+                'app*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@common/messages', //
                     'forceTranslation' => true,
                     'sourceLanguage' => 'ru',
                     'fileMap' => [
-                        'frontend' => 'frontend.php',
-                        'backend'  => 'backend.php',
-                        'common'  => 'common.php',
+                        'app/frontend' => 'frontend.php',
+                        'app/backend'  => 'backend.php',
+                        'app/common'  => 'common.php',
                     ],
                 ],
             ],
