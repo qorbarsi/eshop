@@ -11,8 +11,8 @@ use dvizh\shop\widgets\ShowPrice;
 #use dvizh\cart\widgets\ChangeOptions;
 #use dvizh\cart\widgets\ChangeCount;
 #use dvizh\cart\widgets\TruncateButton;
-#use dvizh\cart\widgets\BuyButton;
-#use dvizh\order\widgets\OrderForm;
+use dvizh\cart\widgets\BuyButton;
+use dvizh\order\widgets\OrderForm;
 #use dvizh\promocode\widgets\Enter;
 #use dvizh\certificate\widgets\CertificateWidget;
 
@@ -56,13 +56,13 @@ $this->params['withBenefits'] = 0;
             'class' => 'breadcrumbs'
         ]
     ]) ?>
-    <div class="product-container">
+    <div class="product-container simpleCart_shelfItem">
         <div class="product-title">
-            <h1><?= $this->title?></h1>
+            <h1 class="item_name"><?= $this->title?></h1>
         </div>
         <div class="product-images">
             <div class="main-image">
-                <img src="<?=$product->getImage()->getUrl();?>" alt="<?= $this->title?>">
+                <img src="<?=$product->getImage()->getUrl('500x500');?>" alt="<?= $this->title?>">
             </div>
             <div class="additional-images">
             <?php
@@ -70,11 +70,11 @@ $this->params['withBenefits'] = 0;
                 $i = 0;
                 $len = count($images);
                 foreach ($images as $img) {
-                    $class = ($i == $len - 1) ? 'last' : '';
-                    $url = $img->getUrl();
+                    $class = (($i%5) == 4) ? 'last' : '';
+                    $url = $img->getUrl('88x88');
                     $alt = $img->alt;
                     $alt = (empty($alt)) ? $this->title : $alt;
-                    echo "<a href='javascript:;'><img src='".$url."' alt='".$alt."' class='".$class."'></a>";
+                    echo "<a href='javascript:;' class='".$class."'><img src='".$url."' alt='".$alt."'></a>";
                     $i++;
                 }
             ?>
@@ -92,47 +92,12 @@ $this->params['withBenefits'] = 0;
                     'currency' => '&euro;',
                 ]);?>
                 <div class="add-block">
-                    <a href="javascript:;" class="button to-cart"><span></span>Pirkti</a>
+                    <?= BuyButton::widget(['model' => $product, 'cssClass' => 'button to-cart', 'htmlTag' => 'a', 'text' => '<span></span>Pirkti']); ?>
+                    <!-- Show::widget(['model' => $product]);>
+                    <ChangeOptions::widget(['model' => $product]);>
+                    <ChangeCount::widget(['model' => $product]);>
+                    -->
                 </div>
-            </div>
-            <div class="short-benefits">
-                <div class="point ic1">
-                    <div class="icon"><div class="tbg"></div></div>
-                    <div class="text">Visoms prekėms suteikiame net iki 3 metų garantiją</div>
-                </div>
-                <div class="point ic2">
-                    <div class="icon"><div class="tbg"></div></div>
-                    <div class="text">Nemokamas pristatymas visoje Lietuvoje</div>
-                </div>
-                <div class="point ic3">
-                    <div class="icon"><div class="tbg"></div></div>
-                    <div class="text">Konsultantų praktiški patarimai ir rekomendacijos</div>
-                </div>
-                <div class="point ic4">
-                    <div class="icon"><div class="tbg"></div></div>
-                    <div class="text">Greitas pristatymas per 1-2 darbo dienas</div>
-                </div>
-                <div class="point ic5">
-                    <div class="icon"><div class="tbg"></div></div>
-                    <div class="text">Atsiskaitymas grynaisiais arba internetu</div>
-                </div>
-                <!-- <div class="point ic6">
-                    <div class="icon"><div class="tbg"></div></div>
-                    <div class="text">Konkurencingos kainos ir specialūs pasiūlymai</div>
-                </div>
-                <div class="point ic7">
-                    <div class="icon"><div class="tbg"></div></div>
-                    <div class="text">Išsamūs prekių aprašymai, vaizdo apžvalgos</div>
-                </div> -->
-                <div class="point ic8">
-                    <div class="icon"><div class="tbg"></div></div>
-                    <div class="text">Paprasta prekių grąžinimo/keitimo procedūra</div>
-                </div>
-                <!-- <div class="point ic9">
-                    <div class="icon"><div class="tbg"></div></div>
-                    <div class="text">Padengiame grąžinimo siuntimo išlaidas</div>
-                </div> -->
-                <div class="clear"></div>
             </div>
             <div class="clear"></div>
         </div>
@@ -154,6 +119,47 @@ $this->params['withBenefits'] = 0;
                         <div class="tab-selected point-description selected">
                             <p class="tab-header">Aprašymas</p>
                             <?= $product->text ?>
+                            <br>
+                            <p class="tab-header">Kodėl verta rinktis e-parduotuvę „Tomeda.lt“?</p>
+                            <div class="short-benefits">
+                                <div class="point ic1">
+                                    <div class="icon"><div class="tbg"></div></div>
+                                    <div class="text">Visoms prekėms suteikiame net iki 3 metų garantiją</div>
+                                </div>
+                                <div class="point ic2">
+                                    <div class="icon"><div class="tbg"></div></div>
+                                    <div class="text">Nemokamas pristatymas visoje Lietuvoje</div>
+                                </div>
+                                <div class="point ic3">
+                                    <div class="icon"><div class="tbg"></div></div>
+                                    <div class="text">Konsultantų praktiški patarimai ir rekomendacijos</div>
+                                </div>
+                                <div class="point ic4">
+                                    <div class="icon"><div class="tbg"></div></div>
+                                    <div class="text">Greitas pristatymas per 1-2 darbo dienas</div>
+                                </div>
+                                <div class="point ic5">
+                                    <div class="icon"><div class="tbg"></div></div>
+                                    <div class="text">Atsiskaitymas grynaisiais arba internetu</div>
+                                </div>
+                                <!-- <div class="point ic6">
+                                    <div class="icon"><div class="tbg"></div></div>
+                                    <div class="text">Konkurencingos kainos ir specialūs pasiūlymai</div>
+                                </div>
+                                <div class="point ic7">
+                                    <div class="icon"><div class="tbg"></div></div>
+                                    <div class="text">Išsamūs prekių aprašymai, vaizdo apžvalgos</div>
+                                </div> -->
+                                <div class="point ic8">
+                                    <div class="icon"><div class="tbg"></div></div>
+                                    <div class="text">Paprasta prekių grąžinimo/keitimo procedūra</div>
+                                </div>
+                                <!-- <div class="point ic9">
+                                    <div class="icon"><div class="tbg"></div></div>
+                                    <div class="text">Padengiame grąžinimo siuntimo išlaidas</div>
+                                </div> -->
+                                <div class="clear"></div>
+                            </div>
                         </div>
 
                         <div class="tab-selected point-payment-delivery">
@@ -187,7 +193,7 @@ $this->params['withBenefits'] = 0;
                                     ]
                                 ).'">';
                                 echo '<div class="related-img">';
-                                echo '<img src="'.$rel->getImage()->getUrl().'" alt="'.$rel->name.'">';
+                                echo '<img src="'.$rel->getImage()->getUrl('200x200').'" alt="'.$rel->name.'">';
                                 echo '</div>';
                                 echo ShowPrice::widget([
                                     'model'    => $rel,

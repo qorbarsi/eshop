@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 //use yii\bootstrap\Nav;
 //use yii\bootstrap\NavBar;
 //use yii\widgets\Breadcrumbs;
@@ -13,6 +14,7 @@ use yii\widgets\Menu;
 
 use dvizh\shop\models\Category;
 use dvizh\cart\widgets\ElementsList;
+use dvizh\cart\widgets\CartInformer;
 
 AppAsset::register($this);
 ?>
@@ -57,12 +59,14 @@ AppAsset::register($this);
                 <div id="shopping-cart">
                     <div class="cart-icon fl-le">
                         <div class="tbg"></div>
-                        <span class="empty">0</span>
+                        <?php
+                            $class = ( yii::$app->cart->getCount() > 0 ) ? '' : 'empty';
+                            echo CartInformer::widget(['htmlTag' => 'span', 'cssClass'=> $class, 'text' => '{c}']);
+                        ?>
                     </div>
                     <div class="cart-text fl-le">
                         <div class="cart-header">Prekių krepšelis</div>
-                        <div class="cart-links"><a href="javascript:;">Peržiūreti</a> – <a href="javascript:;">Užsakyti</a></div>
-                        <?=ElementsList::widget(['type' => ElementsList::TYPE_DROPDOWN]);?>
+                        <div class="cart-links"><a href="<?= Url::toRoute([\Yii::$app->params['eshopPrefix'].'/cart']); ?>" class="">Peržiūreti</a> – <a href="javascript:;" class="simpleCart_checkout">Užsakyti</a></div>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -176,8 +180,10 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
         <link href="https://fonts.googleapis.com/css?family=Cairo:400,600,700&amp;subset=latin-ext" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript">
+            function isNumeric(n) {
+                return !isNaN(parseFloat(n)) && isFinite(n);
+            }
 			$('.tabs ul li a').click(function () {
 				var tab_name = $(this).attr('id');
 				var tab = $(this).add('.'+tab_name);
@@ -187,6 +193,12 @@ AppAsset::register($this);
             $('.additional-images a').click(function () {
                 var src = $(this).children("img:first").attr('src');
                 $('.main-image img').attr('src', src);
+            });
+            $(document).on('promocodeClear', function() {
+                var mnt = $('.dvizh-cart-count').html();
+                if ( isNumeric(mnt) && mnt > 0) {
+                    alert();
+                }
             });
 		</script>
     </body>

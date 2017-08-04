@@ -2,3 +2,18 @@
 .breadcrumbs li { list-style-type:none; display: inline-block;}
 .breadcrumbs li::after { content: " »"; }
 .breadcrumbs li:last-child::after { content: ""; }
+
+.dvizh-cart-row {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    border-bottom: none;
+}
+
+.dvizh-cart-bottom-panel {
+    text-align: right;
+}
+.promo-code-enter {
+    width: 100%;
+    text-align: right;
+}

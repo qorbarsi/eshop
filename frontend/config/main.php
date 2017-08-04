@@ -31,6 +31,8 @@ return [
             'showScriptName' => false,
             'rules' => [
                 $params['eshopPrefix'] => 'site/index',
+                $params['eshopPrefix'].'/cart' => 'site/cart',
+                'cart' => 'site/cart',
                 [
                     'pattern'  => $params['eshopPrefix'].'/<category:[\w\-]+>/<id:\d*>',
                     'route'    => 'site/product',

@@ -19,7 +19,15 @@
         {
             "type": "vcs",
             "url": "https://github.com/qorbarsi/yii2-shop"
-        }
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/qorbarsi/yii2-cart"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/qorbarsi/yii2-promocode"
+        },
     ],
     "require": {
         "php": ">=5.4.0",
@@ -29,8 +37,8 @@
         "yiisoft/yii2-authclient": "~2.1.0",
         "dvizh/yii2-shop": "dev-dev-custom",
         "dvizh/yii2-order": "@dev",
-        "dvizh/yii2-cart": "@dev",
-        "dvizh/yii2-promocode": "@dev",
+        "dvizh/yii2-cart": "dev-custom",
+        "dvizh/yii2-promocode": "dev-custom",
         "dvizh/yii2-review": "@dev",
         "dvizh/yii2-certificate": "@dev",
         "dmstr/yii2-adminlte-asset": "2.*",

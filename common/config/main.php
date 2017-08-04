@@ -75,10 +75,10 @@ return [
         ],
         'cart' => [
             'class' => 'dvizh\cart\Cart',
-            'currency' => 'р.', //Валюта
+            'currency' => '€', //Валюта
             'currencyPosition' => 'after', //after или before (позиция значка валюты относительно цены)
             'priceFormat' => [2,'.', ''], //Форма цены
-            'as set_discount' => ['class' => 'common\aspects\SetDiscount'],
+            'as set_discount' => ['class' => '\common\aspects\SetDiscount'],
             'as set_certificate_discount' => '\common\aspects\SetCertificateDiscount'
         ],
         'client' => [
@@ -110,7 +110,8 @@ return [
         'promocode' => [
             'class' => 'dvizh\promocode\Module',
             'informer' => 'dvizh\cart\widgets\CartInformer', // namespace to custom cartInformer widget
-            'informerSettings' => [], //settings for custom cartInformer widget
+            'informerSettings' => ['text' => '{c}'], //settings for custom cartInformer widget
+            'currency' => '€', //Валюта
             //'clientsModel' => 'dvizh\yii2-clients\models\Client',
             //Указываем модели, к которым будем привязывать промокод
             'targetModelList' => [

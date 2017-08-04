@@ -46,6 +46,18 @@ class SiteController extends Controller
         ]);
     }
 
+
+    /**
+     * Displays cart.
+     *
+     * @return mixed
+     */
+    public function actionCart()
+    {
+        return $this->render('cart', [
+        ]);
+    }
+
     /**
      * Displays homepage.
      *

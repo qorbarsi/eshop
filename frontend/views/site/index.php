@@ -80,7 +80,7 @@ $this->params['withBenefits'] = isset($this->params['withBenefits']) ? $this->pa
                                         (empty($product->slug) ? $product->id : $product->slug )?> ">
                             <div class="cat-pr">
                                 <div class="cat-pr-img">
-                                    <img src="<?=$product->getImage()->getUrl();?>" alt="<?=$product->name;?>">
+                                    <img src="<?=$product->getImage()->getUrl('200x200');?>" alt="<?=$product->name;?>">
                                 </div>
                                 <div class="cat-pr-title"><?=$product->name;?></div>
                                 <?= ShowPrice::widget([
@@ -104,29 +104,6 @@ $this->params['withBenefits'] = isset($this->params['withBenefits']) ? $this->pa
                 </div>
             </div>
         </div>
-
-
-        <!--h2>4. Проверьте корзину</h2>
-        <fieldset>
-            <legend>dvizh\cart\widgets\ElementsList</legend>
-            <div>
-                <ElementsList::widget();>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>dvizh\cart\widgets\CartInformer</legend>
-            <div>
-                <CartInformer::widget();>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>dvizh\cart\widgets\TruncateButton</legend>
-            <div>
-                <TruncateButton::widget();>
-            </div>
-        </fieldset-->
 
         <div class="clear"></div>
     </div>
