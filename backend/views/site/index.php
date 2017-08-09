@@ -8,10 +8,10 @@ $this->title = Yii::t('app/backend','Главная')
 <div class="site-index">
     <div class="row">
         <div class="col-md-6">
-            <?=Informer::widget();?>
+            <?= Informer::widget();?>
         </div>
         <div class="col-md-6">
-            <?=ReportPaymentTypes::widget();?>
+            <?= ReportPaymentTypes::widget();?>
         </div>
     </div>
 </div>

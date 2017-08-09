@@ -30,25 +30,32 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                $params['eshopPrefix'] => 'site/index',
-                $params['eshopPrefix'].'/cart' => 'site/cart',
-                'cart' => 'site/cart',
+                '/'          => $params['eshopPrefix'].'/index',
+                'index'      => $params['eshopPrefix'].'/index',
+                'site/index' => $params['eshopPrefix'].'/index',
+
+                $params['eshopPrefix']          => $params['eshopPrefix'].'/index',
+                $params['eshopPrefix'].'/index' => $params['eshopPrefix'].'/index',
+
+                'cart'                         => $params['eshopPrefix'].'/cart',
+                $params['eshopPrefix'].'/cart' => $params['eshopPrefix'].'/cart',
+
                 [
                     'pattern'  => $params['eshopPrefix'].'/<category:[\w\-]+>/<id:\d*>',
-                    'route'    => 'site/product',
+                    'route'    => $params['eshopPrefix'].'/product',
                 ],
                 [
                     'pattern'  => $params['eshopPrefix'].'/<category:[\w\-]+>/<slug:[0-9a-zA-Z\-]+>',
-                    'route'    => 'site/products',
+                    'route'    => $params['eshopPrefix'].'/products',
                 ],
                 [
                     'pattern'  => $params['eshopPrefix'].'/<id:\d*>',
-                    'route'    => 'site/category',
+                    'route'    => $params['eshopPrefix'].'/category',
                     'defaults' => ['id' => null],
                 ],
                 [
                     'pattern'  => $params['eshopPrefix'].'/<slug:[0-9a-zA-Z\-]+>',
-                    'route'    => 'site/categories',
+                    'route'    => $params['eshopPrefix'].'/categories',
                     'defaults' => ['slug' => null],
                 ],
             ],
@@ -66,11 +73,13 @@ return [
             ],
         ],
         'session' => [
-            'name' => 'frontend-sess',
+            'class'   => 'yii\web\DbSession',
+            /*'name' => 'FRONTENDSESSID',
             'cookieParams' => [
                 'httpOnly' => true,
                 'path'     => '/',
-            ],
+            ],*/
+            'timeout' => 60*60*24*14,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

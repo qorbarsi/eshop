@@ -45,7 +45,9 @@ AppAsset::register($this);
             <div class="content">
                 <div class="fl-le">
                     <div class="logo-container">
-                        <img src="/css/img/tomeda-logo-black.png" alt="Tomeda logo">
+                        <a href='/'>
+                            <img src="/css/img/tomeda-logo-black.png" alt="Tomeda logo">
+                        </a>
                     </div>
                     <p class="descript">Elektronikos prekės</p>
                 </div>
@@ -123,6 +125,31 @@ AppAsset::register($this);
 
             </div>
         </div>
+        <div id="mobile-menu">
+            <div class="content">
+                <?php
+                $catalog = processRecord(Category::buildTree());
+
+                echo Menu::widget([
+                    'items' => [
+                        [
+                            'label' => Yii::t('app/frontend','Katalogas'),
+                            'url' => 'javascript:;',
+                            'options' => ['class'=>'catalog'],
+                            'items' => $catalog
+                        ],
+                    ],
+                    'labelTemplate' =>'{label} Label',
+                    'linkTemplate' => '<a href="{url}"><span>{label}</span></a>',
+                    'activeCssClass' => 'activeclass',
+                    'options' => [
+                        'class' => 'mar0 pad0',
+                    ],
+                    'submenuTemplate' => "\n<ul class='catalog-level1' role='menu'>\n{items}\n</ul>\n",
+                ]);
+                ?>
+            </div>
+        </div>
     </div>
 
     <div class="content">
@@ -175,15 +202,20 @@ AppAsset::register($this);
             <div class="footer-logo">
                 <img src="/css/img/tomeda-logo-black.png" alt="Tomeda">
             </div>
+            <a class="mobile-fixed-cart" href="<?= Url::toRoute([\Yii::$app->params['eshopPrefix'].'/cart']); ?>">
+               <span class="tbg"></span>
+               <?php
+                   $class = ( yii::$app->cart->getCount() > 0 ) ? '' : 'empty';
+                   echo CartInformer::widget(['htmlTag' => 'div', 'cssClass'=> $class, 'text' => '{c}']);
+               ?>
+           </a>
         </div>
     </div>
 
 <?php $this->endBody() ?>
         <link href="https://fonts.googleapis.com/css?family=Cairo:400,600,700&amp;subset=latin-ext" rel="stylesheet">
         <script type="text/javascript">
-            function isNumeric(n) {
-                return !isNaN(parseFloat(n)) && isFinite(n);
-            }
+            function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
 			$('.tabs ul li a').click(function () {
 				var tab_name = $(this).attr('id');
 				var tab = $(this).add('.'+tab_name);
@@ -194,10 +226,30 @@ AppAsset::register($this);
                 var src = $(this).children("img:first").attr('src');
                 $('.main-image img').attr('src', src);
             });
-            $(document).on('promocodeClear', function() {
-                var mnt = $('.dvizh-cart-count').html();
-                if ( isNumeric(mnt) && mnt > 0) {
-                    alert();
+            $('#mobile-menu li.catalog > a').click(function () {
+            	$('#mobile-menu .catalog-level1').toggle();
+            });
+            $(document).on('renderCart', function (event, json) {
+                if (json.count > 0) {
+                    $('.dvizh-cart-informer').removeClass('empty');
+                } else {
+                    $('.dvizh-cart-informer').addClass('empty');
+                }
+            });
+            $(document).on('promocodeClear', function (event, json) {
+                discount = 0;
+                discount_type = 0;
+                simpleCart.update();
+            });
+            $(document).on('promocodeEnter', function (event, json) {
+                console.log(json);
+                if (json.type == 'percent') {
+                    console.log('discoutn_type');
+                    discount_type = 1;
+                }
+                if (isNumeric(json.discount)) {
+                    discount = json.discount;
+                    simpleCart.update();
                 }
             });
 		</script>

@@ -17,3 +17,38 @@
     width: 100%;
     text-align: right;
 }
+
+#dvizh-change-count {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#dvizh-change-count:before {content: "Kiekis"; display: block; text-align: center; font-weight: bold;}
+
+#item-productimg {
+    display: inherit;
+}
+
+
+.dvizh-change-count .dvizh-downArr, .dvizh-change-count .dvizh-upArr {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	text-decoration: none; background: #fff; width: 20px; height: 20px; border-radius: 50%; border: 1px solid #333; top:50%; margin-top: 1px;
+}
+
+.dvizh-change-count .dvizh-downArr:after, .dvizh-change-count .dvizh-upArr:after {
+	position: absolute;
+	top: 50%; left: 50%; display: block; width: 20px; height: 20px; margin-top: -10px; margin-left: -10px; color: #333;text-align: center;line-height: 16px;
+}
+.dvizh-change-count .dvizh-downArr:hover, .dvizh-change-count .dvizh-upArr:hover {border-color: #999;}
+.dvizh-change-count .dvizh-downArr:hover:after, .dvizh-change-count .dvizh-upArr:hover:after {color: #999;}
+.dvizh-change-count .dvizh-downArr:after {content: "-"; font-size: 20px;}
+.dvizh-change-count .dvizh-upArr:after {content: "+"; font-size: 18px;}
+
+
+@media screen and (max-width:500px){
+    .dvizh-change-count .dvizh-downArr, .ss_cart .simpleCart_increment {position: relative;}
+    .dvizh-change-count .dvizh-downArr {right: 0}
+}

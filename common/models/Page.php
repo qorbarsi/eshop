@@ -41,11 +41,11 @@ class Page extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'show_page' => 'Показывать в главном меню',
-            'slug' => 'SEO-имя',
-            'name' => 'Заголовок',
-            'text' => 'Текст',
+            'id'        => Yii::t('app/backend','ID'),
+            'show_page' => Yii::t('app/backend','Показывать в главном меню'),
+            'slug'      => Yii::t('app/backend','SEO-заголовок'),
+            'name'      => Yii::t('app/backend','Заголовок'),
+            'text'      => Yii::t('app/backend','Текст'),
         ];
     }
 }

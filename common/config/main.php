@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => Yii::t('common','Tomeda'),
+    'name' => Yii::t('app/common','Tomeda'),
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'language' => 'lt',
     'bootstrap' => [
@@ -22,14 +22,13 @@ return [
         ]
     ),
     'components' => [
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@backend/views/user'
+                ],
             ],
         ],
-        */
         'assetManager' => [
             'forceCopy' => false,
         ],
@@ -41,9 +40,9 @@ return [
                     'forceTranslation' => true,
                     'sourceLanguage' => 'ru',
                     'fileMap' => [
-                        'app/frontend' => 'frontend.php',
-                        'app/backend'  => 'backend.php',
-                        'app/common'  => 'common.php',
+                        'app/frontend' => 'app/frontend.php',
+                        'app/backend'  => 'app/backend.php',
+                        'app/common'  => 'app/common.php',
                     ],
                 ],
             ],
@@ -154,9 +153,9 @@ return [
         'field' => [
             'class' => 'dvizh\field\Module',
             'relationModels' => [
-                'dvizh\shop\models\Product' => Yii::t('common','Продукты'),
-                'dvizh\shop\models\Category' => Yii::t('common','Категории'),
-                'dvizh\shop\models\Producer' => Yii::t('common','Производители'),
+                'dvizh\shop\models\Product' => Yii::t('app/common','Продукты'),
+                'dvizh\shop\models\Category' => Yii::t('app/common','Категории'),
+                'dvizh\shop\models\Producer' => Yii::t('app/common','Производители'),
             ],
             'adminRoles' => ['superadmin'],
         ],

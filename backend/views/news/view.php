@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\News */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Новости', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app/backend','Новости'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('app/backend','Обновить'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app/backend','Удалить'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
+                'confirm' => Yii::t('app/backend','Вы уверены, что хотите удалить этот элемент?'),
                 'method' => 'post',
             ],
         ]) ?>
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' =>'status',
                 'format' => 'raw',
                 'value' => function($model){
-                    $translate =['draft' => 'Черновик','published' => 'Опубликовано', 'deleted' => 'Удалено'];
+                    $translate =['draft' => Yii::t('app/backend','Черновик'),'published' => Yii::t('app/backend','Опубликовано'), 'deleted' => Yii::t('app/backend','Удалено')];
                     return $translate[$model ->status];
                 }
             ],

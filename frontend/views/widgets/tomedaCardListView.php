@@ -6,9 +6,9 @@ use dvizh\cart\widgets\ElementPrice;
 use dvizh\cart\widgets\ElementCost;
 ?>
 
-<li class="dvizh-cart-row ">
-<div class="row itemRow row-0 odd" id="cartItem_SCI-1">
-    <div class="item-thumb">
+<li class="dvizh-cart-row">
+<div class="row itemRow ">
+    <div class="item-thumb" id="item-productimg">
         <img src="<?=$model->getModel()->getImage()->getUrl('88x88');?>" alt="<?= $model->name?>">
     </div>
     <div class="item-name">
@@ -31,7 +31,7 @@ use dvizh\cart\widgets\ElementCost;
         ?>
     </div>
     <div class="item-productshopid"></div>
-    <div class="item-productimg"></div>
+    <div class="item-productimg"><?=$model->getModel()->getImage()->getUrl('88x88');?></div>
     <div class="item-category"></div>
 </div>
 </li>

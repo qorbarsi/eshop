@@ -1,109 +1,155 @@
 <?php
 use yii\helpers\Url;
-use yii\widgets\Breadcrumbs;
-use yii\widgets\Menu;
-
 use dvizh\shop\models\Category;
 use dvizh\shop\widgets\ShowPrice;
-
-#use dvizh\filter\widgets\FilterPanel;
-#use dvizh\field\widgets\Show;
-#use dvizh\cart\widgets\ElementsList;
-#use dvizh\cart\widgets\CartInformer;
-#use dvizh\cart\widgets\ChangeOptions;
-#use dvizh\cart\widgets\ChangeCount;
-#use dvizh\cart\widgets\TruncateButton;
-#use dvizh\cart\widgets\BuyButton;
-#use dvizh\order\widgets\OrderForm;
-#use dvizh\promocode\widgets\Enter;
-#use dvizh\certificate\widgets\CertificateWidget;
-
+use dvizh\filter\widgets\FilterPanel;
+use dvizh\field\widgets\Show;
+use dvizh\cart\widgets\ElementsList;
+use dvizh\cart\widgets\CartInformer;
+use dvizh\cart\widgets\ChangeOptions;
+use dvizh\cart\widgets\ChangeCount;
+use dvizh\cart\widgets\TruncateButton;
+use dvizh\cart\widgets\BuyButton;
+use dvizh\order\widgets\OrderForm;
+use dvizh\promocode\widgets\Enter;
+use dvizh\certificate\widgets\CertificateWidget;
 
 /* @var $this yii\web\View */
-$this->title = !empty($this->title) ? $this->title : Yii::t('app/frontend','Recommended products');
-$this->params['breadcrumbs']  = isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [];
-$this->params['withSignup']   = isset($this->params['withSignup']) ? $this->params['withSignup'] : 1;
-$this->params['withBenefits'] = isset($this->params['withBenefits']) ? $this->params['withBenefits'] : 1;
+
+$this->title = 'Модули Dvizh';
+
 ?>
-    <div id="category">
-        <div class="fl-le category-menu">
-            <div class="left-categories">
-                <p class="h3"><?= Yii::t('app/frontend','Kategorijos') ?></p>
-                <?php
+<div class="site-index">
 
-                function processRecordIndex($arr,$index=1) {
-                    $return = [];
-                    $ind = $index+1;
-                    foreach($arr as $level1) {
-                        $return[] = [
-                            'label' => $level1['name'],
-                            'url'   => [\Yii::$app->params['eshopPrefix'].'/'.(empty($level1['slug']) ? $level1['id'] : $level1['slug'])],
-                            'items' => ( isset($level1['childs']) && !empty($level1['childs'])) ? processRecordIndex($level1['childs'],$ind) : [],
-                        ];
-                    }
-                    return $return;
-                }
+    <div class="jumbotron">
+        <h1>Во дела</h1>
 
-                $catalog = processRecordIndex(Category::buildTree());
-
-                echo Menu::widget([
-                    'items' => $catalog,
-                    'labelTemplate' =>'{label} Label',
-                    'linkTemplate' => '<a href="{url}"><span>{label}</span></a>',
-                    'activeCssClass' => 'activeclass',
-                    'options' => [
-                        'class' => 'mar0 pad0',
-                    ],
-                    'submenuTemplate' => "\n<ul class='mar0 pad0'>\n{items}\n</ul>\n",
-                ]);
-                ?>
-            </div>
-        </div>
-        <div class="fl-le category-products">
-            <div class="category-body">
-                <div class="category-header">
-                    <?= Breadcrumbs::widget([
-                        'links' => $this->params['breadcrumbs'],
-                        'itemTemplate' => "<li>{link}</li>\n",
-                        'activeItemTemplate' => "{link}\n",
-                        'tag' => 'div',
-                        'options' => [
-                            'class' => 'breadcrumbs'
-                        ]
-                    ]) ?>
-                    <h1><?= $this->title ?></h1>
-                </div>
-                <div class="category-product-list">
-                    <?php foreach($products as $product) { ?>
-                        <a href="<?= Url::toRoute([\Yii::$app->params['eshopPrefix'].'/'.
-                                        (empty($product->category->slug) ? $product->category->id : $product->category->slug) ]).'/'.
-                                        (empty($product->slug) ? $product->id : $product->slug )?> ">
-                            <div class="cat-pr">
-                                <div class="cat-pr-img">
-                                    <img src="<?=$product->getImage()->getUrl('200x200');?>" alt="<?=$product->name;?>">
-                                </div>
-                                <div class="cat-pr-title"><?=$product->name;?></div>
-                                <?= ShowPrice::widget([
-                                    'model'    => $product,
-                                    'htmlTag'  => 'div',
-                                    'cssClass' => 'cat-pr-price',
-                                    'cssClassOldNew' => 'discount',
-                                    'templateOldNew' => '{price} <span>{oldPrice}</span>',
-                                    'currency' => '&euro;',
-                                ]);?>
-                                <div class="cat-pr-cta"><?= Yii::t('app/frontend','Plačiau') ?> &raquo;</div>
-                                <!-- Show::widget(['model' => $product]);>
-                                <ChangeOptions::widget(['model' => $product]);>
-                                <ChangeCount::widget(['model' => $product]);>
-                                <BuyButton::widget(['model' => $product]);-->
-                            </div>
-                        </a>
-                    <?php } ?>
-
-                    <div class="clear"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="clear"></div>
+        <p class="lead">Ниже представлены некоторые важные виджеты. Они работают сообща, хоть и являются частью разных модулей.</p>
     </div>
+
+    <?php if(!$categories) { ?>
+        <p>Заполните категории и товары в <a href="<?=Url::toRoute(['/backend/web/']);?>">админке</a>.</p>
+    <?php } else { ?>
+        <div class="body-content">
+
+            <h2>1. Выберите категорию</h2>
+            <ul class="nav nav-pills">
+                <?php foreach($categories as $cat) { ?>
+                    <li <?php if(isset($category->id) && ($cat->id == $category->id)) echo 'class="active"';?>><a href="<?=Url::toRoute(['/site/index', 'categoryId' => $cat->id]);?>"><?=$cat->name;?></a></li>
+                <?php } ?>
+            </ul>
+
+            <h2>2. Отфильтруйте товар</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <fieldset>
+                        <legend>dvizh\filter\widgets\FilterPanel</legend>
+                        <div>
+                            <?=FilterPanel::widget(['itemId' => isset($category->id) ? $category->id : null, 'findModel' => $queryForFilter, 'ajaxLoad' => true, 'resultHtmlSelector' => '#productsList']); ?>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <h2>3. Положите в корзину товар</h2>
+            <div class="row" id="productsList">
+                <?php foreach($products as $product) { ?>
+                    <div class="col-md-6 product-block">
+                        <figure>
+                            <img src="<?=$product->getImage()->getUrl('200x200');?>" alt="<?=$product->name;?>" />
+                        </figure>
+                        <h3><?=$product->name;?></h3>
+
+                        <fieldset>
+                            <legend>dvizh\field\widgets\Show</legend>
+                            <div>
+                                <?=Show::widget(['model' => $product]);?>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>dvizh\shop\widgets\ShowPrice</legend>
+                            <div>
+                                <?=ShowPrice::widget(['model' => $product]);?> р.
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>dvizh\cart\widgets\ChangeOptions</legend>
+                            <div>
+                                <?=ChangeOptions::widget(['model' => $product]);?>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>dvizh\cart\widgets\ChangeCount</legend>
+                            <div>
+                                <?=ChangeCount::widget(['model' => $product]);?>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>dvizh\cart\widgets\BuyButton</legend>
+                            <div>
+                                <?=BuyButton::widget(['model' => $product]);?>
+                            </div>
+                        </fieldset>
+
+                    </div>
+                <?php } ?>
+            </div>
+
+            <h2>4. Проверьте корзину</h2>
+            <fieldset>
+                <legend>dvizh\cart\widgets\ElementsList</legend>
+                <div>
+                    <?=ElementsList::widget();?>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>dvizh\cart\widgets\CartInformer</legend>
+                <div>
+                    <?=CartInformer::widget();?>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>dvizh\cart\widgets\TruncateButton</legend>
+                <div>
+                    <?=TruncateButton::widget();?>
+                </div>
+            </fieldset>
+
+            <h2>5. Воспользуйтесь маркетингом</h2>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <fieldset>
+                        <legend>dvizh\promocode\widgets\Enter</legend>
+                        <div>
+                            <?=Enter::widget();?>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-6">
+                    <fieldset>
+                        <legend>dvizh\certificate\widgets\CertificateWidget</legend>
+                        <div>
+                            <?=CertificateWidget::widget();?>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <h2>6. Совершите заказ</h2>
+            <fieldset>
+                <legend>dvizh\order\widgets\OrderForm</legend>
+                <div>
+                    <?=OrderForm::widget();?>
+                </div>
+            </fieldset>
+
+        </div>
+    <?php } ?>
+</div>

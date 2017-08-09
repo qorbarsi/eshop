@@ -29,7 +29,7 @@ use vova07\imperavi\Widget;
         <?= $form->field($model, 'short_text')->
         widget(Widget::className(), [
             'settings' => [
-                'lang' => 'ru',
+                //'lang' => 'ru',
                 'minHeight' => 100,
                 //'imageUpload' => Url::to(['/site/image-upload']),
                 //'imageManagerJson' => Url::to(['/site/images-get']),
@@ -56,7 +56,7 @@ use vova07\imperavi\Widget;
         <br />
 
         <div class="form-group">
-            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton(Yii::t('app/backend','Сохранить'), ['class' => 'btn btn-success']) ?>
         </div>
     </div>
 

@@ -14,15 +14,16 @@ use yii\widgets\ActiveForm;
             <p class="promo-code-discount">
                 <?= Yii::t('promocode', 'Ваша скидка: '); ?>
                 <?php
-                    if (yii::$app->promocode->get()->promocode->type === 'cumulative' && yii::$app->promocode->get()->promocode->getTransactions()->all()) {
-                    echo yii::$app->cart->getFormatted(0);
-                } else {
-                    echo yii::$app->cart->getFormatted(yii::$app->promocode->get()->promocode->discount);
-                }
+                    if (yii::$app->promocode->get()->promocode->type === 'cumulative' && empty(yii::$app->promocode->get()->promocode->getTransactions()->all())) {
+                        echo '0%';
+                    } else {
+                        if (yii::$app->promocode->get()->promocode->type != 'quantum') {
+                            echo yii::$app->promocode->get()->promocode->discount . '%';
+                        } else {
+                            echo yii::$app->cart->getFormatted(yii::$app->promocode->get()->promocode->discount);
+                        }
+                    }
                 ?>
-                <?php if (yii::$app->promocode->get()->promocode->type != 'quantum') {
-                    echo '%';
-                } ?>
             </p>
         <?php } else { ?>
             <p class="promo-code-discount" style="display: none;"></p>
@@ -36,5 +37,4 @@ use yii\widgets\ActiveForm;
             </span>
         </div>
     <?php ActiveForm::end(); ?>
-
 </div>

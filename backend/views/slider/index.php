@@ -8,13 +8,13 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\search\SliderSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Слайдер';
+$this->title = Yii::t('app/backend','Слайдер');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="slider-index">
 
     <p>
-        <?= Html::a('Добавить слайдер', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app/backend','Добавить слайдер'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'name',
 
-            ['label' => 'Изображение', 'content' => function($model){
+            ['label' => Yii::t('app/backend','Изображение'), 'content' => function($model){
                 return "<img src='".$model -> getImage()->getURL("100x")."'/>";
             } ],
 

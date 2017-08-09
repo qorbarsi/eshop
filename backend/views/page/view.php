@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Page */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Страницы', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app/backend','Страницы'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="page-view">
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
+                'confirm' => Yii::t('app/backend','Вы уверены, что хотите удалить этот элемент?'),
                 'method' => 'post',
             ],
         ]) ?>
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' =>'top_menu',
                 'format' => 'raw',
                 'value' => function($model){
-                    $translate =['1' => 'Да','0' => 'Нет'];
+                    $translate =['1' => Yii::t('app/backend','Да'),'0' => Yii::t('app/backend','Нет')];
                     return $translate[$model ->top_menu];
                 }
             ],

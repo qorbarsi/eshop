@@ -40,13 +40,15 @@ use yii\helpers\Html;
                     </a>
                     <ul class="dropdown-menu" style="width: auto;">
                         <li class="user-footer">
-                            <div class="pull-right">
-                                <?= Html::a(
-                                    'Выйти',
-                                    ['/user/security/logout'],
-                                    ['data-method' => 'post', 'class' => 'btn btn-danger btn-flat']
-                                ) ?>
-                            </div>
+                            <?= Html::a(Yii::t('app/backend','Профиль'),
+                            ['/user/admin/update', 'id'=>Yii::$app->user->id]
+                            ) ?>
+                        </li>
+                        <li class="user-footer">
+                            <?= Html::a(Yii::t('app/backend','Выйти'),
+                            ['/user/security/logout'],
+                            ['data-method' => 'post', 'class' => '']
+                            ) ?>
                         </li>
                     </ul>
                 </li>

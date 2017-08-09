@@ -10,7 +10,6 @@ use yii\helpers\Url;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-
 <div class="news-form">
 
     <?php $form = ActiveForm::begin(); ?>
@@ -20,14 +19,14 @@ use yii\helpers\Url;
     </div>
 
     <div class="col-md-6">
-        <?= $form->field($model, 'status')->dropDownList([ 'draft' => 'Черновик', 'published' => 'Опуликовано', 'deleted' => 'Удалено', ]) ?>
+        <?= $form->field($model, 'status')->dropDownList([ 'draft' =>  Yii::t('app/backend','Черновик'), 'published' =>  Yii::t('app/backend','Опубликовано'), 'deleted' =>  Yii::t('app/backend','Удалено'), ]) ?>
     </div>
 
     <div class="col-md-12">
         <?= $form->field($model, 'anons')->
         widget(Widget::className(), [
             'settings' => [
-                'lang' => 'ru',
+                //'lang' => 'ru',
                 'minHeight' => 100,
                 'imageUpload' => Url::to(['/site/image-upload']),
                 'imageManagerJson' => Url::to(['/site/images-get']),
@@ -62,7 +61,7 @@ use yii\helpers\Url;
         <?= $form->field($model, 'date')->textInput()->label("")->hiddenInput() ?>
 
         <div class="form-group">
-            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton( Yii::t('app/backend','Сохранить'), ['class' => 'btn btn-success']) ?>
         </div>
     </div>
     <?php ActiveForm::end(); ?>

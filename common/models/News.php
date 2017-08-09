@@ -43,13 +43,13 @@ class News extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Заголовок',
-            'anons' => 'Анонс',
-            'text' => 'Текст',
-            'slug' => 'Seo-заголовок',
-            'date' => 'Дата',
-            'status' => 'Статус',
+            'id'     => Yii::t('app/backend','ID'),
+            'name'   => Yii::t('app/backend','Заголовок'),
+            'anons'  => Yii::t('app/backend','Анонс'),
+            'text'   => Yii::t('app/backend','Текст'),
+            'slug'   => Yii::t('app/backend','Seo-заголовок'),
+            'date'   => Yii::t('app/backend','Дата'),
+            'status' => Yii::t('app/backend','Статус'),
         ];
     }
 }

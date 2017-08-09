@@ -18,7 +18,7 @@ return [
             'admins' => [
                 'administrator'
             ],
-            'enableUnconfirmedLogin' => true,
+            'enableUnconfirmedLogin' => false,
         ],
         'rbac' => 'dektrium\rbac\RbacWebModule',
     ],
@@ -31,13 +31,6 @@ return [
                 $adapter = new \League\Flysystem\Adapter\Local(dirname(dirname(__DIR__)).'/frontend/web/images/source');
                 return new League\Flysystem\Filesystem($adapter);
             },
-        ],
-        'view' => [
-            'theme' => [
-                'pathMap' => [
-                    '@dektrium/user/views' => '@app/views/user'
-                ],
-            ],
         ],
         'urlManager' => [
            'enablePrettyUrl' => true,
@@ -57,11 +50,13 @@ return [
             'loginUrl' => ['/user/security/login'],
         ],
         'session' => [
-            'name' => 'backend-sess',
+            'class'   => 'yii\web\DbSession',
+            /*'name' => 'BACKENDSESSID',
             'cookieParams' => [
                 'httpOnly' => true,
                 'path'     => '/backend/web',
-            ],
+            ],*/
+            'timeout' => 60*60*24*14,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

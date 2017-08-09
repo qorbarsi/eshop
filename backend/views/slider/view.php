@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Slider */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Слайдеры', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app/backend','Слайдеры'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="slider-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <div class="col-md-6">
-        <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('app/backend','Обновить'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app/backend','Удалить'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
+                'confirm' => Yii::t('app/backend','Вы уверены, что хотите удалить этот элемент?'),
                 'method' => 'post',
             ],
         ]) ?>

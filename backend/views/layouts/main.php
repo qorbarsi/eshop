@@ -28,7 +28,7 @@ if (Yii::$app->controller->action->id === 'login') {
         <meta charset="<?= Yii::$app->charset ?>"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ? Html::encode($this->title) : 'Магазин на облаке' ?></title>
+        <title><?= Html::encode($this->title) ? Html::encode($this->title) :  Yii::t('app/backend','Магазин на облаке') ?></title>
         <?php $this->head() ?>
         <link rel="shortcut icon" href="<?=Url::toRoute('/favicon.png');?>" type="image/x-icon">
     </head>

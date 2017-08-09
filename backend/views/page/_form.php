@@ -28,7 +28,7 @@ use yii\helpers\Url;
             <?= $form->field($model, 'text')->
                 widget(Widget::className(), [
                     'settings' => [
-                        'lang' => 'ru',
+                        //'lang' => 'ru',
                         'minHeight' => 200,
                         'imageUpload' => Url::to(['/site/image-upload']),
                         'imageManagerJson' => Url::to(['/site/images-get']),
@@ -52,7 +52,7 @@ use yii\helpers\Url;
 
 
     <div class="form-group">
-        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app/backend','Сохранить'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
