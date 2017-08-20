@@ -33,15 +33,25 @@ class OrderFilling extends \yii\base\Behavior
             $elementModel->saveData();
         }
 
-        $order->base_cost = 0;
-        $order->cost = 0;
+        if (yii::$app->cart) {
+            $order->base_cost = yii::$app->cart->getCost(false);
+            $order->cost      = yii::$app->cart->getCost(true);
+        } else {
 
-        foreach($order->elements as $element) {
-            $order->base_cost += ($element->base_price*$element->count);
-            $order->cost += ($element->price*$element->count);
+            $order->base_cost = 0;
+            $order->cost = 0;
+
+            foreach($order->elements as $element) {
+                $order->base_cost += ($element->base_price*$element->count);
+                $order->cost += ($element->price*$element->count);
+            }
         }
+
         $order->save();
 
         yii::$app->cart->truncate();
+        if ( isset(yii::$app->promocode) ) {
+            yii::$app->promocode->clear();
+        }
     }
 }

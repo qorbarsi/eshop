@@ -1,6 +1,8 @@
+var shipping_type_id, payment_type_id;
+
 var ga_loaded = false;
 //var ga_loaded = false; ga(function() { ga_loaded = true;}); //Check if Google Analytics is loaded
-var step_id;
+var step_id, promocode;
 var paysera = 0;
 var shipping_selected = 0;
 var img_dir = '/css/img/';
@@ -260,6 +262,14 @@ $('#step1 .button').click(function(){
 
 $('#step2 .button').click(function(){
     shipping_type = $('.cs_shipping_option.selected .shipping_addition_info').data('addresstype');
+
+    shipping_type_code = $('.cs_shipping_option.selected').data('shippingtype').toUpperCase();
+    if  ( (typeof shippingTypeList === 'undefined') ||  (typeof shippingTypeList[shipping_type_code] === 'undefined') ) {
+        shipping_type_id = null;
+    } else {
+        shipping_type_id = shippingTypeList[shipping_type_code];
+    }
+
     var shipping_err_text = 'Įveskite pristatymo adresą';
     if(typeof shipping_type == 'undefined' || shipping_type == ''){
         $('.no_shipping_selected').text('Pasirinkite pristatymo būdą');
@@ -293,6 +303,15 @@ $('#step2 .button').click(function(){
 $('#step3 .button').click(function(){
     payment_type = $('.cs_payment_option.selected').data('payment');
     paysera = $('.cs_payment_option.selected').data('paysera');
+
+    payment_type_code = $('.cs_payment_option.selected').data('paymentcode').toUpperCase();
+
+    if  ( (typeof paymentTypeList === 'undefined') ||  (typeof paymentTypeList[payment_type_code] === 'undefined') ) {
+        payment_type_id = null;
+    } else {
+        payment_type_id = paymentTypeList[payment_type_code];
+    }
+
     $('ul.paysera-payment li').each(function(index){
         var alt_text = $(this).text();
         $(this).html('<img src="'+bank_img[index]+'" alt="'+alt_text+'">');
@@ -354,155 +373,184 @@ $('.paysera-payment li').click(function(){
 
 //ORDER_SUCCESS START
 $('#confirm_order').click(function(){
-if(paysera == 1) {
-var selected_bank = $('#paysera-form input[name="payment_bank"]').val();
-if(selected_bank.length == 0){
-$('.no_bank_selected').fadeIn('fast');
-$('.no_bank_selected').css('display','inline-block');
-return false;
-}
-}
-block('.cart_black_bg');
-$.post('/app/cart/order.php',{
-//Customer details
-customer_name: customer_name,
-customer_phone: customer_phone,
-customer_email: customer_email,
-//Order details
-total: ssc_total(),
-product_total: simpleCart.total(),
-discount_total: discount_total,
-discount_name: $('.ssc_discount_input > input').val(),
-discount_type: discount_type,
-discount_value: discount,
-utm_source: '',
-utm_medium: '',
-utm_campaign: '',
-comment: $('#order_comment').val(),
-//Products
-item_names: item_names,
-item_price: item_price,
-item_qnty: item_qnty,
-item_subtotal: item_subtotal,
-item_ids: item_ids,
-item_images: item_images,
-//Shipping
-shipping_name: shipping_name,
-shipping_address: shipping_address,
-shipping_city: shipping_city,
-shipping_total: 0,
-shipping_tag: $('.cs_shipping_option.selected').data('shippingtype'),
-//Payment
-payment_tag: $('.cs_payment_option.selected').data('paymenttype'),
-payment_type: payment_type
-},function(data){
-if (ga_loaded) {
-    ga('require', 'ecommerce');
-    ga('ecommerce:addTransaction', {
-      'id': data,
-      'affiliation': 'MEN\'S VECTOR',
-      'revenue': ssc_total(),
-      'shipping': 0,
-      'tax': '0'
-    });
-    for (var p = 0; p < item_names.length; p++) {
-        ga('ecommerce:addItem', {
-          'id': data,
-          'name': item_names[p],
-          'sku': item_ids[p],
-          'category': item_categories[p],
-          'price': item_price[p].slice(0, -1),
-          'quantity': item_qnty[p]
-        });
+    if(paysera == 1) {
+        var selected_bank = $('#paysera-form input[name="payment_bank"]').val();
+        if(selected_bank.length == 0){
+            $('.no_bank_selected').fadeIn('fast');
+            $('.no_bank_selected').css('display','inline-block');
+            return false;
+        }
     }
-    ga('ecommerce:send');
-    ga('ecommerce:clear');
-}
-if(paysera == 1) {
-$('#paysera-form input[name="order_id"]').val(data);
-setTimeout(function(){$('#paysera-form').submit();},500);
-return false;
-}
-window.history.pushState('obj', 'newtitle', url+'#success');
-document.title = 'Jūsų užsakymas sėkmingai pateiktas - MEN\'S VECTOR';
-nones(['.top_steps', '.shopping_cart_steps', '.cart_black_bg']);
-$('#success_block').fadeIn('fast');
-if (ga_loaded) {
-    ga('send', 'pageview', {'page' : getAbsolutePath()});
-}
-if ($(window).width() < 501) {
-    $("html, body").scrollTop(230);
-} else {
-    $("html, body").scrollTop(250);
-}
-simpleCart.empty();
-success_animate(200);
-});
+    block('.cart_black_bg');
+    Order = {
+        "client_name": customer_name,
+        "phone": customer_phone,
+        "email": customer_email,
+        "shipping_type_id": shipping_type_id,
+        "payment_type_id": payment_type_id,
+        "comment": $('#order_comment').val(),
+        "promocode": promocode,
+        "address": "Miestas: " + shipping_city + "; adresas: " + shipping_address,
+        /*
+        'delivery_time_date', 'delivery_time_hour',
+        'delivery_time_min', 'delivery_type', ''
+        */
+        //"base_cost": simpleCart.grandTotal(),
+        //"cost": ssc_total()
+    };
+    $.post(orderUrl,{
+        Order: Order,
+/*
+        //Order details
+        total: ssc_total(),
+        product_total: simpleCart.total(),
+        discount_total: discount_total,
+        discount_name: $('.ssc_discount_input > input').val(),
+        discount_type: discount_type,
+        discount_value: discount,
+        utm_source: '',
+        utm_medium: '',
+        utm_campaign: '',
+        comment: $('#order_comment').val(),
+        //Products
+        item_names: item_names,
+        item_price: item_price,
+        item_qnty: item_qnty,
+        item_subtotal: item_subtotal,
+        item_ids: item_ids,
+        item_images: item_images,
+        //Shipping
+        shipping_name: shipping_name,
+        shipping_address: shipping_address,
+        shipping_city: shipping_city,
+        shipping_total: 0,
+        shipping_tag: $('.cs_shipping_option.selected').data('shippingtype'),
+        //Payment
+        payment_tag: $('.cs_payment_option.selected').data('paymenttype'),
+        payment_type: payment_type
+*/
+    },function(data){
+        var res = $.parseJSON( data );
+        data = res.orderId;
+        if (ga_loaded) {
+            ga('require', 'ecommerce');
+            ga('ecommerce:addTransaction', {
+                'id': data,
+                'affiliation': 'MEN\'S VECTOR',
+                'revenue': ssc_total(),
+                'shipping': 0,
+                'tax': '0'
+            });
+            for (var p = 0; p < item_names.length; p++) {
+                ga('ecommerce:addItem', {
+                    'id': data,
+                    'name': item_names[p],
+                    'sku': item_ids[p],
+                    'category': item_categories[p],
+                    'price': item_price[p].slice(0, -1),
+                    'quantity': item_qnty[p]
+                });
+            }
+            ga('ecommerce:send');
+            ga('ecommerce:clear');
+        }
+        if(paysera == 1) {
+            $('#paysera-form input[name="order_id"]').val(data);
+            setTimeout(function(){$('#paysera-form').submit();},500);
+            return false;
+        }
+        window.history.pushState('obj', 'newtitle', url+'#success');
+        document.title = 'Jūsų užsakymas sėkmingai pateiktas - MEN\'S VECTOR';
+        nones(['.top_steps', '.shopping_cart_steps', '.cart_black_bg']);
+        $('#success_block').fadeIn('fast');
+        if (ga_loaded) {
+            ga('send', 'pageview', {'page' : getAbsolutePath()});
+        }
+        if ($(window).width() < 501) {
+            $("html, body").scrollTop(230);
+        } else {
+            $("html, body").scrollTop(250);
+        }
+        trunctCart();
+        success_animate(200);
+    });
 });
 //ORDER_SUCCESS END
+
 $('#step1 .ssc_input').keypress(function(){
-$(this).css('border-color','#ccc');
-$(this).next().css('display','none');
+    $(this).css('border-color','#ccc');
+    $(this).next().css('display','none');
 });
+
 $('#step1 .ssc_input').click(function(){
-$(this).css('border-color','#ccc');
-$(this).next().css('display','none');
+    $(this).css('border-color','#ccc');
+    $(this).next().css('display','none');
 });
+
 function success_animate(time) {
-var article_nubmer = $('.s-article').size();
-var article_arr;
-$.post('/app/cart/articles.php',{article_nubmer:article_nubmer},function (data) {
-article_arr = JSON.parse(data);
-for (i = 0; i < article_nubmer; i++) {
-    $('.s-article').eq(i).find('a').attr("href", article_arr[i][0]);
-    $('.s-article').eq(i).find('.s-article-img img').attr("src", article_arr[i][2]);
-    $('.s-article').eq(i).find('.s-article-name').text(article_arr[i][1]);
-}
-});
-setTimeout(function() {
-$('.s-bags').animate({opacity: 1,top: '0px'},1000);
-$('.s-check').animate({opacity: 1,top: '30px'},700,function () {
-    $('.s-text').animate({opacity: 1},500,function () {
-        success_bullets_animate();
+    var article_nubmer = $('.s-article').size();
+    var article_arr;
+    $.post('/app/cart/articles.php',{article_nubmer:article_nubmer},function (data) {
+        article_arr = JSON.parse(data);
+        for (i = 0; i < article_nubmer; i++) {
+            $('.s-article').eq(i).find('a').attr("href", article_arr[i][0]);
+            $('.s-article').eq(i).find('.s-article-img img').attr("src", article_arr[i][2]);
+            $('.s-article').eq(i).find('.s-article-name').text(article_arr[i][1]);
+        }
     });
-});
-}, time);
+    setTimeout(function() {
+        $('.s-bags').animate({opacity: 1,top: '0px'},1000);
+        $('.s-check').animate({opacity: 1,top: '30px'},700,function () {
+            $('.s-text').animate({opacity: 1},500,function () {
+                success_bullets_animate();
+            });
+        });
+    }, time);
 }
+
 var stop_success_bullets = 0;
+
 function success_bullets_animate() {
-var bullets_size = $('.s-point').size();
-if (stop_success_bullets < bullets_size) {
-$('.s-point').eq(stop_success_bullets).animate({opacity: 1},500,function () {
-    success_bullets_animate();
-});
-} else {
-stop_success_bullets = 0;
-success_articles_animate()
-return false;
+    var bullets_size = $('.s-point').size();
+    if (stop_success_bullets < bullets_size) {
+        $('.s-point').eq(stop_success_bullets).animate({opacity: 1},500,function () {
+            success_bullets_animate();
+        });
+    } else {
+        stop_success_bullets = 0;
+        success_articles_animate()
+        return false;
+    }
+    stop_success_bullets++;
 }
-stop_success_bullets++;
-}
+
 function success_articles_animate() {
-var bullets_size = $('.s-article').size();
-if (stop_success_bullets < bullets_size) {
-$('.s-article').eq(stop_success_bullets).animate({opacity: 1},200,function () {
-    success_articles_animate();
-});
+    var bullets_size = $('.s-article').size();
+    if (stop_success_bullets < bullets_size) {
+        $('.s-article').eq(stop_success_bullets).animate({opacity: 1},200,function () {
+            success_articles_animate();
+        });
+    }
+    stop_success_bullets++;
 }
-stop_success_bullets++;
-}
+
 function block(element){$(element).css('display','block');}
+
 function none(element){$(element).css('display','none');}
+
 function nones(element){
-for(i = 0; i < element.length; i++){
-$(element[i]).css('display','none');
+    for(i = 0; i < element.length; i++){
+        $(element[i]).css('display','none');
+    }
 }
-}
+
 function pv() {if ($('.registerphone').val() == '') {$('.registerphone').val('+');}if ($('.registerphone').val() == '+3708') {$('.registerphone').val('');$('.registerphone').val('+370');}if ($('.registerphone').val().length > 12) {var num = $('.registerphone').val().slice(0,-1);$('.registerphone').val('');$('.registerphone').val(num);}var num = $('.registerphone').val();$('.registerphone').val('');$('.registerphone').val(num);}
+
 $('.registerphone').keyup(pv);
 $('.registerphone').keydown(pv);
 $('.registerphone').keypress(function (e){if( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)) {return false;}});
 $('.registerphone').click(function () {var num = $('.registerphone').val();$('.registerphone').val('');$('.registerphone').val(num);});
+
 function validateEmail(email) {var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 return re.test(email);}
 
@@ -533,6 +581,12 @@ simpleCart({
     ]
 });
 
+function trunctCart() {
+    simpleCart.empty();
+    $('.dvizh-cart-informer').addClass('empty');
+    $('.dvizh-cart-count').html('0');
+}
+
 simpleCart.bind( 'update' , function(){
     $('.pr-total-products').html('Jūsų krepšelyje viso yra <b>'+simpleCart.quantity()+' prekė(ės) – '+ssc_total().toFixed(2)+'€</b>');
     $('.ssc_cart_total .ssc_total_sum').html(simpleCart.total().toFixed(2)+'€');
@@ -552,6 +606,9 @@ simpleCart.bind( 'update' , function(){
         $('.ssc_cart_discount').css('display','block');
         $('.ssc_cart_discount .ssc_total_sum').text('-'+discount_text);
     } else {
+        discount = 0;
+        var discount_text = parseFloat(discount).toFixed(2)+'€';
+        $('.ssc_cart_discount .ssc_total_sum').text('-'+discount_text);
         $('.ssc_cart_discount').css('display','none');
     }
 });
@@ -560,8 +617,9 @@ simpleCart.bind( 'update' , function(){
 simpleCart.ready( function(){
     setTimeout(function(){$('#step0-button').fadeIn('fast');},1000);
 });
+
 if(window.location.href.split('#')[1] == 'success'){
-    simpleCart.empty();
+    trunctCart();
 }
 
 simpleCart.bind( "beforeAdd" , function( item ){

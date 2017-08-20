@@ -13,10 +13,10 @@
 .dvizh-cart-bottom-panel {
     text-align: right;
 }
-.promo-code-enter {
-    width: 100%;
-    text-align: right;
-}
+
+/*.ss_cart .ssc_total {
+    float: right;
+}*/
 
 #dvizh-change-count {
     display: table-cell;
@@ -30,6 +30,9 @@
     display: inherit;
 }
 
+.hidden {
+  display: none !important;
+}
 
 .dvizh-change-count .dvizh-downArr, .dvizh-change-count .dvizh-upArr {
 	position: relative;

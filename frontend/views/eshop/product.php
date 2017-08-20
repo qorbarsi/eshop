@@ -214,4 +214,30 @@ $this->params['withBenefits'] = 0;
             <div class="clear"></div>
         </div>
     </div>
+	<div class="added_message">
+		<div class="added_content">
+			<a href="javascript:;" class="added_close">x</a>
+			<p class="added_h">Prekė sėkmingai įkelta<br>į krepšelį</p>
+			<div class="added_product">
+				<div class="added_img"><img src="<?=$product->getImage()->getUrl('88x88');?>"></div>
+				<div class="added_name">
+					<?= $this->title?>
+					<p>
+					Kaina: <strong><?= ShowPrice::widget([
+                 'model'    => $product,
+                 'htmlTag'  => 'span',
+                 'cssClass' => '',
+                 //'cssClassOldNew' => '',
+                 'templateOldNew' => '{price}',
+                 'currency' => '&euro;',
+             	]);?></strong>
+             	</p>
+				</div>
+			</div>
+			<br>
+			<a href="javascript:;" class="added_continue">Grįžti į katalogą</a>
+			<a href="/cart" class="added_order">Pirkti</a>
+			<div class="clear"></div>
+		</div>
+	</div>
 </div>

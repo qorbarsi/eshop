@@ -1,24 +1,13 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use yii\widgets\Menu;
 
-use frontend\assets\CartAsset;
-
-#use dvizh\shop\models\Category;
-#use dvizh\shop\widgets\ShowPrice;
-#use dvizh\filter\widgets\FilterPanel;
-#use dvizh\field\widgets\Show;
 use dvizh\cart\widgets\ElementsList;
-#use dvizh\cart\widgets\CartInformer;
-#use dvizh\cart\widgets\ChangeOptions;
-#use dvizh\cart\widgets\ChangeCount;
-#use dvizh\cart\widgets\TruncateButton;
-#use dvizh\cart\widgets\BuyButton;
-use dvizh\order\widgets\OrderForm;
 use dvizh\promocode\widgets\Enter;
-#use dvizh\certificate\widgets\CertificateWidget;
-#<=CertificateWidget::widget();>
+
+use frontend\assets\CartAsset;
 
 /* @var $this yii\web\View */
 $this->title = Yii::t('app/frontend','Krepšelis');
@@ -48,8 +37,10 @@ CartAsset::register($this);
     <div class="ss_cart">
         <div class="shopping_cart_steps" id="step0">
             <?= ElementsList::widget(['type' => ElementsList::TYPE_FULL, 'elementView' => '//widgets/tomedaCardListView', 'showTotal' => true, /*'cartCssClass' => 'simpleCart_items'*/]); ?>
-            <?= Enter::widget(['view'=>'//widgets/tomedaPromocodeWidget', 'ok_button' => 'Pritaikyti', 'del_button' => 'Panaikinti']); ?>
-            <a class="button" href="javascript:;" id="step0-button">Užsakyti</a>
+            <div class="ssc_total">
+                <?= Enter::widget(['view'=>'//widgets/tomedaPromocodeWidget', 'ok_button' => 'Pritaikyti', 'del_button' => 'Panaikinti', 'cssClass' => (yii::$app->cart->getCount() > 0) ? '' : ' hidden']); ?>
+                <a class="button <?php echo (yii::$app->cart->getCount() > 0) ? '' : 'hidden';  ?>" href="javascript:;" id="step0-button" >Užsakyti</a>
+            </div>
             <div class="clear"></div>
         </div>
         <div class="desktop_steps">
@@ -109,7 +100,7 @@ CartAsset::register($this);
             <!-- START OF STEP2 -->
             <p class="head_instruct">Pasirinkite pristatymo būdą</p>
 
-            <div class="cs_shipping_option not_selected" data-hiddenpayment="[2]" data-shipping="Kurjeris („LP EXPRESS“)" data-shippingtype="lp-courier">
+            <div class="cs_shipping_option not_selected" data-hiddenpayment="[2]" data-shipping="Kurjeris („LP EXPRESS“)" data-shippingtype="LP_KURJERIS">
                 <div class="bullet"><div></div></div>
                 <div class="shipping_header">
                     <p>Pristatymas kurjeriu iki Jūsų namų (arba darbo) durų</p>
@@ -140,7 +131,7 @@ CartAsset::register($this);
                 </div>
             </div>
 
-            <div class="cs_shipping_option not_selected" data-hiddenpayment="[1]" data-shipping="„LP EXPRESS“ terminalas" data-shippingtype="lp-terminal">
+            <div class="cs_shipping_option not_selected" data-hiddenpayment="[1]" data-shipping="„LP EXPRESS“ terminalas" data-shippingtype="LP_EXPRESS_TERMINALAS">
                 <div class="bullet"><div></div></div>
                 <div class="shipping_header">
                     <p>LP Express terminalas</p>
@@ -164,7 +155,7 @@ CartAsset::register($this);
                 </div>
             </div>
 
-            <div class="cs_shipping_option not_selected" data-hiddenpayment="[1,2]" data-shipping="Paštas" data-shippingtype="post">
+            <div class="cs_shipping_option not_selected" data-hiddenpayment="[1,2]" data-shipping="Paštas" data-shippingtype="LP_PASTAS">
                 <div class="bullet"><div></div></div>
                 <div class="shipping_header">
                     <p>Pristatymas paštu</p>
@@ -206,7 +197,7 @@ CartAsset::register($this);
         <div class="shopping_cart_steps" id="step3" style="display:none;">
             <!-- START OF STEP3 -->
             <p class="head_instruct">Pasirinkite apmokėjimo būdą</p>
-            <div class="cs_payment_option" data-payment="El. bankininkystė (Paysera)" data-paymenttype="paysera" data-paysera="1">
+            <div class="cs_payment_option" data-payment="El. bankininkystė (Paysera)" data-paymenttype="paysera" data-paysera="1" data-paymentcode="paysera">
                 <div class="bullet"><div></div></div>
                 <div class="payment_header">
                     <p>El. bankininkystė (Paysera)</p>
@@ -218,7 +209,7 @@ CartAsset::register($this);
                 </div>
             </div>
 
-            <div class="cs_payment_option" data-payment="Grynais pristatymo metu" data-paymenttype="cod">
+            <div class="cs_payment_option" data-payment="Grynais pristatymo metu" data-paymenttype="cod" data-paymentcode="GRYNAIS">
                 <div class="bullet"><div></div></div>
                 <div class="payment_header">
                     <p>Grynais pristatymo metu</p>
@@ -230,7 +221,7 @@ CartAsset::register($this);
                 </div>
             </div>
 
-            <div class="cs_payment_option" data-payment="Atsiskaitymas kortele prie terminalo" data-paymenttype="lp-terminal-card">
+            <div class="cs_payment_option" data-payment="Atsiskaitymas kortele prie terminalo" data-paymenttype="lp-terminal-card" data-paymentcode="KORTELE">
                 <div class="bullet"><div></div></div>
                 <div class="payment_header">
                     <p>Atsiskaitymas kortele prie terminalo</p>
@@ -392,6 +383,17 @@ CartAsset::register($this);
         </div>
 
         <div class="cart_black_bg"></div>
+
+        <script>
+            shippingTypeList = [];
+            paymentTypeList = [];
+            <?php foreach($shippingTypesList as $sht) { ?>
+                shippingTypeList["<?=strtoupper($sht->description);?>"] = <?=$sht->id;?>;
+            <?php } ?>
+            <?php foreach($paymentTypesList as $pmt) { ?>
+                paymentTypeList["<?=strtoupper($pmt->name);?>"] = <?=$pmt->id;?>;
+            <?php } ?>
+        </script>
     </div>
 
     <?php
@@ -400,22 +402,24 @@ CartAsset::register($this);
         if (!empty($elements)) {
             foreach ($elements as $element) {
                 $img = $element->getModel()->getImage()->getUrl('88x88');
-                $js .= 'simpleCart.add({name: "'.$element->name.'" ,price: '.$element->price.' , quantity: '.$element->count.', thumb: "'.$img.'", productimg: "'.$img.'" }); '."\n";
+                $js .= 'simpleCart.add({name: "'.Html::encode($element->name).'" ,price: '.$element->price.' , quantity: '.$element->count.', thumb: "'.$img.'", productimg: "'.$img.'" }); '."\n";
             }
         }
-        $js .= 'discount_type = 0;'."\n";
         $code = yii::$app->promocode->get();
         $code = isset($code->promocode) ? $code->promocode : null ;
         $js .= 'discount = 0; '."\n";
         $js .= 'discount_type = 0;'."\n";
         if ( !empty($code) ) {
-            if ( !( $code->type === 'cumulative' && $code->getTransactions()->all()) ) {
-                if ($code->type != 'quantum') {
-                    $js .= 'discount_type = 1;'."\n";
-                }
-                $js .= 'discount = '.$code->discount.'; '."\n";
+            $js .= 'promocode = "'.$code->code.'";'."\n";
+            if ($code->type == 'quantum') {
+                $js .= 'discount_type = 2;'."\n";
+            } else {
+                $js .= 'discount_type = 1;'."\n";
             }
+            $js .= 'discount = '.$code->discount.'; '."\n";
         }
+
+        $js .= 'orderUrl = "'.Url::toRoute(['/order/order/create']).'";'."\n";
 
         $this->registerJs($js);
     ?>

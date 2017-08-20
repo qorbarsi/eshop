@@ -3,10 +3,15 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+
 use dvizh\shop\models\Category;
 use dvizh\shop\models\Product;
+
+use dvizh\order\models\PaymentType;
+use dvizh\order\models\ShippingType;
+
 use frontend\models\ContactForm;
-use yii\web\NotFoundHttpException;
 
 /**
  * Eshop controller
@@ -53,7 +58,12 @@ class EshopController extends Controller
      */
     public function actionCart()
     {
+        $shippingTypesList = ShippingType::find()->orderBy('order DESC')->all();
+        $paymentTypesList = PaymentType::find()->orderBy('order DESC')->all();
+
         return $this->render('cart', [
+            'shippingTypesList' => $shippingTypesList,
+            'paymentTypesList'  => $paymentTypesList
         ]);
     }
 

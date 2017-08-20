@@ -12,7 +12,7 @@ use dvizh\cart\widgets\ElementCost;
         <img src="<?=$model->getModel()->getImage()->getUrl('88x88');?>" alt="<?= $model->name?>">
     </div>
     <div class="item-name">
-        <?= $name ?>
+        <?= Html::encode($name) ?>
     </div>
     <div class="item-price"><?= ElementPrice::widget(['model' => $model]); ?></div>
     <?= ChangeCount::widget([

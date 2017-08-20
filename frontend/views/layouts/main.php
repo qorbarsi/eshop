@@ -58,7 +58,7 @@ AppAsset::register($this);
                         <a href="javascript:;"><span class="tbg"></span></a>
                     </div>
                 </div>
-                <div id="shopping-cart">
+                <div id="shopping-cart" class="<?= ( yii::$app->cart->getCount() > 0 ) ? 'incart' : '' ?>">
                     <div class="cart-icon fl-le">
                         <div class="tbg"></div>
                         <?php
@@ -157,7 +157,24 @@ AppAsset::register($this);
             <?php
                 // echo Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [], ]) ;
             ?>
-            <?= Alert::widget() ?>
+            <?php if(Yii::$app->session->hasFlash('orderError')) { ?>
+                <?php
+                $errors = unserialize(Yii::$app->session->getFlash('orderError'));
+                foreach ($errors as $err){
+                    Yii::$app->session->setFlash('error', $err[0]);
+                }
+                ?>
+            <?php } ?>
+            <?= Alert::widget([
+                'alertTypes' => [
+                    'error'   => 'alert-danger',
+                    'danger'  => 'alert-danger',
+                    'success' => 'alert-success',
+                    'info'    => 'alert-info',
+                    'warning' => 'alert-warning',
+                    //'orderError' => 'alert-danger',
+                ],
+            ]) ?>
             <?= $content ?>
         </div>
     </div>
@@ -224,7 +241,7 @@ AppAsset::register($this);
 			});
             $('.additional-images a').click(function () {
                 var src = $(this).children("img:first").attr('src');
-                $('.main-image img').attr('src', src);
+                $('.main-image img').attr('src', src.replace('88x88','500x500'));
             });
             $('#mobile-menu li.catalog > a').click(function () {
             	$('#mobile-menu .catalog-level1').toggle();
@@ -232,19 +249,24 @@ AppAsset::register($this);
             $(document).on('renderCart', function (event, json) {
                 if (json.count > 0) {
                     $('.dvizh-cart-informer').removeClass('empty');
+                    $('#shopping-cart').addClass('incart');
                 } else {
                     $('.dvizh-cart-informer').addClass('empty');
+                    $('#shopping-cart').removeClass('incart');
                 }
             });
             $(document).on('promocodeClear', function (event, json) {
                 discount = 0;
                 discount_type = 0;
+                promocode = null;
                 simpleCart.update();
             });
             $(document).on('promocodeEnter', function (event, json) {
-                console.log(json);
-                if (json.type == 'percent') {
-                    console.log('discoutn_type');
+                //console.log(json);
+                promocode = json.code;
+                if (json.type == 'quantum') {
+                    discount_type = 2;
+                } else {
                     discount_type = 1;
                 }
                 if (isNumeric(json.discount)) {
@@ -252,6 +274,21 @@ AppAsset::register($this);
                     simpleCart.update();
                 }
             });
+            $(document).ready(function () {
+            	if (parseInt($('.dvizh-cart-count').text()) > 0) {
+            		$('#shopping-cart').addClass('incart');
+            	}
+            	$('.button.to-cart').click(function () {
+					addedProduct();
+                });
+            });
+            function addedProduct() {
+                $('#product-page .added_message').css('display','block');
+                $('#product-page .added_content').slideToggle(300);
+                $('.added_close, .added_continue').click(function () {
+                    $('#product-page .added_message, #product-page .added_content').css('display','none');
+                });
+            }
 		</script>
     </body>
 </html>

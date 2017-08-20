@@ -37,9 +37,10 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 #header .search-box a {position: absolute;top: 1px;right: 1px;width: 30px;height: 30px;display: block;}
 #header .search-box a span {display: block;position: absolute;width: 16px;height: 16px;top: 6px;left: 6px;}
 #header #shopping-cart {position: absolute;left: 50%;margin-left: -125px;top: 50%;margin-top: -29px;background: rgba(0,0,0,0.3);height: 44px;padding: 10px 20px 8px 15px;border-radius: 10px;border: 1px solid rgba(255,255,255,0.2);opacity: 0.7;cursor: default;}
+#header #shopping-cart.incart {opacity: 1;}
 #header #shopping-cart .cart-icon {position: relative;}
 #header #shopping-cart .cart-icon > div {width: 32px;height: 32px;background-position: -16px 0;margin-right: 15px;}
-#header #shopping-cart .cart-icon > span {display: block;width: 24px;height: 24px;line-height: 24px;position: absolute;bottom: -10px;right: 8px;background: #fff;text-align: center;border-radius: 50%;background: #0e98f0;color: #fff;font-size: 14px;border:2px solid #fff;}
+#header #shopping-cart .cart-icon > span {display: block;width: 24px;height: 24px;line-height: 24px;position: absolute;bottom: -10px;right: 8px; text-align: center;border-radius: 50%;background: rgb(233, 22, 63) /* #0e98f0 */;color: #fff;font-size: 14px;border:2px solid #fff;}
 #header #shopping-cart .cart-icon > span.empty {background: #999;}
 #header #shopping-cart .cart-text > div {line-height: 1;font-size: 14px;margin-top: 4px;text-transform: uppercase;}
 #header #shopping-cart .cart-text .cart-links {color: rgba(255,255,255,0.5);margin-top: 5px;font-weight: 600;}
@@ -165,6 +166,20 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 #product-page .related-products ul li a p.related-name {line-height: 1.2; padding-top: 7px; font-size: 13px; height: 50px;}
 #product-page .related-products ul li a p.related-price {font-weight: 600; padding-top: 7px;}
 #product-page .related-products ul li a p.related-price span {color: #e9163f; text-decoration: line-through;}
+#product-page .added_message {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 5; display: none;}
+#product-page .added_message .added_content {display: none; background: #fff; padding: 20px; position: fixed; top: 50%; left: 50%; width: 280px; height: 240px; margin-top: -140px; margin-left: -160px;}
+#product-page .added_message .added_close {position: absolute; top: 15px; right: 15px; background: #ddd; font-size: 18px; color: #fff; text-decoration: none; text-transform:uppercase; display: block; height: 26px; width:25px; padding-left: 1px; text-align:center; line-height: 26px; border-radius: 50%;}
+#product-page .added_message .added_h {margin: 0; font-weight: 600; font-size: 18px; line-height: 1.2;}
+#product-page .added_message .added_h:after {display: block; height: 1px; background: #eee; margin: 15px 0; content: "";}
+#product-page .added_message .added_product {display: table; width: 100%;}
+#product-page .added_message .added_img {display: table-cell; width: 80px; vertical-align: top;}
+#product-page .added_message .added_img img {width: 100%;}
+#product-page .added_message .added_name {display: table-cell; padding-left: 10px; vertical-align: top; height: 110px;}
+#product-page .added_message .added_name p {margin-bottom: 0; margin-top: 10px;}
+#product-page .added_message .added_continue {float: left; line-height: 30px; font-size: 13px;}
+#product-page .added_message .added_order {float: right; height: 28px; width: 100px; text-align: center; display: block; text-decoration: none; line-height: 28px; font-size: 13px; text-transform: uppercase; font-weight: bold; border: 2px solid; border-radius: 4px;}
+#product-page .added_message .added_order:hover {color: #fff; background:#0769d7; border-color: #0769d7;}
+
 .product-email-sign-up {background-color: #eee; padding-bottom: 60px; padding-top: 50px;}
 .product-email-sign-up .point {float: left;}
 .product-email-sign-up .point.text {width: 670px;}
@@ -204,6 +219,7 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 #mobile-menu .catalog-level2  > li > a {display: block; height: 36px; line-height: 36px; text-decoration: none;}
 
 .ss_cart .clear {clear: both; height: 0;}
+.ss_cart input[type="text"] {border-color: #ddd;}
 .ss_cart .headerRow {display: none;}
 .ss_cart .simpleCart_items > div {display: table; width: 100%;}
 .ss_cart .itemRow {display: table;width: 100%;}
@@ -219,16 +235,8 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 .ss_cart .itemRow > div.item-total {text-align: center; width: 80px; padding: 0 20px;}
 .ss_cart .itemRow > div.item-decrement, .ss_cart .itemRow > div.item-increment {width: 20px;position: relative;}
 .ss_cart .itemRow > div.item-remove {text-align: right;}
-.ss_cart .simpleCart_decrement, .ss_cart .simpleCart_increment {
-	position: relative;
-	display: inline-block;
-	vertical-align: middle;
-	text-decoration: none; background: #fff; width: 20px; height: 20px; border-radius: 50%; border: 1px solid #333; top:50%; margin-top: 1px;
-}
-.ss_cart .simpleCart_decrement:after,.ss_cart .simpleCart_increment:after {
-	position: absolute;
-	top: 50%; left: 50%; display: block; width: 20px; height: 20px; margin-top: -10px; margin-left: -10px; color: #333;text-align: center;line-height: 16px;
-}
+.ss_cart .simpleCart_decrement, .ss_cart .simpleCart_increment {position: relative;display: inline-block;vertical-align: middle;text-decoration: none; background: #fff; width: 20px; height: 20px; border-radius: 50%; border: 1px solid #333; top:50%; margin-top: 1px;}
+.ss_cart .simpleCart_decrement:after,.ss_cart .simpleCart_increment:after {position: absolute;top: 50%; left: 50%; display: block; width: 20px; height: 20px; margin-top: -10px; margin-left: -10px; color: #333;text-align: center;line-height: 16px;}
 .ss_cart .simpleCart_decrement:hover, .ss_cart .simpleCart_increment:hover {border-color: #999;}
 .ss_cart .simpleCart_decrement:hover:after, .ss_cart .simpleCart_increment:hover:after {color: #999;}
 .ss_cart .simpleCart_decrement:after {content: "-"; font-size: 20px;}
@@ -319,6 +327,14 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 .ss_cart #success_block .s-article.last {margin-right: 0;}
 .ss_cart #success_block .s-article .s-article-img img {width: 100%;}
 .ss_cart #success_block .s-article .s-article-name {font-size: 14px; font-weight: 500;}
+.ss_cart .btn-success, .ss_cart .btn-danger {height: 32px; vertical-align: top; width: 100px; border: 2px solid; box-sizing: border-box; background: #fff; border-radius: 4px; text-transform: uppercase; cursor: pointer;}
+.ss_cart .btn-success {color: #0769d7; font-weight: bold;}
+.ss_cart .btn-success:hover {color: #fff; background:#0769d7; border-color: #0769d7;}
+.ss_cart .btn-success:active {background: #0749b7;}
+.ss_cart .btn-danger {color: #f55;}
+.ss_cart .btn-danger:hover {background: rgb(233, 22, 63); color: #fff; border-color: rgb(233, 22, 63);}
+.ss_cart .btn-danger:active {background: rgb(213, 22, 63);}
+.ss_cart .btn:focus {outline: none;}
 
 .mobile-fixed-cart {position: fixed; z-index:100; display:none; bottom: 20px; right: 20px; background: #333; width: 60px; height: 60px; border-radius: 50%;}
 .mobile-fixed-cart span {display: block; width: 32px; height: 32px; position: absolute; top: 50%; left: 50%; margin-top: -18px; margin-left: -16px; background-position: -16px 0;}

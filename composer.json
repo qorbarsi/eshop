@@ -27,6 +27,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/qorbarsi/yii2-promocode"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/qorbarsi/yii2-order"
         }
     ],
     "require": {
@@ -36,7 +40,7 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "yiisoft/yii2-authclient": "~2.1.0",
         "dvizh/yii2-shop": "dev-dev-custom",
-        "dvizh/yii2-order": "@dev",
+        "dvizh/yii2-order": "dev-custom",
         "dvizh/yii2-cart": "dev-custom",
         "dvizh/yii2-promocode": "dev-custom",
         "dvizh/yii2-review": "@dev",

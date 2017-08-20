@@ -3,11 +3,12 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 ?>
 
-<div class="promo-code-enter ssc_discount_block">
+<div class="ssc_discount_block <?= $cssClass ?>">
     <?php $form = ActiveForm::begin([
         'action' => ['/promocode/promo-code-use/enter'],
         'options' => [
             'data-role' => 'promocode-enter-form',
+            'class' => $cssClass,
         ]
     ]); ?>
         <?php if(yii::$app->promocode->has()) { ?>

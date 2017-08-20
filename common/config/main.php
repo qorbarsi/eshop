@@ -78,7 +78,8 @@ return [
             'currencyPosition' => 'after', //after или before (позиция значка валюты относительно цены)
             'priceFormat' => [2,'.', ''], //Форма цены
             'as set_discount' => ['class' => '\common\aspects\SetDiscount'],
-            'as set_certificate_discount' => '\common\aspects\SetCertificateDiscount'
+            //'as set_element_discount' => ['class' => 'dvizh\promocode\behaviors\DiscountToElement'],
+            //'as set_certificate_discount' => '\common\aspects\SetCertificateDiscount'
         ],
         'client' => [
             'class' => 'dvizh\client\Client',
@@ -99,9 +100,30 @@ return [
         'order' => [
             'class' => 'dvizh\order\Module',
             'successUrl' => '/site/thanks', //Страница, куда попадает пользователь после успешного заказа
-            //'adminNotificationEmail' => 'test@yandex.ru', //Мыло для отправки заказов
-            'as use_certificate' => '\common\aspects\UseCertificate',
+            //'as use_certificate' => '\common\aspects\UseCertificate',
+            'as do_discount' => '\common\aspects\SetDiscount',
             'as order_filling' => '\common\aspects\OrderFilling',
+            'as promocode_use' => '\dvizh\promocode\behaviors\PromoCodeUse',
+            'countryCode' => 'LT',
+            'currency' => '€',
+            //
+            'createOrderUrl' => true,
+            //'adminNotificationEmail' => 'test@yandex.ru', //Мыло для отправки заказов
+            //'robotEmail' => 'no-reply@localhost',
+            //'robotName' => 'Tomeda',
+            'adminNotificationEmail' => false,
+            'clientEmailNotification' => true,
+            'elementToOrderUrl' => false,
+            'showPaymentColumn' => true,
+            'showCountColumn' => true,
+            //
+            'orderStatuses' => [
+                'new' => 'Naujas',
+                'approve' => 'Patvirtintas',
+                'cancel' => 'Atšauktas',
+                'process' => 'Apdorojimas',
+                'done' => 'Užbaigtas'
+            ],
         ],
         'cart' => [
             'class' => 'dvizh\cart\Module',
@@ -111,8 +133,10 @@ return [
             'informer' => 'dvizh\cart\widgets\CartInformer', // namespace to custom cartInformer widget
             'informerSettings' => ['text' => '{c}'], //settings for custom cartInformer widget
             'currency' => '€', //Валюта
+            //'clientsModel' => 'dvizh\client\Client',
             //'clientsModel' => 'dvizh\yii2-clients\models\Client',
             //Указываем модели, к которым будем привязывать промокод
+            /*
             'targetModelList' => [
                 'Категории' => [
                     'model' => 'dvizh\shop\models\Category',
@@ -123,7 +147,9 @@ return [
                     'searchModel' => 'dvizh\shop\models\product\ProductSearch'
                 ],
             ],
+            */
         ],
+        /*
         'certificate' => [
             'class' => '\dvizh\certificate\Module',
             'targetModelList' => [
@@ -137,6 +163,7 @@ return [
                 ],
             ]
         ],
+        */
         'shop' => [
             'class' => 'dvizh\shop\Module',
             'adminRoles' => ['superadmin'],

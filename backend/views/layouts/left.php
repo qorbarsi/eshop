@@ -17,6 +17,12 @@
                         'visible' => Yii::$app->user->can('superadmin'),
                         'url' => ['/order/order/index']
                     ],
+                    [
+                        'label' => Yii::t('app/backend','Operator workplace'),
+                        //'icon' => 'fa fa-suitcase',
+                        //'visible' => Yii::$app->user->can('superadmin'),
+                        'url' => ['/order/operator/index']
+                    ],
                     ['label' => Yii::t('app/backend','Магазин'), 'options' => ['class' => 'header']],
                     [
                         'label' => Yii::t('app/backend','Магазин'),
@@ -37,7 +43,7 @@
                         'visible' => Yii::$app->user->can('superadmin'),
                         'items' => [
                             ['label' => Yii::t('app/backend','Промокоды'), 'url' => ['/promocode/promo-code/index']],
-                            ['label' => Yii::t('app/backend','Сертификаты'), 'url' => ['/certificate/certificate/index']],
+                            //['label' => Yii::t('app/backend','Сертификаты'), 'url' => ['/certificate/certificate/index']],
                         ],
                     ],
                     [
