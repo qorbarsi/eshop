@@ -55,13 +55,13 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 #menu ul li a:hover, #menu ul li.catalog:hover a {background-color: #f5f5f5; color: #333; border-color: #084597;}
 #menu ul li.catalog {position: relative;}
 #menu ul li.catalog:hover ul.catalog-level1 {display: block;}
-#menu ul.catalog-level1 {display: none;z-index: 5; position: absolute; top: 40px; left: 0; background: #f5f5f5; width: 220px; padding:0; box-shadow: 0 6px 10px -5px #000;}
+#menu ul.catalog-level1 {display: none;z-index: 5; position: absolute; top: 40px; left: 0; background: #f5f5f5; width: 300px; padding:0; box-shadow: 0 6px 10px -5px #000;}
 #menu ul.catalog-level1 li {float: none;}
 #menu ul.catalog-level1 li a {position: relative; background: none; text-transform: none; color: #333; padding: 0 20px; font-size: 17px;}
 #menu ul.catalog-level1 li a:hover {background: #eee;color: #068af7;}
 #menu ul.catalog-level1 li.has-children a:after {right: 20px; top: 16px;}
 #menu ul.catalog-level1 li.has-children {position: relative;}
-#menu li.has-children ul.catalog-level2 {display: none; z-index: 6; position: absolute; top: 0; left: 220px; background: #f5f5f5; width: 220px; padding:0;  box-shadow: 0 6px 10px -5px #000;}
+#menu li.has-children ul.catalog-level2 {display: none; z-index: 6; position: absolute; top: 0; left: 300px; background: #f5f5f5; min-width: 220px; padding:0;  box-shadow: 0 6px 10px -5px #000;}
 #menu li.has-children ul.catalog-level2 li a {font-weight: normal;}
 #menu li.has-children ul.catalog-level2 li a:after {display: none;}
 #menu ul.catalog-level1 li.has-children:hover > a {background: #eee;color: #068af7;}
@@ -85,10 +85,10 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 .main-page-beneits .point.ic8 .icon .tbg {background-position: 0 -144px;}
 .main-page-beneits .point .text {line-height: 1.2;}
 
-#category .category-menu ul li a:before,#menu ul.catalog-level1 li.has-children a:after { display: block; width: 10px; height: 10px; background-size: 10px; background-position: left center; background-repeat:no-repeat; content:"";position:absolute; background-image: url('data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjkgMTI5IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMjkgMTI5IiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KICA8Zz4KICAgIDxwYXRoIGQ9Im00MC40LDEyMS4zYy0wLjgsMC44LTEuOCwxLjItMi45LDEuMnMtMi4xLTAuNC0yLjktMS4yYy0xLjYtMS42LTEuNi00LjIgMC01LjhsNTEtNTEtNTEtNTFjLTEuNi0xLjYtMS42LTQuMiAwLTUuOCAxLjYtMS42IDQuMi0xLjYgNS44LDBsNTMuOSw1My45YzEuNiwxLjYgMS42LDQuMiAwLDUuOGwtNTMuOSw1My45eiIgZmlsbD0iIzMzMzMzMyIvPgogIDwvZz4KPC9zdmc+Cg==');}
+#category .category-menu ul li a:before,#menu ul.catalog-level1 li.has-children a:after {margin-top: 2px; display: block; width: 10px; height: 10px; background-size: 10px; background-position: left center; background-repeat:no-repeat; content:"";position:absolute; background-image: url('data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjkgMTI5IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMjkgMTI5IiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KICA8Zz4KICAgIDxwYXRoIGQ9Im00MC40LDEyMS4zYy0wLjgsMC44LTEuOCwxLjItMi45LDEuMnMtMi4xLTAuNC0yLjktMS4yYy0xLjYtMS42LTEuNi00LjIgMC01LjhsNTEtNTEtNTEtNTFjLTEuNi0xLjYtMS42LTQuMiAwLTUuOCAxLjYtMS42IDQuMi0xLjYgNS44LDBsNTMuOSw1My45YzEuNiwxLjYgMS42LDQuMiAwLDUuOGwtNTMuOSw1My45eiIgZmlsbD0iIzMzMzMzMyIvPgogIDwvZz4KPC9zdmc+Cg==');}
 #category .category-menu {width: 210px;}
 #category .category-menu ul li {margin-bottom: 10px;}
-#category .category-menu ul li a {position: relative; margin-left: 0; display: block; color: #333; text-decoration: none; font-size: 17px; height:26px; line-height:26px; font-weight: 600; padding-left: 16px; margin-bottom: 5px;}
+#category .category-menu ul li a {position: relative; margin-left: 0; display: block; color: #333; text-decoration: none; font-size: 17px; line-height:22px; font-weight: 600; padding-left: 16px; margin-bottom: 10px;}
 #category .category-menu ul li a:before {top: 8px; left:0;}
 #category .category-menu ul li a:hover {color: #068af7;}
 #category .category-menu ul li ul li {margin-bottom: 0;}
@@ -176,6 +176,7 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 #product-page .added_message .added_img img {width: 100%;}
 #product-page .added_message .added_name {display: table-cell; padding-left: 10px; vertical-align: top; height: 110px;}
 #product-page .added_message .added_name p {margin-bottom: 0; margin-top: 10px;}
+#product-page .added_message .added_name .dvizh-shop-price span {display: none;}
 #product-page .added_message .added_continue {float: left; line-height: 30px; font-size: 13px;}
 #product-page .added_message .added_order {float: right; height: 28px; width: 100px; text-align: center; display: block; text-decoration: none; line-height: 28px; font-size: 13px; text-transform: uppercase; font-weight: bold; border: 2px solid; border-radius: 4px;}
 #product-page .added_message .added_order:hover {color: #fff; background:#0769d7; border-color: #0769d7;}

@@ -34,12 +34,12 @@ var terminals = [
 var url = window.location.href;
 if (url.split('#')[1] !== undefined) {
     if(url.split('#')[1] == 'success'){
-        document.title = 'Jūsų užsakymas sėkmingai pateiktas - MEN\'S VECTOR';
+        document.title = 'Jūsų užsakymas sėkmingai pateiktas';
         none('#step0');
         block('#success_block');
         success_animate(600);
     } else if(url.split('#')[1] == 'cancel'){
-        document.title = 'Jūsų užsakymas buvo atšauktas - MEN\'S VECTOR';
+        document.title = 'Jūsų užsakymas buvo atšauktas';
         none('#step0');
         block('#cancel_block');
     } else {
@@ -135,10 +135,10 @@ function urlChange(stepId) {
     step_url = url+'#step'+stepId;
     if (stepId == 0) {
         window.history.pushState('obj', 'newtitle', window.location.href.split('#')[0]);
-        document.title = 'Krepšelis - MEN\'S VECTOR';
+        document.title = 'Krepšelis';
     } else {
         window.history.pushState('obj', 'newtitle', step_url);
-        document.title = 'Krepšelis - '+pageTitle[stepId-1]+' - MEN\'S VECTOR';
+        document.title = 'Krepšelis - '+pageTitle[stepId-1];
     }
 }
 
@@ -436,7 +436,7 @@ $('#confirm_order').click(function(){
             ga('require', 'ecommerce');
             ga('ecommerce:addTransaction', {
                 'id': data,
-                'affiliation': 'MEN\'S VECTOR',
+                'affiliation': 'Tomeda',
                 'revenue': ssc_total(),
                 'shipping': 0,
                 'tax': '0'
@@ -460,7 +460,7 @@ $('#confirm_order').click(function(){
             return false;
         }
         window.history.pushState('obj', 'newtitle', url+'#success');
-        document.title = 'Jūsų užsakymas sėkmingai pateiktas - MEN\'S VECTOR';
+        document.title = 'Jūsų užsakymas sėkmingai pateiktas';
         nones(['.top_steps', '.shopping_cart_steps', '.cart_black_bg']);
         $('#success_block').fadeIn('fast');
         if (ga_loaded) {
@@ -471,7 +471,7 @@ $('#confirm_order').click(function(){
         } else {
             $("html, body").scrollTop(250);
         }
-        trunctCart();
+        truncateCart();
         success_animate(200);
     });
 });
@@ -488,6 +488,7 @@ $('#step1 .ssc_input').click(function(){
 });
 
 function success_animate(time) {
+    /*
     var article_nubmer = $('.s-article').size();
     var article_arr;
     $.post('/app/cart/articles.php',{article_nubmer:article_nubmer},function (data) {
@@ -498,6 +499,7 @@ function success_animate(time) {
             $('.s-article').eq(i).find('.s-article-name').text(article_arr[i][1]);
         }
     });
+    */
     setTimeout(function() {
         $('.s-bags').animate({opacity: 1,top: '0px'},1000);
         $('.s-check').animate({opacity: 1,top: '30px'},700,function () {
@@ -581,7 +583,7 @@ simpleCart({
     ]
 });
 
-function trunctCart() {
+function truncateCart() {
     simpleCart.empty();
     $('.dvizh-cart-informer').addClass('empty');
     $('.dvizh-cart-count').html('0');
@@ -619,7 +621,7 @@ simpleCart.ready( function(){
 });
 
 if(window.location.href.split('#')[1] == 'success'){
-    trunctCart();
+    truncateCart();
 }
 
 simpleCart.bind( "beforeAdd" , function( item ){

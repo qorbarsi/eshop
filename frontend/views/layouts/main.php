@@ -46,7 +46,7 @@ AppAsset::register($this);
                 <div class="fl-le">
                     <div class="logo-container">
                         <a href='/'>
-                            <img src="/css/img/tomeda-logo-black.png" alt="Tomeda logo">
+                            <img src="/css/img/tomeda-logo-black.png" alt="<?= Yii::$app->params['storeName'] ?> logo">
                         </a>
                     </div>
                     <p class="descript">Elektronikos prekės</p>
@@ -68,7 +68,7 @@ AppAsset::register($this);
                     </div>
                     <div class="cart-text fl-le">
                         <div class="cart-header">Prekių krepšelis</div>
-                        <div class="cart-links"><a href="<?= Url::toRoute([\Yii::$app->params['eshopPrefix'].'/cart']); ?>" class="">Peržiūreti</a> – <a href="javascript:;" class="simpleCart_checkout">Užsakyti</a></div>
+                        <div class="cart-links"><a href="<?= Url::toRoute([\Yii::$app->params['eshopPrefix'].'/cart']); ?>" class="">Peržiūreti</a> – <a href="<?= Url::toRoute([\Yii::$app->params['eshopPrefix'].'/cart']); ?>" class="">Užsakyti</a></div>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -194,7 +194,7 @@ AppAsset::register($this);
                 <div class="point">
                     <p class="point-head">Kontaktinė informacija</p>
                     <p>Skambinkite: +370 6333 8702</p>
-                    <p>Rašykite: <a href="mailto:info@tomeda.lt">info@tomeda.lt</a></p>
+                    <p>Rašykite: <a href="mailto:<?= Yii::$app->params['infoEmail'] ?>"><?= Yii::$app->params['infoEmail'] ?></a></p>
                     <p>Adresas: Gedimino pr. 33, Vilnius</p>
                     <br>
                     <p>UAB "Tomeda"</p>
@@ -217,7 +217,7 @@ AppAsset::register($this);
                 <div class="clear"></div>
             </div>
             <div class="footer-logo">
-                <img src="/css/img/tomeda-logo-black.png" alt="Tomeda">
+                <img src="/css/img/tomeda-logo-black.png" alt="<?= Yii::$app->params['storeName'] ?>">
             </div>
             <a class="mobile-fixed-cart" href="<?= Url::toRoute([\Yii::$app->params['eshopPrefix'].'/cart']); ?>">
                <span class="tbg"></span>

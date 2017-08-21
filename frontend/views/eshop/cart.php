@@ -335,12 +335,12 @@ CartAsset::register($this);
                 </div>
                 <div class="s-point">
                     <span>2</span>
-                    <p class="s-head">Dėkojame, kad pasirinkote apsipirkimui mūsų e-parduotuvę „MEN'S VECTOR“.</p>
+                    <p class="s-head">Dėkojame, kad pasirinkote apsipirkimui mūsų e-parduotuvę „<?= Yii::$app->params['storeName'] ?>“.</p>
                     <p>Jaučiame didelę atsakomybę, todėl iš visų jėgų stengsimės, kad mūsų produktų kokybė ir aptarnavimas Jūsų nenuviltų!</p>
                 </div>
                 <div class="s-point">
                     <span>3</span>
-                    <p class="s-head">„MEN'S VECTOR“ – tai ne tik internetinė parduotuvė.</p>
+                    <p class="s-head">„<?= Yii::$app->params['storeName'] ?>“ – tai ne tik internetinė parduotuvė.</p>
                     <p>Tai dar ir nemokamas internetinis žurnalas, skirtas vyrams. Straipsniai vyrams apie stilių, motyvaciją, vyrišką gyvenimo būdą.</p>
                     <p>Geriau vieną kartą pamatyti, nei šimtą kartų išgirsti. Parinkome Tau keletą įdomių straipsnių. Malonaus skaitymo!</p>
                     <div class="s-articles">
