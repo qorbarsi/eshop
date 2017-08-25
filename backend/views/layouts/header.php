@@ -39,11 +39,17 @@ use yii\helpers\Html;
                         <span class="hidden-xs"><?= Yii::$app->user->identity->username ?></span>
                     </a>
                     <ul class="dropdown-menu" style="width: auto;">
+                    <?php if (Yii::$app->user->can('userAdmin'))  {?>
                         <li class="user-footer">
                             <?= Html::a(Yii::t('app/backend','Профиль'),
                             ['/user/admin/update', 'id'=>Yii::$app->user->id]
                             ) ?>
                         </li>
+                    <?php } else {?>
+                        <li class="user-footer">
+                            <?= Html::a(Yii::t('app/backend','Профиль'),'/user/settings') ?>
+                        </li>
+                    <?php } ?>
                         <li class="user-footer">
                             <?= Html::a(Yii::t('app/backend','Выйти'),
                             ['/user/security/logout'],

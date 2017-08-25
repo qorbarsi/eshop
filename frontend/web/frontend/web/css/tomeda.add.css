@@ -55,3 +55,6 @@
     .dvizh-change-count .dvizh-downArr, .ss_cart .simpleCart_increment {position: relative;}
     .dvizh-change-count .dvizh-downArr {right: 0}
 }
+
+.mobile-fixed-cart .tbg {display: block; width: 32px; height: 32px; position: absolute; top: 50%; left: 50%; margin-top: -18px; margin-left: -16px; background-position: -16px 0;}
+.mobile-fixed-cart .dvizh-cart-count {position: absolute; width: 32px; height: 32px; text-align: center; line-height: 32px; color: #666; top: 50%; left: 50%; margin-top: -12px; margin-left: -15px; font-size: 13px;}

@@ -15,9 +15,8 @@ return [
     'modules' => [
         'user' => [
             'as backend' => 'dektrium\user\filters\BackendFilter',
-            'admins' => [
-                'administrator'
-            ],
+            //'admins' => ['ilja'],
+            'adminPermission' => 'userAdmin',
             'enableUnconfirmedLogin' => false,
         ],
         'rbac' => 'dektrium\rbac\RbacWebModule',

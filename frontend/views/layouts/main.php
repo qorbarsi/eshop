@@ -223,7 +223,7 @@ AppAsset::register($this);
                <span class="tbg"></span>
                <?php
                    $class = ( yii::$app->cart->getCount() > 0 ) ? '' : 'empty';
-                   echo CartInformer::widget(['htmlTag' => 'div', 'cssClass'=> $class, 'text' => '{c}']);
+                   echo CartInformer::widget(['htmlTag' => 'span', 'cssClass'=> $class, 'text' => '{c}']);
                ?>
            </a>
         </div>

@@ -1,4 +1,5 @@
 var shipping_type_id, payment_type_id;
+var item;
 
 var ga_loaded = false;
 //var ga_loaded = false; ga(function() { ga_loaded = true;}); //Check if Google Analytics is loaded

@@ -31,6 +31,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/qorbarsi/yii2-order"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/qorbarsi/yii2-mailgun"
         }
     ],
     "require": {
@@ -47,7 +51,8 @@
         "dvizh/yii2-certificate": "@dev",
         "dmstr/yii2-adminlte-asset": "2.*",
         "pheme/yii2-settings": "*",
-        "2amigos/yii2-editable-widget": "~1.0"
+        "2amigos/yii2-editable-widget": "~1.0",
+        "boundstate/yii2-mailgun": "dev-custom"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -57,12 +62,12 @@
         "codeception/verify": "~0.3.1"
     },
     "config": {
-        "process-timeout": 1800
-    },
-    "extra": {
-        "asset-installer-paths": {
-            "npm-asset-library": "vendor/npm",
-            "bower-asset-library": "vendor/bower"
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
         }
     },
     "autoload": {

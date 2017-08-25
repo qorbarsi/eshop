@@ -1,5 +1,5 @@
 <div class="jumbotron">
-    <h1>Ну вот и хорошо</h1>
+    <h1>Puikiai</h1>
 
-    <p class="lead">Теперь заказ у нас.</p>
+    <p class="lead">Mes gavome Jūsų užsakymą.</p>
 </div>

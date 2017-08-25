@@ -88,7 +88,8 @@ return [
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
-            'admins' => 'administrator',
+            //'admins' => ['ilja'],
+            'adminPermission' => 'userAdmin',
         ],
         'gallery' => [
             'class' => 'dvizh\gallery\Module',
@@ -108,11 +109,12 @@ return [
             'currency' => '€',
             //
             'createOrderUrl' => true,
-            //'adminNotificationEmail' => 'test@yandex.ru', //Мыло для отправки заказов
-            //'robotEmail' => 'no-reply@localhost',
-            //'robotName' => 'Tomeda',
-            'adminNotificationEmail' => false,
-            'clientEmailNotification' => true,
+            //'adminNotificationEmail' => 'info@tomeda.lt', //Мыло для отправки заказов
+            'adminNotificationEmail' => 'qorbarsi@gmail.com', //Мыло для отправки заказов
+            'robotEmail' => 'info@tomeda.lt',
+            'robotName' => 'Tomeda',
+            //'adminNotificationEmail' => false,
+            'clientEmailNotification' => false,
             'elementToOrderUrl' => false,
             'showPaymentColumn' => true,
             'showCountColumn' => true,

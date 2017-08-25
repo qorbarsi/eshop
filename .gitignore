@@ -41,6 +41,7 @@ phpunit.phar
 /console/runtime/*
 /common/runtime/*
 
+/frontend/web/frontend/web/assets/*
 /frontend/web/frontend/web/index.php
 /frontend/web/frontend/web/index-test.php
 /frontend/web/backend/web/index.php

@@ -7,7 +7,7 @@ use dvizh\cart\widgets\ElementCost;
 ?>
 
 <li class="dvizh-cart-row">
-<div class="row itemRow ">
+<div class="row itemRow " id="cartItem_<?= $model->id ?>">
     <div class="item-thumb" id="item-productimg">
         <img src="<?=$model->getModel()->getImage()->getUrl('88x88');?>" alt="<?= $model->name?>">
     </div>

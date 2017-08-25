@@ -36,7 +36,7 @@ CartAsset::register($this);
     <h1>Krepšelis</h1>
     <div class="ss_cart">
         <div class="shopping_cart_steps" id="step0">
-            <?= ElementsList::widget(['type' => ElementsList::TYPE_FULL, 'elementView' => '//widgets/tomedaCardListView', 'showTotal' => true, /*'cartCssClass' => 'simpleCart_items'*/]); ?>
+            <?= ElementsList::widget(['type' => ElementsList::TYPE_FULL, 'elementView' => '//widgets/tomedaCardListView', 'showTotal' => true, /*'cartCssClass' => 'simpleCart_items'*/ ]); ?>
             <div class="ssc_total">
                 <?= Enter::widget(['view'=>'//widgets/tomedaPromocodeWidget', 'ok_button' => 'Pritaikyti', 'del_button' => 'Panaikinti', 'cssClass' => (yii::$app->cart->getCount() > 0) ? '' : ' hidden']); ?>
                 <a class="button <?php echo (yii::$app->cart->getCount() > 0) ? '' : 'hidden';  ?>" href="javascript:;" id="step0-button" >Užsakyti</a>
@@ -402,7 +402,7 @@ CartAsset::register($this);
         if (!empty($elements)) {
             foreach ($elements as $element) {
                 $img = $element->getModel()->getImage()->getUrl('88x88');
-                $js .= 'simpleCart.add({name: "'.Html::encode($element->name).'" ,price: '.$element->price.' , quantity: '.$element->count.', thumb: "'.$img.'", productimg: "'.$img.'" }); '."\n";
+                $js .= 'item = simpleCart.add({id:'.$element->id.' ,name: "'.Html::encode($element->name).'" ,price: '.$element->price.' , quantity: '.$element->count.', thumb: "'.$img.'", productimg: "'.$img.'" }); '."\n";
             }
         }
         $code = yii::$app->promocode->get();
