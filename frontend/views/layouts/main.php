@@ -219,7 +219,7 @@ AppAsset::register($this);
             <div class="footer-logo">
                 <img src="/css/img/tomeda-logo-black.png" alt="<?= Yii::$app->params['storeName'] ?>">
             </div>
-            <a class="mobile-fixed-cart" href="<?= Url::toRoute(['/'.\Yii::$app->params['eshopPrefix'].'/cart']); ?>">
+            <a class="mobile-fixed-cart <?= ( yii::$app->cart->getCount() > 0 ) ? 'incart' : '' ?>" href="<?= Url::toRoute(['/'.\Yii::$app->params['eshopPrefix'].'/cart']); ?>">
                <span class="tbg"></span>
                <?php
                    $class = ( yii::$app->cart->getCount() > 0 ) ? '' : 'empty';
@@ -250,9 +250,11 @@ AppAsset::register($this);
                 if (json.count > 0) {
                     $('.dvizh-cart-informer').removeClass('empty');
                     $('#shopping-cart').addClass('incart');
+                    $('.mobile-fixed-cart').addClass('incart');
                 } else {
                     $('.dvizh-cart-informer').addClass('empty');
                     $('#shopping-cart').removeClass('incart');
+                    $('.mobile-fixed-cart').removeClass('incart');
                 }
             });
             $(document).on('promocodeClear', function (event, json) {
@@ -277,6 +279,7 @@ AppAsset::register($this);
             $(document).ready(function () {
             	if (parseInt($('.dvizh-cart-count').text()) > 0) {
             		$('#shopping-cart').addClass('incart');
+                    $('.mobile-fixed-cart').addClass('incart');
             	}
             	$('.button.to-cart').click(function () {
 					addedProduct();
