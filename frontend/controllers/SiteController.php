@@ -75,6 +75,27 @@ class SiteController extends Controller
         return $this->render('thanks');
     }
 
+
+    public function actionReview()
+    {
+        return $this->render('review');
+    }
+
+    public function actionArticle()
+    {
+        return $this->render('article');
+    }
+
+    public function actionDelivery()
+    {
+        return $this->render('delivery');
+    }
+
+    public function actionWarranty()
+    {
+        return $this->render('warranty');
+    }
+
     /**
      * Displays contact page.
      *

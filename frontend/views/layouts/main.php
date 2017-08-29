@@ -115,10 +115,10 @@ $this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfil
                             'items' => $catalog
                         ],
 
-                        ['label' => Yii::t('app/frontend','Pristatymas ir apmokėjimas'), 'url' => 'javascript:;'],
-                        ['label' => Yii::t('app/frontend','Garantijos'), 'url' => 'javascript:;'],
-                        ['label' => Yii::t('app/frontend','Atsiliepimai'), 'url' => 'javascript:;'],
-                        ['label' => Yii::t('app/frontend','Straipsniai'), 'url' => 'javascript:;'],
+                        ['label' => Yii::t('app/frontend','Pristatymas ir apmokėjimas'), 'url' => ['/site/delivery']],
+                        ['label' => Yii::t('app/frontend','Garantijos'), 'url' => ['/site/warranty']],
+                        ['label' => Yii::t('app/frontend','Atsiliepimai'), 'url' => ['/site/review']],
+                        ['label' => Yii::t('app/frontend','Straipsniai'), 'url' => ['/site/article']],
 
                         ['label' => Yii::t('app/frontend','Apie mus'), 'url' => ['/site/about']],
                         ['label' => Yii::t('app/frontend','Kontaktai'), 'url' => ['/site/contact']],
@@ -212,10 +212,10 @@ $this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfil
                 </div>
                 <div class="point">
                     <p class="point-head">Informacija</p>
-                    <p><a href="javascript:;">Pristatymas ir apmokėjimas</a></p>
-                    <p><a href="javascript:;">Garantijos</a></p>
-                    <p><a href="javascript:;">Atsiliepimai</a></p>
-                    <p><a href="javascript:;">Straipsniai</a></p>
+                    <p><?=Html::a(Yii::t('app/frontend','Pristatymas ir apmokėjimas'), ['site/delivery']);?></p>
+                    <p><?=Html::a(Yii::t('app/frontend','Garantijos'), ['site/warranty']);?></p>
+                    <p><?=Html::a(Yii::t('app/frontend','Atsiliepimai'), ['site/review']);?></p>
+                    <p><?=Html::a(Yii::t('app/frontend','Straipsniai'), ['site/article']);?></p>
                     <p><?=Html::a(Yii::t('app/frontend','Apie mus'), ['site/about']);?></p>
                     <p><?=Html::a(Yii::t('app/frontend','Kontaktai'), ['site/contact']);?></p>
                 </div>
