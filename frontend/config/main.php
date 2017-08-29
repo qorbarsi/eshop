@@ -40,6 +40,8 @@ return [
                 'cart'                         => $params['eshopPrefix'].'/cart',
                 $params['eshopPrefix'].'/cart' => $params['eshopPrefix'].'/cart',
 
+                $params['eshopPrefix'].'/search' => $params['eshopPrefix'].'/search',
+
                 [
                     'pattern'  => $params['eshopPrefix'].'/<category:[\w\-]+>/<id:\d*>',
                     'route'    => $params['eshopPrefix'].'/product',

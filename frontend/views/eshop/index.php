@@ -24,6 +24,8 @@ $this->title = !empty($this->title) ? $this->title : Yii::t('app/frontend','Reco
 $this->params['breadcrumbs']  = isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [];
 $this->params['withSignup']   = isset($this->params['withSignup']) ? $this->params['withSignup'] : 1;
 $this->params['withBenefits'] = isset($this->params['withBenefits']) ? $this->params['withBenefits'] : 1;
+
+$this->params['sfilter'] = isset($filter) ? $filter : '';
 ?>
     <div id="category">
         <div class="fl-le category-menu">

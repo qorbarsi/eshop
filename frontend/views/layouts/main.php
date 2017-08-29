@@ -17,6 +17,8 @@ use dvizh\cart\widgets\ElementsList;
 use dvizh\cart\widgets\CartInformer;
 
 AppAsset::register($this);
+
+$this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfilter'] : '';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -54,8 +56,16 @@ AppAsset::register($this);
                 <div class="fl-ri">
                     <div class="phone"><div><span class="tbg"></span></div>8 6333 8702</div>
                     <div class="search-box">
-                        <input type="text" placeholder="Paieška" />
-                        <a href="javascript:;"><span class="tbg"></span></a>
+                        <form id="cartsearchbox" method="get" action="<?= Url::toRoute(['/'.\Yii::$app->params['eshopPrefix'].'/search']); ?>">
+                            <input type="text" name="sfilter" placeholder="Paieška" value="<?= $this->params['sfilter'] ?>"/>
+                            <a id="cartsearchboxsubmit" href="javascript:;"><span class="tbg"></span></a>
+                        </form>
+                        <script>
+                            var form = document.getElementById("cartsearchbox");
+                            document.getElementById("cartsearchboxsubmit").addEventListener("click", function () {
+                                form.submit();
+                            });
+                        </script>
                     </div>
                 </div>
                 <div id="shopping-cart" class="<?= ( yii::$app->cart->getCount() > 0 ) ? 'incart' : '' ?>">

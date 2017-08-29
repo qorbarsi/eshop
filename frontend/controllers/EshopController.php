@@ -50,6 +50,35 @@ class EshopController extends Controller
         ]);
     }
 
+    public function actionSearch()
+    {
+        $categories = Category::find()->all();
+        $query = Product::find()->andWhere(['available' => 'yes'] )->orderBy('is_popular ASC, id DESC');
+
+
+        if($filter = yii::$app->request->get('sfilter')) {
+            //$query->filtered($filter);
+            $query = $query->andFilterWhere([
+                'or',
+                ['like', 'code', $filter],
+                ['like', 'sku', $filter],
+                ['like', 'name', $filter],
+                ['like', 'text', $filter],
+                ['like', 'short_text', $filter],
+                ['like', 'slug', $filter],
+            ]);
+        } else {
+            $query = $query->andFilterWhere(['is_popular' => 'yes']);
+        }
+
+        $products = $query->all();
+
+        return $this->render('index', [
+            'categories' => $categories,
+            'products'   => $products,
+            'filter'     => $filter,
+        ]);
+    }
 
     /**
      * Displays cart.
