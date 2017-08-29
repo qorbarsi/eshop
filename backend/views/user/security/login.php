@@ -73,22 +73,23 @@ $this->title = Yii::t('user', 'Sign in');
                         <?= Yii::t('user', 'Password is not necessary because the module is in DEBUG mode.'); ?>
                     </div>
                 <?php else: ?>
-                    <?php /* echo $form->field(
+                    <?php echo $form->field(
                         $model,
                         'password',
-                        ['inputOptions' => ['class' => 'form-control', 'tabindex' => '2']])
+                        ['inputOptions' => ['class' => 'form-control', 'tabindex' => '2', 'placeholder' => Yii::t('app/backend','пароль')]])
                         ->passwordInput()
                         ->label(
                             Yii::t('user', 'Password')
                             . ($module->enablePasswordRecovery ?
                                 ' (' . Html::a(
                                     Yii::t('user', 'Forgot password?'),
-                                    ['/user/recovery/request'],
+                                    '/user/recovery/request',
                                     ['tabindex' => '5']
                                 )
                                 . ')' : '')
-                        ) */ ?>
-                    <?php  echo $form->field(
+                        ) ?>
+                    <?php
+                    /*echo $form->field(
                         $model,
                         'password',
                         ['inputOptions' => [
@@ -98,7 +99,7 @@ $this->title = Yii::t('user', 'Sign in');
                             ]
                         ])
                         ->passwordInput()
-                        ->label(false)
+                        ->label(false) */
                           ?>
                 <?php endif ?>
 

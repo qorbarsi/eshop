@@ -262,7 +262,15 @@ $('#step1 .button').click(function(){
 });
 
 $('#step2 .button').click(function(){
+    var shipping_err_text = 'Įveskite pristatymo adresą';
     shipping_type = $('.cs_shipping_option.selected .shipping_addition_info').data('addresstype');
+
+    if(typeof shipping_type == 'undefined' || shipping_type == ''){
+        $('.no_shipping_selected').text('Pasirinkite pristatymo būdą');
+        $('.no_shipping_selected').fadeIn('fast');
+        $('.no_shipping_selected').css('display','inline-block');
+        return false;
+    }
 
     shipping_type_code = $('.cs_shipping_option.selected').data('shippingtype').toUpperCase();
     if  ( (typeof shippingTypeList === 'undefined') ||  (typeof shippingTypeList[shipping_type_code] === 'undefined') ) {
@@ -271,13 +279,6 @@ $('#step2 .button').click(function(){
         shipping_type_id = shippingTypeList[shipping_type_code];
     }
 
-    var shipping_err_text = 'Įveskite pristatymo adresą';
-    if(typeof shipping_type == 'undefined' || shipping_type == ''){
-        $('.no_shipping_selected').text('Pasirinkite pristatymo būdą');
-        $('.no_shipping_selected').fadeIn('fast');
-        $('.no_shipping_selected').css('display','inline-block');
-        return false;
-    }
     if(shipping_type == 1){
         shipping_address = $('.cs_shipping_option.selected .shipping_addition_info input[name="shipping_address"]').val();
         shipping_city = $('.cs_shipping_option.selected .shipping_addition_info input[name="shipping_city"]').val();
@@ -305,6 +306,13 @@ $('#step3 .button').click(function(){
     payment_type = $('.cs_payment_option.selected').data('payment');
     paysera = $('.cs_payment_option.selected').data('paysera');
 
+    if(typeof payment_type == 'undefined' || payment_type == ''){
+        $('.no_payment_selected').text('Pasirinkite apmokėjimo būdą');
+        $('.no_payment_selected').fadeIn('fast');
+        $('.no_payment_selected').css('display','inline-block');
+        return false;
+    }
+
     payment_type_code = $('.cs_payment_option.selected').data('paymentcode').toUpperCase();
 
     if  ( (typeof paymentTypeList === 'undefined') ||  (typeof paymentTypeList[payment_type_code] === 'undefined') ) {
@@ -317,12 +325,7 @@ $('#step3 .button').click(function(){
         var alt_text = $(this).text();
         $(this).html('<img src="'+bank_img[index]+'" alt="'+alt_text+'">');
     });
-    if(typeof payment_type == 'undefined' || payment_type == ''){
-        $('.no_payment_selected').text('Pasirinkite apmokėjimo būdą');
-        $('.no_payment_selected').fadeIn('fast');
-        $('.no_payment_selected').css('display','inline-block');
-        return false;
-    }
+
     if (paysera == 1) {
         $('#confirm_order').text('Apmokėti užsakymą');
         block('.paysera-payment-block');
@@ -431,6 +434,7 @@ $('#confirm_order').click(function(){
         payment_type: payment_type
 */
     },function(data){
+        //console.log(data);
         var res = $.parseJSON( data );
         data = res.orderId;
         if (ga_loaded) {
@@ -474,6 +478,8 @@ $('#confirm_order').click(function(){
         }
         truncateCart();
         success_animate(200);
+    }).fail(function() {
+        alert( "Kažkas nutiko, prašome perkrauti puslapį." );
     });
 });
 //ORDER_SUCCESS END

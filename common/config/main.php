@@ -7,6 +7,7 @@ return [
     'bootstrap' => [
         'dektrium\user\Bootstrap',
         'dektrium\rbac\Bootstrap',
+        'qorbarsi\paysera\Bootstrap',
     ],
 
     'extensions' => yii\helpers\ArrayHelper::merge(
@@ -90,6 +91,9 @@ return [
             'class' => 'dektrium\user\Module',
             //'admins' => ['ilja'],
             'adminPermission' => 'userAdmin',
+            'mailer' => [
+                'viewPath' => '@common/mail'
+            ],
         ],
         'gallery' => [
             'class' => 'dvizh\gallery\Module',
@@ -118,6 +122,7 @@ return [
             'elementToOrderUrl' => false,
             'showPaymentColumn' => true,
             'showCountColumn' => true,
+            'mailViewPath' => '@common/mail',
             //
             'orderStatuses' => [
                 'new' => 'Naujas',
@@ -203,5 +208,11 @@ return [
             'class' => 'pheme\settings\Module',
             'sourceLanguage' => 'lt'
         ],
+        'paysera' => [
+            'class'     => 'qorbarsi\paysera\Module',
+            'projectId' => '103677',
+            'signPassword' => '3966033980c35a002bf1b8f79baeb7a8',
+            'test' => 1,
+        ]
     ],
 ];

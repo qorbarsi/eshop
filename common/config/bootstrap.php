@@ -7,3 +7,5 @@ Yii::setAlias('@dektrium/user', dirname(dirname(__DIR__)) . '/common/modules/dek
 Yii::setAlias('@dektrium/rbac', dirname(dirname(__DIR__)) . '/common/modules/dektrium/yii2-rbac');
 Yii::setAlias('@yii/authclient', dirname(dirname(__DIR__)) . '/vendor/yiisoft/yii2-authclient/');
 Yii::setAlias('@yii/gii', dirname(dirname(__DIR__)) . '/vendor/yiisoft/yii2-gii');
+
+Yii::setAlias('@qorbarsi/paysera', dirname(dirname(__DIR__)) . '/common/modules/qorbarsi/yii2-paysera');

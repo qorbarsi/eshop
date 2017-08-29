@@ -314,7 +314,8 @@ CartAsset::register($this);
                 <a class="cart_back" href="javascript:;"><span>«</span> Atgal</a>
             </div>
 
-            <form action="/app/cart/libwebtopay/redirect.php" id="paysera-form" method="POST">
+            <form action="<?= Url::to(['paysera/paysera/redirect']) ?>" id="paysera-form" method="POST">
+                <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
                 <input name="order_id" type="hidden" value="" /><input name="payment_bank" type="hidden" value="" />
             </form>
             <!-- END OF STEP4 -->
