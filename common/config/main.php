@@ -113,8 +113,7 @@ return [
             'currency' => '€',
             //
             'createOrderUrl' => true,
-            //'adminNotificationEmail' => 'info@tomeda.lt', //Мыло для отправки заказов
-            'adminNotificationEmail' => 'qorbarsi@gmail.com', //Мыло для отправки заказов
+            'adminNotificationEmail' => 'info@tomeda.lt', //Мыло для отправки заказов
             'robotEmail' => 'info@tomeda.lt',
             'robotName' => 'Tomeda',
             //'adminNotificationEmail' => false,
