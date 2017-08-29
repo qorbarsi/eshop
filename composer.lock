@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f290f0655e65c44b922df145527ca171",
+    "content-hash": "3efa3dfa08b911927bc5017efc071b3e",
     "packages": [
         {
             "name": "2amigos/yii2-dosamigos-asset-bundle",
@@ -2887,6 +2887,52 @@
                 "storage"
             ],
             "time": "2017-08-14 18:55:15"
+        },
+        {
+            "name": "mailerlite/mailerlite-api-v2-php-sdk",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mailerlite/mailerlite-api-v2-php-sdk.git",
+                "reference": "e33d833fa707360556227065e86df184fd25b59b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mailerlite/mailerlite-api-v2-php-sdk/zipball/e33d833fa707360556227065e86df184fd25b59b",
+                "reference": "e33d833fa707360556227065e86df184fd25b59b",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "~1.2",
+                "php": "^5.5|^7.0",
+                "php-http/curl-client": "^1.4",
+                "php-http/httplug": "^1.0",
+                "php-http/message": "^1.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "php-http/guzzle6-adapter": "^1.0",
+                "phpunit/phpunit": "5.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MailerLiteApi\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "MailerLite API v2 PHP SDK",
+            "homepage": "https://github.com/mailerlite/mailerlite-api-v2-php-sdk",
+            "keywords": [
+                "email",
+                "mailerlite",
+                "marketing",
+                "sdk"
+            ],
+            "time": "2017-03-28 10:17:58"
         },
         {
             "name": "mailgun/mailgun-php",
@@ -7083,7 +7129,8 @@
         "dvizh/yii2-promocode": 20,
         "dvizh/yii2-review": 20,
         "dvizh/yii2-certificate": 20,
-        "boundstate/yii2-mailgun": 20
+        "boundstate/yii2-mailgun": 20,
+        "mailerlite/mailerlite-api-v2-php-sdk": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Invalid email specified' => 'Neteisingas el. pašto adresas',
+    'Subsribing failed' => 'Užprenumeruoti nepavyko',
     'Apie mus' => 'Apie mus',
     'Atsiliepimai' => 'Atsiliepimai',
     'Garantijos' => 'Garantijos',

@@ -17,13 +17,13 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Operator workplace' => 'Operatoriaus zona',
-    'Профиль' => 'Profilis',
+    'Identifikatorius' => 'Prekės kodas',
     'Are you sure you want to delete this item?' => 'Ar tikrai norite pašalinti šį elementą',
     'Delete' => 'Pašalinti',
     'Female' => 'Mot.',
     'ID' => 'ID',
     'Male' => 'Vyr.',
+    'Operator workplace' => 'Operatoriaus zona',
     'Please contact us if you think this is a server error. Thank you.' => 'Jeigu menote, kad tai yra serverio klaida, prašome susisiekti su mumis.',
     'Profile' => 'Profilis',
     'Reset' => 'Atstatyti',
@@ -77,6 +77,7 @@ return [
     'Порядок' => 'Tvarka',
     'Производители' => 'Gamintojai',
     'Промокоды' => 'Nuolaidų kodai',
+    'Профиль' => 'Profilis',
     'Редактирование слайдера: {name}' => 'Redaguoti slaiderį: {name}',
     'Редактировать' => 'Redaguoti',
     'Редактировать новость: {name}' => 'Redaguoti naujieną: {name}',

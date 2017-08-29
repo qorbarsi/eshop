@@ -8,11 +8,28 @@ use dvizh\shop\models\Product;
 use frontend\models\ContactForm;
 use yii\web\NotFoundHttpException;
 
+use yii\filters\VerbFilter;
+use yii\validators\EmailValidator;
+
+use MailerLiteApi\MailerLite;
 /**
  * Site controller
  */
 class SiteController extends Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'subscribe' => ['POST',],
+                ],
+            ],
+
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -68,6 +85,39 @@ class SiteController extends Controller
             'products' => $products,
             'category' => $category,
         ]);
+    }
+
+    public function actionSubscribe() {
+        if ( $email = yii::$app->request->post('email')) {
+            $validator = new EmailValidator();
+
+            if ( !$validator->validate($email, $error) ) {
+                die(json_encode(['result' => 'fail', 'error' => $error]));
+            }
+
+            if (
+                isset(yii::$app->params['ML_API_KEY']) &&
+                ($key = yii::$app->params['ML_API_KEY']) &&
+                isset(yii::$app->params['ML_GROUP_ID']) &&
+                ($gid = yii::$app->params['ML_GROUP_ID'])
+            ) {
+
+                $groupsApi = (new MailerLite($key))->groups();
+        		$subscribersApi = (new MailerLite($key))->subscribers();
+        		$subscriber = $subscribersApi->find($email);
+        		$array = json_decode(json_encode($subscriber),true);
+
+        		if ( isset($array['error']['code']) && ( $array['error']['code'] == 123 ) ) {
+        			$subscriber = [ 'email' => $email,];
+        			$addedSubscriber = $groupsApi->addSubscriber(5546820, $subscriber);
+                }
+                die(json_encode(['result' => 'success']));
+            } else {
+                die(json_encode(['result' => 'fail', 'error' => Yii::t('app/frontend','Subsribing failed')]));
+            }
+        } else {
+            die(json_encode(['result' => 'fail', 'error' => Yii::t('app/frontend','Invalid email specified')]));
+        }
     }
 
     public function actionThanks()

@@ -52,7 +52,8 @@
         "dmstr/yii2-adminlte-asset": "2.*",
         "pheme/yii2-settings": "*",
         "2amigos/yii2-editable-widget": "~1.0",
-        "boundstate/yii2-mailgun": "dev-custom"
+        "boundstate/yii2-mailgun": "dev-custom",
+        "mailerlite/mailerlite-api-v2-php-sdk": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

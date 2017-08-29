@@ -48,6 +48,6 @@ return [
     'messageTable' => '{{%message}}',
     'catalog' => 'messages',
     'ignoreCategories' => [
-        'promocode', 'user'
+        'promocode', 'user', 'order'
     ],
 ];

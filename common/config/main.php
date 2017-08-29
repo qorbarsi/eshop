@@ -26,7 +26,9 @@ return [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@dektrium/user/views' => '@backend/views/user'
+                    '@dektrium/user/views' => '@backend/views/user',
+                    '@dvizh/order/views/order' => '@backend/views/order',
+                    '@dvizh/order/views/operator' => '@backend/views/operator'
                 ],
             ],
         ],
@@ -109,6 +111,7 @@ return [
             'as do_discount' => '\common\aspects\SetDiscount',
             'as order_filling' => '\common\aspects\OrderFilling',
             'as promocode_use' => '\dvizh\promocode\behaviors\PromoCodeUse',
+            'as sibscriber' => '\common\aspects\OrderSubscribe',
             'countryCode' => 'LT',
             'currency' => '€',
             //
