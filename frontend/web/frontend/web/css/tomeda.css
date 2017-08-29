@@ -103,7 +103,7 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 #category .category-product-list a:hover .cat-pr {box-shadow: 0 0 4px rgba(0,0,0,0.3); z-index: 2;}
 #category .cat-pr {position: relative; float: left; width: 218px; border-right: 1px solid; border-bottom: 1px solid; padding: 20px;}
 #category .category-product-list, #category .cat-pr {border-color: #eee;}
-#category .cat-pr-img img {width: 100%; display: block;}
+#category .cat-pr-img img {width: 100%; display: block; padding: 9px; box-sizing: border-box;}
 #category .cat-pr-title {font-size: 14px; height: 36px; margin: 10px 0; line-height: 18px; color: #333; overflow: hidden}
 #category .cat-pr-price {color: #000; font-weight: bold; margin-bottom: 5px;}
 #category .cat-pr-price.discount {color: #e9163f;}
@@ -340,6 +340,7 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 .mobile-fixed-cart {position: fixed; z-index:100; display:none; bottom: 20px; right: 20px; background: #333; width: 60px; height: 60px; border-radius: 50%;}
 .mobile-fixed-cart span {display: block; width: 32px; height: 32px; position: absolute; top: 50%; left: 50%; margin-top: -18px; margin-left: -16px; background-position: -16px 0;}
 .mobile-fixed-cart div {position: absolute; width: 32px; height: 32px; text-align: center; line-height: 32px; color: #666; top: 50%; left: 50%; margin-top: -12px; margin-left: -15px; font-size: 13px;}
+.mobile-fixed-cart.incart {background: rgb(233, 22, 63);}
 
 @media screen and (max-width:500px){
 	.content {width: 100%;}
@@ -402,14 +403,14 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 	.ss_cart .itemRow > div {display: block; position: absolute;}
 	.ss_cart .itemRow > div.item-thumb {top: 0; left: 0;}
 	.ss_cart .itemRow > div.item-name {padding: 0; width: 70%; left: 90px; top: 18px;}
-	.ss_cart .itemRow > div.item-price {padding: 0; width: auto; left: 10px; top: 80px;}
-	.ss_cart .itemRow > div.item-quantity, .ss_cart .itemRow > div.dvizh-change-count {width: 110px; top: 100px; left: 50%; margin-left: -50px;}
+	.ss_cart .itemRow > div.item-price {padding: 0; width: auto; left: 10px; top: 90px;}
+	.ss_cart .itemRow > div.item-quantity, .ss_cart .itemRow > div.dvizh-change-count {width: 110px; top: 90px; left: 50%; margin-left: -50px;}
 	.ss_cart .itemRow > div.item-decrement, .ss_cart .itemRow > div.item-increment {position: absolute; top: 104px; z-index: 2; width: 22px;}
 	.ss_cart .simpleCart_decrement, .ss_cart .simpleCart_increment {position: relative;}
 	.ss_cart .itemRow > div.item-decrement {left: 50%; margin-left: -40px;}
 	.ss_cart .itemRow > div.item-increment {right: 50%; margin-right: -40px;}
 	.ss_cart .simpleCart_decrement {right: 0}
-	.ss_cart .itemRow > div.item-total {top: 80px; padding: 0; right: 10px; width: auto;}
+	.ss_cart .itemRow > div.item-total {top: 90px; padding: 0; right: 10px; width: auto;}
 	.ss_cart .itemRow > div.item-remove {top: 140px; right: 10px;}
 	.ss_cart .ssc_total {padding: 0 20px;}
 	.ss_cart .button {display: block; margin-left: auto; margin-right: auto; width: 250px; height: 40px; line-height: 40px; padding-left: 0; padding-right: 0;}
@@ -445,4 +446,8 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 	.ss_cart #step4 ul {display: none;}
 	.ss_cart #step4 #mobile_bank_selcet {display: block;}
 	.ss_cart #success_block {margin: 0 20px;}
+	.shopping-cart_container {padding: 0 20px;}
+	.input-group-btn {margin-top: 10px; display: block;}
+	.dvizh-cart .dvizh-cart-delete-button {margin: 0; padding: 0;}
+	.ss_cart .ssc_total a.button {float: none;}
 }

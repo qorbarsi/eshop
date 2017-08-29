@@ -26,7 +26,7 @@ function getBreadcrumbs ($cat) {
     if ( isset($cat) && !empty($cat) ) {
         $return[] = [
             'label' => $cat->name,
-            'url'   => [ \Yii::$app->params['eshopPrefix'].'/'.( empty($cat->slug) ? $cat->id : $cat->slug )]
+            'url'   => [ '/'.\Yii::$app->params['eshopPrefix'].'/'.( empty($cat->slug) ? $cat->id : $cat->slug )]
         ];
     }
     return $return;
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'] = $breadcrumbs;
 $this->params['breadcrumbs'][] = [
     'label' => $this->title,
     'url' =>
-    [   \Yii::$app->params['eshopPrefix'].'/'.
+    [   '/'.\Yii::$app->params['eshopPrefix'].'/'.
         (empty($product->category->slug) ? $product->category->id : $product->category->slug) .'/'.
         ( empty($product->slug) ? $product->id : $product->slug )
     ]
@@ -188,7 +188,7 @@ $this->params['withBenefits'] = 0;
                                 echo '<li>';
                                 echo '<a href="'.Url::toRoute(
                                     [
-                                        \Yii::$app->params['eshopPrefix'].'/'.
+                                        '/'.\Yii::$app->params['eshopPrefix'].'/'.
                                         (empty($rel->category->slug) ? $rel->category->id : $rel->category->slug) .'/'.
                                         ( empty($rel->slug) ? $rel->id : $rel->slug )
                                     ]

@@ -10,7 +10,7 @@ function getBreadcrumbs ($cat) {
     if ( isset($cat) && !empty($cat) ) {
         $return[] = [
             'label' => $cat->name,
-            'url'   => [ \Yii::$app->params['eshopPrefix'].'/'.( empty($cat->slug) ? $cat->id : $cat->slug )]
+            'url'   => [ '/'.\Yii::$app->params['eshopPrefix'].'/'.( empty($cat->slug) ? $cat->id : $cat->slug )]
         ];
     }
     return $return;

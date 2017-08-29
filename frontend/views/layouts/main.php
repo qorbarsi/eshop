@@ -68,7 +68,7 @@ AppAsset::register($this);
                     </div>
                     <div class="cart-text fl-le">
                         <div class="cart-header">Prekių krepšelis</div>
-                        <div class="cart-links"><a href="<?= Url::toRoute([\Yii::$app->params['eshopPrefix'].'/cart']); ?>" class="">Peržiūreti</a> – <a href="<?= Url::toRoute([\Yii::$app->params['eshopPrefix'].'/cart']); ?>" class="">Užsakyti</a></div>
+                        <div class="cart-links"><a href="<?= Url::toRoute(['/'.\Yii::$app->params['eshopPrefix'].'/cart']); ?>" class="">Peržiūreti</a> – <a href="<?= Url::toRoute(['/'.\Yii::$app->params['eshopPrefix'].'/cart']); ?>" class="">Užsakyti</a></div>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -100,7 +100,7 @@ AppAsset::register($this);
                     'items' => [
                         [
                             'label' => Yii::t('app/frontend','Katalogas'),
-                            'url' => ['site/index'],
+                            'url' => ['/site/index'],
                             'options' => ['class'=>'catalog'],
                             'items' => $catalog
                         ],
@@ -110,8 +110,8 @@ AppAsset::register($this);
                         ['label' => Yii::t('app/frontend','Atsiliepimai'), 'url' => 'javascript:;'],
                         ['label' => Yii::t('app/frontend','Straipsniai'), 'url' => 'javascript:;'],
 
-                        ['label' => Yii::t('app/frontend','Apie mus'), 'url' => ['site/about']],
-                        ['label' => Yii::t('app/frontend','Kontaktai'), 'url' => ['site/contact']],
+                        ['label' => Yii::t('app/frontend','Apie mus'), 'url' => ['/site/about']],
+                        ['label' => Yii::t('app/frontend','Kontaktai'), 'url' => ['/site/contact']],
                     ],
                     'labelTemplate' =>'{label} Label',
                     'linkTemplate' => '<a href="{url}"><span>{label}</span></a>',
@@ -219,7 +219,7 @@ AppAsset::register($this);
             <div class="footer-logo">
                 <img src="/css/img/tomeda-logo-black.png" alt="<?= Yii::$app->params['storeName'] ?>">
             </div>
-            <a class="mobile-fixed-cart" href="<?= Url::toRoute([\Yii::$app->params['eshopPrefix'].'/cart']); ?>">
+            <a class="mobile-fixed-cart" href="<?= Url::toRoute(['/'.\Yii::$app->params['eshopPrefix'].'/cart']); ?>">
                <span class="tbg"></span>
                <?php
                    $class = ( yii::$app->cart->getCount() > 0 ) ? '' : 'empty';

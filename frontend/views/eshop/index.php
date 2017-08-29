@@ -37,7 +37,7 @@ $this->params['withBenefits'] = isset($this->params['withBenefits']) ? $this->pa
                     foreach($arr as $level1) {
                         $return[] = [
                             'label' => $level1['name'],
-                            'url'   => [\Yii::$app->params['eshopPrefix'].'/'.(empty($level1['slug']) ? $level1['id'] : $level1['slug'])],
+                            'url'   => ['/'.\Yii::$app->params['eshopPrefix'].'/'.(empty($level1['slug']) ? $level1['id'] : $level1['slug'])],
                             'items' => ( isset($level1['childs']) && !empty($level1['childs'])) ? processRecordIndex($level1['childs'],$ind) : [],
                         ];
                     }
@@ -75,7 +75,7 @@ $this->params['withBenefits'] = isset($this->params['withBenefits']) ? $this->pa
                 </div>
                 <div class="category-product-list">
                     <?php foreach($products as $product) { ?>
-                        <a href="<?= Url::toRoute([\Yii::$app->params['eshopPrefix'].'/'.
+                        <a href="<?= Url::toRoute(['/'.\Yii::$app->params['eshopPrefix'].'/'.
                                         (empty($product->category->slug) ? $product->category->id : $product->category->slug) ]).'/'.
                                         (empty($product->slug) ? $product->id : $product->slug )?> ">
                             <div class="cat-pr">

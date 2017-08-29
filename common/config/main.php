@@ -212,6 +212,8 @@ return [
             'class'     => 'qorbarsi\paysera\Module',
             'projectId' => '103677',
             'signPassword' => '3966033980c35a002bf1b8f79baeb7a8',
+            'acceptUrl' => 'http://tomeda.lt/cart#success',
+            'cancelUrl' => 'http://tomeda.lt/cart#cancel',
             'test' => 1,
         ]
     ],

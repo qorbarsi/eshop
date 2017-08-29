@@ -11,19 +11,21 @@ class PayseraForm extends \yii\base\Widget
 {
     public $description = '';
     public $orderModel;
-    public $autoSend = false;
     public $view = 'form';
     public $txtAmountTemplate = '{amount} {currency}';
     public $currency;
     public $payment;
 
+    public $acceptUrl;
+    public $cancelUrl;
+    public $callbackUrl;
+
+    public $autoSend;
+
     protected $module;
 
     public function init()
     {
-        $this->module =yii::$app->getModule('paysera');
-        $this->currency = empty($this->currency) ? $this->module->currency : $this->currency;
-
         return parent::init();
     }
 
@@ -33,9 +35,14 @@ class PayseraForm extends \yii\base\Widget
             return false;
         }
 
-        $acceptUrl = empty($this->module->acceptUrl) ? Url::to(['paysera/accept'],true) : $this->module->acceptUrl;
-        $cancelUrl = empty($this->module->cancelUrl) ? Url::to(['paysera/cancel'],true) : $this->module->cancelUrl;
-        $callbackUrl = empty($this->module->callbackUrl) ? Url::to(['paysera/callback'],true) : $this->module->callbackUrl;
+        $this->module = yii::$app->getModule('paysera');
+
+        $this->currency      = empty($this->currency) ? $this->module->currency : $this->currency;
+        $this->autoSend      = isset($this->autoSend) ? $this->autoSend : $this->module->autoSend;
+
+        $acceptUrl   = empty($this->acceptUrl)   ? (empty($this->module->acceptUrl)   ? Url::to(['paysera/accept'],true)   : $this->module->acceptUrl)   : $this->acceptUrl;
+        $cancelUrl   = empty($this->cancelUrl)   ? (empty($this->module->cancelUrl)   ? Url::to(['paysera/cancel'],true)   : $this->module->cancelUrl)   : $this->cancelUrl;
+        $callbackUrl = empty($this->callbackUrl) ? (empty($this->module->callbackUrl) ? Url::to(['paysera/callback'],true) : $this->module->callbackUrl) : $this->callbackUrl;
 
         $oid = $this->orderModel->getId();
         $amount = $this->orderModel->getCost();
@@ -61,6 +68,8 @@ class PayseraForm extends \yii\base\Widget
             'callbackurl'   => $callbackUrl,
             'test'          => $this->module->test,
             'payment'       => $this->payment,
+            'p_email'       => isset($orderModel->email)       ? $orderModel->email : '',
+            'p_firstname'   => isset($orderModel->client_name) ? $orderModel->client_name : '',
         ];
 
         //$request = \WebToPay::redirectToPayment($data);
