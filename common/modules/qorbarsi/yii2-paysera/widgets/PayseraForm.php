@@ -68,8 +68,8 @@ class PayseraForm extends \yii\base\Widget
             'callbackurl'   => $callbackUrl,
             'test'          => $this->module->test,
             'payment'       => $this->payment,
-            'p_email'       => isset($orderModel->email)       ? $orderModel->email : '',
-            'p_firstname'   => isset($orderModel->client_name) ? $orderModel->client_name : '',
+            'p_email'       => isset($this->orderModel->email)       ? $this->orderModel->email : '',
+            'p_firstname'   => isset($this->orderModel->client_name) ? $this->orderModel->client_name : '',
         ];
 
         //$request = \WebToPay::redirectToPayment($data);

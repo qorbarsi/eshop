@@ -146,6 +146,11 @@ class SiteController extends Controller
         return $this->render('warranty');
     }
 
+    public function actionReturn()
+    {
+        return $this->render('return');
+    }
+
     /**
      * Displays contact page.
      *

@@ -71,15 +71,17 @@ class PayseraController extends Controller
     {
         $module = yii::$app->getModule('paysera');
 
-        if ($module->test > 0) {
-            yii::trace(print_r($_GET,true));
+        if ( isset($_GET['data']) && isset($_GET['ss1']) ) {
+            $req = $_GET;
+        } else {
+            $req = $_POST;
         }
 
         try {
-            $response = \WebToPay::checkResponse($_GET, array(
+            $response = \WebToPay::checkResponse($req , [
                 'projectid'     => $module->projectId,
                 'sign_password' => $module->signPassword,
-            ));
+            ]);
 
             if ($response['test'] !== '0') {
                 throw new Exception('Testing, real payment was not made');
