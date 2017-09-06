@@ -36,7 +36,7 @@ use yii\helpers\Url;
 <div class="content product-join-facebook">
     <p class="h2">Prisijunkite prie mūsų draugų Facebooke</p>
     <div class="pr-fb-like-box">
-        <div class="fb-page" data-href="https://www.facebook.com/inovexas/" data-tabs="none" data-width="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/inovexas/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/inovexas/">InOvex</a></blockquote></div>
+        <div class="fb-page" data-href="https://www.facebook.com/asmyliuvilniuilovevilnius/" data-tabs="timeline" data-width="500" data-height="215" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/asmyliuvilniuilovevilnius/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/asmyliuvilniuilovevilnius/">AŠ MYLIU VILNIŲ - I LOVE VILNIUS</a></blockquote></div>
     </div>
 </div>
 

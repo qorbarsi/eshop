@@ -109,7 +109,7 @@ class SiteController extends Controller
 
         		if ( isset($array['error']['code']) && ( $array['error']['code'] == 123 ) ) {
         			$subscriber = [ 'email' => $email,];
-        			$addedSubscriber = $groupsApi->addSubscriber(5546820, $subscriber);
+        			$addedSubscriber = $groupsApi->addSubscriber($gid, $subscriber);
                 }
                 die(json_encode(['result' => 'success']));
             } else {

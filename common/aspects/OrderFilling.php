@@ -1,8 +1,10 @@
 <?php
 namespace common\aspects;
 
-use dvizh\order\models\Element;
 use Yii;
+
+use dvizh\order\models\Element;
+use dvizh\order\models\ShippingType;
 
 class OrderFilling extends \yii\base\Behavior
 {
@@ -46,6 +48,22 @@ class OrderFilling extends \yii\base\Behavior
                 $order->cost += ($element->price*$element->count);
             }
         }
+
+        $shippingCost = 0;
+
+        if ( $orderShippingType = $order->shipping_type_id ) {
+            if($orderShippingType > 0) {
+                $shippingType = ShippingType::findOne($orderShippingType);
+
+                if(($shippingType && $shippingType->cost > 0) && ((int)$shippingType->free_cost_from <= 0 | $shippingType->free_cost_from > $order->cost)) {
+                    $shippingCost = $shippingType->cost;
+                }
+            }
+        }
+
+        $order->base_cost += $shippingCost;
+        $order->cost += $shippingCost;
+
 
         $order->save();
 

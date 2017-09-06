@@ -111,7 +111,7 @@ CartAsset::register($this);
                       <div class="shipping_info_text">
                           Užsakymus, atliktus iki 16:00 val., „LP Express” kurjeris pristatys jau kitą darbo dieną visoje Lietuvoje.
                           <div class="desktop">Atsiskaityti galima per <span>el. bankininkystę</span> arba <span>grynais pristatymo metu</span>.</div>
-                          <p class="shipping_price">Kaina: 0.00€</p>
+                          <p class="shipping_price">Kaina: 3.00€ (mokant grynais kurjeriui - 4.50€)</p>
                       </div>
                       <div class="clear"></div>
                       <div class="shipping_addition_info" data-addresstype="1">
@@ -362,8 +362,10 @@ CartAsset::register($this);
           <script>
               shippingTypeList = [];
               paymentTypeList = [];
+              shippingTypeCost = [];
               <?php foreach($shippingTypesList as $sht) { ?>
                   shippingTypeList["<?=strtoupper($sht->description);?>"] = <?=$sht->id;?>;
+                  shippingTypeCost["<?=strtoupper($sht->description);?>"] = <?=$sht->cost;?>;
               <?php } ?>
               <?php foreach($paymentTypesList as $pmt) { ?>
                   paymentTypeList["<?=strtoupper($pmt->name);?>"] = <?=$pmt->id;?>;

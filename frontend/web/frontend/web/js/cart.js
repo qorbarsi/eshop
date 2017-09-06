@@ -1,8 +1,9 @@
-var shipping_type_id, payment_type_id;
+var shipping_type_id, payment_type_id, shipping_type_code, payment_type_code;
 var item;
 
-var ga_loaded = false;
-//var ga_loaded = false; ga(function() { ga_loaded = true;}); //Check if Google Analytics is loaded
+//var ga_loaded = false;
+var ga_loaded = false; ga(function() { ga_loaded = true;});
+//Check if Google Analytics is loaded
 var step_id, promocode;
 var paysera = 0;
 var shipping_selected = 0;
@@ -17,6 +18,7 @@ var shipping_type;
 var shipping_name;
 var shipping_city;
 var shipping_address;
+var shipping_total;
 var payment_type;
 var customer_name;
 var customer_email;
@@ -299,6 +301,7 @@ $('#step2 .button').click(function(){
         $(this).html('<img src="'+payment_img[index]+'">');
         $(this).find("img").fadeIn('medium');
     });
+    simpleCart.update();
     next_step(this);
 });
 
@@ -341,6 +344,7 @@ $('#step3 .button').click(function(){
         $('.pr-sum-'+i).append('<div class="product_sum_price">'+item_price[i]+'</div>');
         $('.pr-sum-'+i).append('<div class="product_sum_sum">'+item_subtotal[i]+'</div>');
     }
+    simpleCart.update();
     next_step(this);
 });
 
@@ -443,7 +447,7 @@ $('#confirm_order').click(function(){
                 'id': data,
                 'affiliation': 'Tomeda',
                 'revenue': ssc_total(),
-                'shipping': 0,
+                'shipping': simpleCart.shipping(),
                 'tax': '0'
             });
             for (var p = 0; p < item_names.length; p++) {
@@ -600,6 +604,7 @@ simpleCart.bind( 'update' , function(){
     $('.pr-total-products').html('Jūsų krepšelyje viso yra <b>'+simpleCart.quantity()+' prekė(ės) – '+ssc_total().toFixed(2)+'€</b>');
     $('.ssc_cart_total .ssc_total_sum').html(simpleCart.total().toFixed(2)+'€');
     $('.ssc_cart_grand_total .ssc_total_sum').html(ssc_total().toFixed(2)+'€');
+    $('.ssc_cart_shipping .ssc_total_sum').html(simpleCart.shipping().toFixed(2)+'€');
     if (simpleCart.quantity() > 0) {
         $('.ss_cart .ssc_total').css('display','block');
     } else {
@@ -641,6 +646,24 @@ simpleCart.bind( "beforeAdd" , function( item ){
     item.set("thumb",urlToArrays[0]+'100x100'+urlDotJPG);
     item.set("productimg",urlToArrays[0]+'100x100'+urlDotJPG);
     */
+});
+
+simpleCart.shipping(function(){
+    var result = 0;
+
+    if ( ( shipping_type_code == 'LP_KURJERIS' ) && ( payment_type_code == 'GRYNAIS' ) ) {
+        shipping_type_code = 'LP_KURJERIS_GRYNAIS';
+    }
+
+    if  (
+        (typeof shippingTypeCost !== 'undefined') &&
+        (typeof shippingTypeCost[shipping_type_code] !== 'undefined') &&
+        isNumeric(shippingTypeCost[shipping_type_code])
+     ) {
+        result = shippingTypeCost[shipping_type_code];
+    }
+
+    return result;
 });
 
 function ssc_total() {

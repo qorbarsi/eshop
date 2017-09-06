@@ -36,7 +36,7 @@ class OrderSubscribe extends \yii\base\Behavior
                         $addedSubscriber = $groupsApi->addSubscriber($gid, $subscriber);
                     }
                 } catch (Exception $e) {
-                    yii::trace(print_r($e,true));
+                    yii::error(print_r($e,true));
                 }
 
             }
