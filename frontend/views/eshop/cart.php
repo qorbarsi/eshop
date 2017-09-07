@@ -6,6 +6,7 @@ use yii\widgets\Menu;
 
 use dvizh\cart\widgets\ElementsList;
 use dvizh\promocode\widgets\Enter;
+use dvizh\order\models\Order;
 
 use frontend\assets\CartAsset;
 
@@ -21,6 +22,22 @@ $this->params['withSignup']   = 0;
 $this->params['withBenefits'] = 0;
 //$this->registerJsFile('/js/cart.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 CartAsset::register($this);
+
+function getCost($name,$array) {
+    if ( isset($array) && !empty($array) ) {
+        foreach($array as $sht) {
+            if ( strtoupper($sht->description) == strtoupper($name) ) {
+                if ( isset($sht->cost) ) {
+                    return $sht->cost;
+                } else {
+                    return 0;
+                }
+            }
+        }
+    }
+    return 0;
+}
+
 ?>
     <div class="shopping-cart_container">
       <div class="breadcrumbs">
@@ -111,7 +128,7 @@ CartAsset::register($this);
                       <div class="shipping_info_text">
                           Užsakymus, atliktus iki 16:00 val., „LP Express” kurjeris pristatys jau kitą darbo dieną visoje Lietuvoje.
                           <div class="desktop">Atsiskaityti galima per <span>el. bankininkystę</span> arba <span>grynais pristatymo metu</span>.</div>
-                          <p class="shipping_price">Kaina: 3.00€ (mokant grynais kurjeriui - 4.50€)</p>
+                          <p class="shipping_price">Kaina: <?= Order::getFormatted(getCost('LP_KURJERIS',$shippingTypesList)) ?> (mokant grynais kurjeriui - <?= Order::getFormatted(getCost('LP_KURJERIS_GRYNAIS',$shippingTypesList)) ?>)</p>
                       </div>
                       <div class="clear"></div>
                       <div class="shipping_addition_info" data-addresstype="1">
@@ -142,7 +159,7 @@ CartAsset::register($this);
                       <div class="shipping_info_text">
                           Galite pasirinkti terminalą šalia Jūsų ir atsiimti prekes patogiu laiku. Užsakymus, atliktus iki 16:00 val., pristatysime kitą darbo dieną.
                           <div class="desktop">Atsiskaityti galima per <span>el. bankininkystę</span> arba <span>banko kortele prie terminalo</span>.</div>
-                          <p class="shipping_price">Kaina: 0.00€</p>
+                          <p class="shipping_price">Kaina: <?= Order::getFormatted(getCost('LP_EXPRESS_TERMINALAS',$shippingTypesList)) ?></p>
                       </div>
                       <div class="clear"></div>
                       <div class="shipping_addition_info" data-addresstype="2">
@@ -167,7 +184,7 @@ CartAsset::register($this);
                           Pristatymas registruotu paštu visoje Lietuvoje nurodytu adresu.<br />
                           Pristatymo laikas: 2-3 darbo dienos.
                           <div class="desktop">Atsiskaityti galima per <span>el. bankininkystę</span>.</div>
-                          <p class="shipping_price">Kaina: 0.00€</p>
+                          <p class="shipping_price">Kaina: <?= Order::getFormatted(getCost('LP_PASTAS',$shippingTypesList)) ?></p>
                       </div>
                       <div class="clear"></div>
                       <div class="shipping_addition_info" data-addresstype="1">

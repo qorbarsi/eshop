@@ -115,12 +115,12 @@ return [
             'countryCode' => 'LT',
             'currency' => '€',
             //
-            'createOrderUrl' => true,
+            'createOrderUrl' => false,
             'adminNotificationEmail' => 'info@tomeda.lt', //Мыло для отправки заказов
             'robotEmail' => 'info@tomeda.lt',
             'robotName' => 'Tomeda',
             //'adminNotificationEmail' => false,
-            'clientEmailNotification' => false,
+            'clientEmailNotification' => true,
             'elementToOrderUrl' => false,
             'showPaymentColumn' => true,
             'showCountColumn' => true,

@@ -213,15 +213,11 @@ $this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfil
             <div class="points">
                 <div class="point">
                     <p class="point-head">Kontaktinė informacija</p>
-                    <!--p>Skambinkite: +370 6333 8702</p-->
-                    <p>Skambinkite: +370 6094 1008</p>
+                    <p>Skambinkite: <?= Yii::$app->params['infoPhone'] ?></p>
                     <p>Rašykite: <a href="mailto:<?= Yii::$app->params['infoEmail'] ?>"><?= Yii::$app->params['infoEmail'] ?></a></p>
-                    <!--p>Adresas: Gedimino pr. 33, Vilnius</p-->
                     <p>Adresas: Panevėžio 15-29, Klaipėda</p>
                     <br>
-                    <!--p>UAB "Tomeda"</p-->
                     <p>Edvinas Artimovičius</p>
-                    <!--p>Įmonės kodas: 303123987</p-->
                     <p>Individualios veiklos Nr: 708092</p>
                 </div>
                 <div class="point">
