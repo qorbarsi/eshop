@@ -191,10 +191,10 @@ p.h3:after {display: block; box-shadow: 0 3px 2px -2px rgba(0,0,0,0.1); height: 
 .product-email-sign-up .point.form div.form-head-bg {height: 4px; background: #eee; width:106%; margin-left: -3%; position: relative; box-shadow: 0 3px 2px -1px rgba(0,0,0,0.5);}
 .product-email-sign-up .point.form div.form-content {padding: 20px 20px 40px; width: 240px; margin: 0 auto;}
 .product-email-sign-up .point.form div.form-content {margin-top: 0;}
-.product-join-facebook {padding: 50px 0;}
+.product-join-facebook {padding: 50px 0; display: none;}
 .product-join-facebook .pr-fb-like-box {width: 500px; margin: 0 auto;  box-shadow: 0 10px 10px -4px rgba(0,0,0,0.4);}
 
-#footer {background: #1f1f24; color: #ccc; margin-top: 20px; position: relative; z-index: 2; box-shadow: 0 -3px 6px rgba(0,0,0,0.2);}
+#footer {background: #1f1f24; color: #ccc; margin-top: 0; position: relative; z-index: 2; box-shadow: 0 -3px 6px rgba(0,0,0,0.2);}
 #footer .content {padding: 20px 0;}
 #footer .footer-logo {height: 24px; margin-top: 20px;}
 #footer .footer-logo img {height: 100%;}

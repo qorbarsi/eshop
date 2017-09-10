@@ -110,7 +110,7 @@ $this->params['withBenefits'] = 0;
                         <li><a href="javascript:;" id="point-description" class="selected">Aprašymas</a></li>
                         <li><a href="javascript:;" id="point-payment-delivery">Pristatymas ir apmokėjimas</a></li>
                         <li><a href="javascript:;" id="point-warranty">Garantijos</a></li>
-                        <li><a href="javascript:;" id="point-return">Prekių grąžinimas</a></li>
+                        <!--li><a href="javascript:;" id="point-return">Prekių grąžinimas</a></li-->
                         <div class="clear"></div>
                     </ul>
                     <div class="clear"></div>
@@ -164,16 +164,18 @@ $this->params['withBenefits'] = 0;
                         </div>
 
                         <div class="tab-selected point-payment-delivery">
-                            <p class="tab-header">Pristatymas ir apmokėjimas</p>
+                            <!--p class="tab-header">Pristatymas ir apmokėjimas</p-->
+                            <?= $this->render('../site/delivery') ?>
                         </div>
 
                         <div class="tab-selected point-warranty">
-                            <p class="tab-header">Garantijos</p>
+                            <!--p class="tab-header">Garantijos</p-->
+                            <?= $this->render('../site/warranty') ?>
                         </div>
 
-                        <div class="tab-selected point-return">
+                        <!--div class="tab-selected point-return">
                             <p class="tab-header">Prekių grąžinimas</p>
-                        </div>
+                        </div-->
                     </div>
                 </div>
             </div>

@@ -125,12 +125,12 @@ $this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfil
                         ],
 
                         ['label' => Yii::t('app/frontend','Pristatymas ir apmokėjimas'), 'url' => ['/site/delivery']],
-                        ['label' => Yii::t('app/frontend','Grąžinimas'), 'url' => ['/site/return']],
-                        //['label' => Yii::t('app/frontend','Garantijos'), 'url' => ['/site/warranty']],
+                        //['label' => Yii::t('app/frontend','Grąžinimas'), 'url' => ['/site/return']],
+                        ['label' => Yii::t('app/frontend','Garantijos'), 'url' => ['/site/warranty']],
                         //['label' => Yii::t('app/frontend','Atsiliepimai'), 'url' => ['/site/review']],
                         //['label' => Yii::t('app/frontend','Straipsniai'), 'url' => ['/site/article']],
 
-                        //['label' => Yii::t('app/frontend','Apie mus'), 'url' => ['/site/about']],
+                        ['label' => Yii::t('app/frontend','Apie mus'), 'url' => ['/site/about']],
                         ['label' => Yii::t('app/frontend','Kontaktai'), 'url' => ['/site/contact']],
                     ],
                     'labelTemplate' =>'{label} Label',
@@ -222,12 +222,13 @@ $this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfil
                 </div>
                 <div class="point">
                     <p class="point-head">Informacija</p>
-                    <p><?=Html::a(Yii::t('app/frontend','Pristatymas ir apmokėjimas'), ['site/delivery']);?></p>
-                    <p><?=Html::a(Yii::t('app/frontend','Garantijos'), ['site/warranty']);?></p>
-                    <p><?=Html::a(Yii::t('app/frontend','Atsiliepimai'), ['site/review']);?></p>
-                    <p><?=Html::a(Yii::t('app/frontend','Straipsniai'), ['site/article']);?></p>
-                    <p><?=Html::a(Yii::t('app/frontend','Apie mus'), ['site/about']);?></p>
-                    <p><?=Html::a(Yii::t('app/frontend','Kontaktai'), ['site/contact']);?></p>
+                    <p><?=Html::a(Yii::t('app/frontend','Katalogas'), ['/site/index']);?></p>
+                    <p><?=Html::a(Yii::t('app/frontend','Pristatymas ir apmokėjimas'), ['/site/delivery']);?></p>
+                    <p><?=Html::a(Yii::t('app/frontend','Garantijos'), ['//site/warranty']);?></p>
+                    <!-- <p><?=Html::a(Yii::t('app/frontend','Atsiliepimai'), ['/site/review']);?></p> -->
+                    <!--p><?=Html::a(Yii::t('app/frontend','Straipsniai'), ['/site/article']);?></p-->
+                    <p><?=Html::a(Yii::t('app/frontend','Apie mus'), ['/site/about']);?></p>
+                    <p><?=Html::a(Yii::t('app/frontend','Kontaktai'), ['/site/contact']);?></p>
                 </div>
                 <div class="point">
                     <p class="point-head">Prisijunkite prie mūsų</p>
