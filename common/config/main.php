@@ -81,6 +81,7 @@ return [
             'currencyPosition' => 'after', //after или before (позиция значка валюты относительно цены)
             'priceFormat' => [2,'.', ''], //Форма цены
             'as set_discount' => ['class' => '\common\aspects\SetDiscount'],
+            'as check_amount' => '\common\aspects\CheckAmount',
             //'as set_element_discount' => ['class' => 'dvizh\promocode\behaviors\DiscountToElement'],
             //'as set_certificate_discount' => '\common\aspects\SetCertificateDiscount'
         ],
@@ -108,9 +109,9 @@ return [
             'class' => 'dvizh\order\Module',
             'successUrl' => '/site/thanks', //Страница, куда попадает пользователь после успешного заказа
             //'as use_certificate' => '\common\aspects\UseCertificate',
-            'as do_discount' => '\common\aspects\SetDiscount',
+            //'as do_discount' => '\common\aspects\SetDiscount',
             'as order_filling' => '\common\aspects\OrderFilling',
-            'as promocode_use' => '\dvizh\promocode\behaviors\PromoCodeUse',
+            //'as promocode_use' => '\dvizh\promocode\behaviors\PromoCodeUse',
             'as sibscriber' => '\common\aspects\OrderSubscribe',
             'countryCode' => 'LT',
             'currency' => '€',

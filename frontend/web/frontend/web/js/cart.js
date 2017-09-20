@@ -482,8 +482,12 @@ $('#confirm_order').click(function(){
         }
         truncateCart();
         success_animate(200);
-    }).fail(function() {
-        alert( "Kažkas nutiko, prašome perkrauti puslapį." );
+    }).fail(function(jqXHR, textStatus, error) {
+        var code = jqXHR.status.toString().substr(0,1);
+        if ( code == '4' || code == '5') {
+            alert('Sukurti užsakymą nepavyko.');
+            window.location.replace(url.split('#')[0]);
+        }
     });
 });
 //ORDER_SUCCESS END
@@ -649,10 +653,17 @@ simpleCart.bind( "beforeAdd" , function( item ){
 });
 
 simpleCart.shipping(function(){
+    function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
+
     var result = 0;
+    console.log(shipping_type_code);
 
     if ( ( shipping_type_code == 'LP_KURJERIS' ) && ( payment_type_code == 'GRYNAIS' ) ) {
         shipping_type_code = 'LP_KURJERIS_GRYNAIS';
+    }
+
+    if ( ( shipping_type_code == 'LP_KURJERIS_GRYNAIS' ) && ( payment_type_code !== 'GRYNAIS' ) ) {
+        shipping_type_code = 'LP_KURJERIS';
     }
 
     if  (

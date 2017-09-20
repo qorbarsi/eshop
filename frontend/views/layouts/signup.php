@@ -1,9 +1,17 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
+
+$request = Yii::$app->getRequest();
+if ($request instanceof Request && $request->enableCsrfValidation) {
+    $this->registerMetaTag(['name' => 'csrf-param', 'content' => $request->csrfParam]);
+    $this->registerMetaTag(['name' => 'csrf-token', 'content' => $request->getCsrfToken()]);
+}
+
+// Html::csrfMetaTags()
 ?>
 
-<?=Html::csrfMetaTags() ?>
+
 
 <div class="product-email-sign-up pad-top pad-bot">
     <div class="content">
@@ -22,11 +30,9 @@ use yii\helpers\Url;
                 <div class="form-head-bg"></div>
                 <div class="form-content">
                     <p>Įveskite savo el. pašto adresą</p>
-                    <p>
-                        <input type="email" name="email" id="emailSubsription-email" placeholder="El. paštas" style="border-color:#ccc;"/>
-                        <div class="emailSubsription_error" style="display: none;"></div>
-                    </p>
-                    <a href="javascript:;" class="button emailSubsription" data-link="<?= Url::to(['/site/subscribe']);?>">Prenumeruoti</a>
+                    <input type="email" name="email" id="emailSubsription-email" placeholder="El. paštas" style="border-color:#ccc;"/>
+                    <div class="emailSubsription_error" style="display: none;"></div>
+                    <p><a href="javascript:;" class="button emailSubsription" data-link="<?= Url::to(['/site/subscribe']);?>">Prenumeruoti</a></p>
                 </div>
             </div>
             <div class="clear"></div>

@@ -2,7 +2,20 @@ Options FollowSymLinks
 AddDefaultCharset utf-8
 
 <IfModule mod_rewrite.c>
+    #Включаем систему перезаписи URL
     RewriteEngine On
+
+    # Все запросы на сайт без www
+    RewriteCond %{HTTPS} =on
+    RewriteCond %{HTTP_HOST} ^([^www].*)$
+    # Перенаправляем на сайт с www
+    RewriteRule ^(.*)$ https://www.%1/$1 [L,R=301]
+
+    # Все запросы на сайт без www
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP_HOST} ^([^www].*)$
+    # Перенаправляем на сайт с www
+    RewriteRule ^(.*)$ http://www.%1/$1 [L,R=301]
 
     # the main rewrite rule for the frontend application
     RewriteCond %{REQUEST_URI} !^/(backend/web|admin)

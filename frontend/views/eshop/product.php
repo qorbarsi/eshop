@@ -1,6 +1,7 @@
 <?php
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 #use dvizh\shop\models\Category;
 use dvizh\shop\widgets\ShowPrice;
@@ -61,20 +62,24 @@ $this->params['withBenefits'] = 0;
             <h1 class="item_name"><?= $this->title?></h1>
         </div>
         <div class="product-images">
-            <div class="main-image">
-                <img src="<?=$product->getImage()->getUrl('500x500');?>" alt="<?= $this->title?>">
-            </div>
-            <div class="additional-images">
             <?php
                 $images = $product->getImages();
                 $i = 0;
                 $len = count($images);
+                $main_next = ($len > 1) ? 1 : 0;
+            ?>
+            <div class="main-image">
+                <img src="<?=$product->getImage()->getUrl('500x500');?>" data-next-index="additinional-image-<?= $main_next ?>" alt="<?= Html::encode($this->title) ?>">
+            </div>
+            <div class="additional-images">
+            <?php
                 foreach ($images as $img) {
+                    $next_indx = ( $i + 1 == $len ) ? 0 : $i+1;
                     $class = (($i%5) == 4) ? 'last' : '';
                     $url = $img->getUrl('88x88');
                     $alt = $img->alt;
                     $alt = (empty($alt)) ? $this->title : $alt;
-                    echo "<a href='javascript:;' class='".$class."'><img src='".$url."' alt='".$alt."'></a>";
+                    echo "<a href='javascript:;' class='".$class."'><img src='".$url."' alt='".Html::encode($alt)."' data-next-index='additinional-image-".$next_indx."' id='additinional-image-".$i."'></a>";
                     $i++;
                 }
             ?>
@@ -93,7 +98,13 @@ $this->params['withBenefits'] = 0;
                     'currency' => '&euro;',
                 ]);?>
                 <div class="add-block">
-                    <?= BuyButton::widget(['model' => $product, 'cssClass' => 'button to-cart', 'htmlTag' => 'a', 'text' => '<span></span>Pirkti']); ?>
+                    <?php
+                    if ( !empty($product->amount)  && ($product->amount > 0) ) {
+                        echo BuyButton::widget(['model' => $product, 'cssClass' => 'button to-cart', 'htmlTag' => 'a', 'text' => '<span></span>Pirkti']);
+                    } else {
+                        echo "Atsiprašome, bet prekės šiuo metu sandėlyje neturime";
+                    }
+                    ?>
                     <!-- Show::widget(['model' => $product]);>
                     <ChangeOptions::widget(['model' => $product]);>
                     <ChangeCount::widget(['model' => $product]);>
@@ -196,7 +207,7 @@ $this->params['withBenefits'] = 0;
                                     ]
                                 ).'">';
                                 echo '<div class="related-img">';
-                                echo '<img src="'.$rel->getImage()->getUrl('200x200').'" alt="'.$rel->name.'">';
+                                echo '<img src="'.$rel->getImage()->getUrl('200x200').'" alt="'.Html::encode($rel->name).'">';
                                 echo '</div>';
                                 echo ShowPrice::widget([
                                     'model'    => $rel,

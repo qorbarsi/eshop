@@ -27,7 +27,7 @@ if ( $orderShippingType = $model->shipping_type_id ) {
 	<div style="line-height: 1.5;">
         <p>
             Mielas kliente,<br />
-            Mes gavome Jūsų užsakymą ir netrūkus pradėsime jį ruošti.<br />
+            Mes gavome Jūsų užsakymą ir netrukus pradėsime jį ruošti.<br />
             Žemiau pateikiame Jūsų užsakymo informaciją:
         </p>
     </div>

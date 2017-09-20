@@ -13,6 +13,8 @@ use dvizh\order\models\ShippingType;
 
 use frontend\models\ContactForm;
 
+use dvizh\cart\events\Cart as CartEvent;
+
 /**
  * Eshop controller
  */
@@ -89,6 +91,14 @@ class EshopController extends Controller
     {
         $shippingTypesList = ShippingType::find()->orderBy('order DESC')->all();
         $paymentTypesList = PaymentType::find()->orderBy('order DESC')->all();
+
+        $elementEvent = new CartEvent([
+            'cart' => yii::$app->cart->getElements(),
+            'cost' => yii::$app->cart->getCost(),
+            'count' => yii::$app->cart->getCount(),
+        ]);
+        $cartComponent = yii::$app->cart;
+        $cartComponent->trigger($cartComponent::EVENT_CART_UPDATE, $elementEvent);
 
         return $this->render('cart', [
             'shippingTypesList' => $shippingTypesList,

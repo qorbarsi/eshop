@@ -63,7 +63,7 @@ $this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfil
                     <p class="descript">Elektronikos prekės</p>
                 </div>
                 <div class="fl-ri">
-                    <div class="phone"><div><span class="tbg"></span></div>8 6333 8702</div>
+                    <div class="phone"><div><span class="tbg"></span></div>8 602 663 44</div>
                     <div class="search-box">
                         <form id="cartsearchbox" method="get" action="<?= Url::toRoute(['/'.\Yii::$app->params['eshopPrefix'].'/search']); ?>">
                             <input type="text" name="sfilter" placeholder="Paieška" value="<?= $this->params['sfilter'] ?>"/>
@@ -82,7 +82,7 @@ $this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfil
                         <div class="tbg"></div>
                         <?php
                             $class = ( yii::$app->cart->getCount() > 0 ) ? '' : 'empty';
-                            echo CartInformer::widget(['htmlTag' => 'span', 'cssClass'=> $class, 'text' => '{c}']);
+                            echo CartInformer::widget(['htmlTag' => 'span', 'cssClass'=> $class, 'text' => '{c}', 'withHref' => false ]);
                         ?>
                     </div>
                     <div class="cart-text fl-le">
@@ -177,14 +177,6 @@ $this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfil
             <?php
                 // echo Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [], ]) ;
             ?>
-            <?php if(Yii::$app->session->hasFlash('orderError')) { ?>
-                <?php
-                $errors = unserialize(Yii::$app->session->getFlash('orderError'));
-                foreach ($errors as $err){
-                    Yii::$app->session->setFlash('error', $err[0]);
-                }
-                ?>
-            <?php } ?>
             <?= Alert::widget([
                 'alertTypes' => [
                     'error'   => 'alert-danger',
@@ -231,9 +223,8 @@ $this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfil
                     <p><?=Html::a(Yii::t('app/frontend','Kontaktai'), ['/site/contact']);?></p>
                 </div>
                 <div class="point">
-                    <p class="point-head">Prisijunkite prie mūsų</p>
-                    <div class="social-icon facebook"><span class="tbg"></span></div>
-                    <div class="social-icon email"><span class="tbg"></span></div>
+                    <p class="point-head">ТURITE KLAUSIMŲ?</p>
+                    <p><?= Yii::$app->params['infoPhone'] ?></p>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -244,7 +235,7 @@ $this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfil
                <span class="tbg"></span>
                <?php
                    $class = ( yii::$app->cart->getCount() > 0 ) ? '' : 'empty';
-                   echo CartInformer::widget(['htmlTag' => 'span', 'cssClass'=> $class, 'text' => '{c}']);
+                   echo CartInformer::widget(['htmlTag' => 'span', 'cssClass'=> $class, 'text' => '{c}', 'withHref' => false ]);
                ?>
            </a>
         </div>
@@ -264,6 +255,19 @@ $this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfil
                 var src = $(this).children("img:first").attr('src');
                 $('.main-image img').attr('src', src.replace('88x88','500x500'));
             });
+            $('.main-image img').click(function () {
+                var imagesDiv = $(this).parent().parent();
+                var src_id = $(this).data('next-index');
+                if (typeof src_id !== 'undefined')  {
+                    var img = $('.additional-images img#'+src_id,imagesDiv);
+                    if ( typeof img !== 'undefined' ) {
+                        $(this).data('next-index', img.data('next-index'));
+                        $(this).attr('src', img.attr('src').replace('88x88','500x500'));
+                        console.log(img.data('next-index'));
+                    }
+                }
+            });
+
             $('#mobile-menu li.catalog > a').click(function () {
             	$('#mobile-menu .catalog-level1').toggle();
             });
@@ -313,6 +317,26 @@ $this->params['sfilter'] = isset($this->params['sfilter']) ? $this->params['sfil
                     $('#product-page .added_message, #product-page .added_content').css('display','none');
                 });
             }
+
+            $(document).on('dvizhCartChanged', function () {
+                var cnt = 0;
+                $('.dvizh-cart-row .itemRow').each(function() {
+                    var itm = simpleCart.find({id: $(this).data('id')})[0];
+                    var val = $('input.dvizh-cart-element-count',this).val();
+                    if ( (typeof itm !== 'undefined') && (typeof itm.quantity !== 'undefined') && (typeof val !== 'undefined') && isNumeric(val) )  {
+                        itm.quantity(val);
+                    }
+                    cnt = cnt + 1;
+                });
+                if ( typeof simpleCart !== 'undefined' ) {
+                    if ( cnt > 0 ) {
+                        simpleCart.update();
+                    } else {
+                        simpleCart.empty();
+                    }
+                }
+            });
+
 		</script>
     </body>
 </html>

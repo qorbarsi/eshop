@@ -15,6 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $this->render('../layouts/edvinas') ?>
 
         <p><b>Kita informacija:</b></p>
-        <p>Individualios veiklos Nr: 708092<br/>Edvinas Artimovičius<br/>Adresas: Panevėžio 15-29, Klaipėda</p>
+        <p>Individualios veiklos Nr: 708092<br/>Edvinas Artimovičius<br/>Adresas: Panevėžio 15-29, Klaipėda</p>
     </div>
 </div>

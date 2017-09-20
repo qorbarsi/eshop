@@ -10,6 +10,8 @@ use dvizh\order\models\Order;
 
 use frontend\assets\CartAsset;
 
+use common\widgets\Alert;
+
 /* @var $this yii\web\View */
 $this->title = Yii::t('app/frontend','Krepšelis');
 
@@ -52,6 +54,20 @@ function getCost($name,$array) {
           ]) ?>
       </div>
       <h1>Krepšelis</h1>
+      <?php if(Yii::$app->session->hasFlash('orderError')) { ?>
+          <?php
+          $errors = unserialize(Yii::$app->session->getFlash('orderError'));
+          foreach ($errors as $err){
+              Yii::$app->session->setFlash('error', $err[0]);
+          }
+          ?>
+      <?php } ?>
+      <?= Alert::widget([
+          'alertTypes' => [
+              'checkAmountError' => 'alert-danger',
+              'error'            => 'alert-danger',
+          ],
+      ]) ?>
       <div class="ss_cart">
           <div class="shopping_cart_steps" id="step0">
               <?= ElementsList::widget(['type' => ElementsList::TYPE_FULL, 'elementView' => '//widgets/tomedaCardListView', 'showTotal' => true, /*'cartCssClass' => 'simpleCart_items'*/ ]); ?>

@@ -2,6 +2,7 @@
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use yii\widgets\Menu;
+use yii\helpers\Html;
 
 use dvizh\shop\models\Category;
 use dvizh\shop\widgets\ShowPrice;
@@ -82,7 +83,7 @@ $this->params['sfilter'] = isset($filter) ? $filter : '';
                                         (empty($product->slug) ? $product->id : $product->slug )?> ">
                             <div class="cat-pr">
                                 <div class="cat-pr-img">
-                                    <img src="<?=$product->getImage()->getUrl('200x200');?>" alt="<?=$product->name;?>">
+                                    <img src="<?=$product->getImage()->getUrl('200x200');?>" alt="<?= Html::encode($product->name);?>">
                                 </div>
                                 <div class="cat-pr-title"><?=$product->name;?></div>
                                 <?= ShowPrice::widget([

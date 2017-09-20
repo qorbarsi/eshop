@@ -5,6 +5,7 @@ use Yii;
 
 use dvizh\order\models\Element;
 use dvizh\order\models\ShippingType;
+use yii\base\Exception;
 
 class OrderFilling extends \yii\base\Behavior
 {
@@ -15,24 +16,59 @@ class OrderFilling extends \yii\base\Behavior
         ];
     }
 
+    public function checkAmounts () {
+        $cnt = 0;
+        foreach(yii::$app->cart->elements as $element) {
+            $elementCount = $element->getCount();
+
+            if ($elementCount > 0) {
+                try {
+                    $product = $element->getModel();
+                } catch (Exception $e) {
+                    return false;
+                }
+                $amount = ( isset($product->amount) && ( $product->amount > 0 ) ) ? $product->amount : 0;
+                if ($elementCount > $amount ) {
+                    return false;
+                }
+                $cnt += 1;
+            }
+        }
+
+        return ( $cnt > 0 );
+    }
+
     public function putElements($event)
     {
         $order = $event->model;
 
-        foreach(yii::$app->cart->elements as $element) {
-            $elementModel = new Element;
+        if (!$this->checkAmounts()) {
+            $order->delete();
+            //yii::$app->session->setFlash('checkAmountError', Yii::t('app/common', 'Atsiprašome, šiuo metu sandėlyje tokio prekės kiekio neturime'));
+            throw new Exception(Yii::t('app/common','Atsiprašome, šiuo metu sandėlyje tokio prekės kiekio neturime'));
+        }
 
-            $elementModel->setOrderId($order->id);
-            $elementModel->setAssigment($order->is_assigment);
-            $elementModel->setModelName($element->getModelName());
-            $elementModel->setName($element->getName());
-            $elementModel->setItemId($element->getItemId());
-            $elementModel->setCount($element->getCount());
-            $elementModel->setBasePrice($element->getPrice(false));
-            $elementModel->setPrice($element->getPrice());
-            $elementModel->setOptions(json_encode($element->getOptions()));
-            $elementModel->setDescription('');
-            $elementModel->saveData();
+        foreach(yii::$app->cart->elements as $element) {
+
+            if (!empty($element->getCount())) {
+
+                $elementModel = new Element;
+
+                $elementModel->setOrderId($order->id);
+                $elementModel->setAssigment($order->is_assigment);
+                $elementModel->setModelName($element->getModelName());
+                $elementModel->setName($element->getName());
+                $elementModel->setItemId($element->getItemId());
+                $elementModel->setCount($element->getCount());
+                $elementModel->setBasePrice($element->getPrice(false));
+                $elementModel->setPrice($element->getPrice());
+                $elementModel->setOptions(json_encode($element->getOptions()));
+                $elementModel->setDescription('');
+                $elementModel->saveData();
+
+                $product = $element->getModel();
+                $product->minusAmount($element->getCount());
+            }
         }
 
         if (yii::$app->cart) {
